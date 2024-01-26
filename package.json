@@ -1,7 +1,7 @@
 {
-  "name": "v4",
+  "name": "v4-company-pdi",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Softforge LTDA",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
