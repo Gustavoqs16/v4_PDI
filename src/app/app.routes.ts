@@ -11,4 +11,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./folder/folder.page').then((m) => m.FolderPage),
   },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'access',
+    loadComponent: () => import('./access/access.page').then( m => m.AccessPage)
+  },
 ];
