@@ -415,7 +415,7 @@ ion-toolbar {
     }
 
     .message-boost-business {
-     background-color: transparent;
+      background-color: transparent;
 
       h1 {
         max-width: 1000px;
@@ -427,12 +427,27 @@ ion-toolbar {
 
 
       p {
-max-width: 800px;
+        max-width: 800px;
       }
 
-      #btn-register {
+      #btn-register {}
+    }
+  }
 
-      }
+  .links-desktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 100px;
+    gap: 60px;
+
+    ion-text {
+      color: rgba(204, 204, 204, 1);
+      cursor: pointer;
+    }
+
+    ion-text:hover {
+      color: #ffffff;
     }
   }
 }
