@@ -3,20 +3,20 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/inbox',
+    redirectTo: 'access',
     pathMatch: 'full',
   },
   {
-    path: 'folder/:id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
+    path: 'access',
+    loadComponent: () => import('./access/access.page').then( m => m.AccessPage)
   },
   {
     path: 'login',
     loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
   },
   {
-    path: 'access',
-    loadComponent: () => import('./access/access.page').then( m => m.AccessPage)
+    path: 'about',
+    loadComponent: () => import('./about/about.page').then( m => m.AboutPage)
   },
+
 ];

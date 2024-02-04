@@ -45,6 +45,7 @@ ion-toolbar {
         align-items: center;
         justify-content: center;
         border-radius: 40px;
+        max-width: 500px;
       }
     }
   }
@@ -54,9 +55,10 @@ ion-toolbar {
     min-height: 100px;
     display: flex;
     align-items: center;
-    text-align: center;
+    justify-content: center;
 
     h1 {
+      text-align: center;
       margin: 0;
       font-size: 32px;
       font-size: 500;
@@ -392,5 +394,45 @@ ion-toolbar {
       box-shadow: 0px 0px 25.122318267822266px 0px rgba(201, 37, 171, 0.75);
     }
   }
+}
 
+//media only desktop
+@media only screen and (min-width: 480px) {
+  .info-access {
+    background-image: url('../../assets/images/access/img_v4.png') !important;
+    height: 100dvh;
+
+    &-message {
+
+
+      .access-box {
+
+
+        span {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .message-boost-business {
+     background-color: transparent;
+
+      h1 {
+        max-width: 1000px;
+        font-size: 50px;
+      }
+    }
+
+    .info-access-register {
+
+
+      p {
+max-width: 800px;
+      }
+
+      #btn-register {
+
+      }
+    }
+  }
 }

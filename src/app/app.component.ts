@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
@@ -21,8 +21,20 @@ export class AppComponent {
     { title: 'Trash', url: '/login', icon: 'trash' },
     { title: 'Spam', url: '/login', icon: 'warning' },
   ];
+  isMobile: boolean = false;
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+
   constructor() {
     addIcons({ mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp });
+    this.detectarTamanhoDaTela();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.detectarTamanhoDaTela();
+  }
+
+  detectarTamanhoDaTela() {
+    this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
   }
 }

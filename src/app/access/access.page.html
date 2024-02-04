@@ -1,8 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <img src="../../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="Imagem com a logo da V4">
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="isMobile">
       <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <img slot="start" src="../../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="Imagem com a logo da V4">
+    <div class="links-desktop">
+      <ion-nav-link router-direction="forward" [component]="component">
+        <ion-text>Sobre</ion-text>
+      </ion-nav-link>
+      <ion-nav-link router-direction="forward" [component]="component">
+        <ion-text>Dashboard</ion-text>
+      </ion-nav-link>
+      <ion-nav-link router-direction="forward" [component]="component">
+        <ion-text>Planos</ion-text>
+      </ion-nav-link>
+    </div>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">Cadastro</ion-button>
+      <ion-button>
+        Login
+        <ion-icon slot="end" name="enter-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
