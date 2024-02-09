@@ -4,22 +4,21 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <img slot="start" src="../../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="Imagem com a logo da V4">
-    <div class="links-desktop">
-      <ion-nav-link router-direction="forward" [component]="component">
-        <ion-text>Sobre</ion-text>
-      </ion-nav-link>
-      <ion-nav-link router-direction="forward" [component]="component">
-        <ion-text>Dashboard</ion-text>
-      </ion-nav-link>
-      <ion-nav-link router-direction="forward" [component]="component">
-        <ion-text>Planos</ion-text>
-      </ion-nav-link>
+    <div class="links-desktop" *ngIf="!isMobile">
+      <ion-text>
+        Sobre
+      </ion-text>
+      <ion-text>
+        Dashboard
+      </ion-text>
+      <ion-text>
+        Planos
+      </ion-text>
     </div>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="!isMobile">
       <ion-button fill="clear">Cadastro</ion-button>
-      <ion-button>
+      <ion-button class="btn-login">
         Login
-        <ion-icon slot="end" name="enter-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -46,7 +45,7 @@
       </ion-button>
     </div>
   </div>
-  <div class="container-example-dashboard">
+  <div class="container-example-dashboard" *ngIf="isMobile">
     <div class="example-dashboard">
       <div class="example-dashboard-header">
         <ion-icon name="menu-outline"></ion-icon>
@@ -147,12 +146,15 @@
           </ion-segment-button>
         </ion-segment>
       </div>
-
     </div>
+  </div>
+  <div class="container-example-img" *ngIf="!isMobile">
+    <ion-img id="img-dashboard-desktop" src="../../assets/images/access/dashboard_desktop.png"></ion-img>
   </div>
   <div class="more-control">
     <h3 class="more-control-title">Maior controle sobre sua empresa</h3>
-    <span class="more-control-description">Com uma interface intuitiva, suporte dedicado e funcionalidades robustas, nosso SaaS é projetado para atender às suas necessidades exclusivas.</span>
+    <span class="more-control-description">Com uma interface intuitiva, suporte dedicado e funcionalidades robustas,
+      nosso SaaS é projetado para atender às suas necessidades exclusivas.</span>
     <div class="more-control-analytic">
       <div class="more-control-analytic-icon">
 
@@ -161,7 +163,9 @@
         Dashboard analítico
       </h3>
       <span>
-        Nosso Dashboard fornece uma interface clara e intuitiva para você analisar facilmente seus dados. Desde gráficos personalizáveis ​​até atualizações de dados em tempo real, nosso painel oferece tudo que você precisa para obter insights valiosos.
+        Nosso Dashboard fornece uma interface clara e intuitiva para você analisar facilmente seus dados. Desde gráficos
+        personalizáveis ​​até atualizações de dados em tempo real, nosso painel oferece tudo que você precisa para obter
+        insights valiosos.
       </span>
       <a href="">Ver dashboard</a>
     </div>
@@ -170,16 +174,26 @@
 
       </div>
       <h3>Personalização</h3>
-      <span>Nosso dashboard é focado na personalização dos processos e alinhamento com as expectativas e resultados da empresa. Assim, é possível realizar uma análise mais intuitiva e clara dos dados.</span>
+      <span>Nosso dashboard é focado na personalização dos processos e alinhamento com as expectativas e resultados da
+        empresa. Assim, é possível realizar uma análise mais intuitiva e clara dos dados.</span>
       <a href="">Personalização da plataforma</a>
     </div>
     <div class="more-control-collaborative">
-      <div class="more-control-collaborative-icon">
+      <div class="more-control-collaborative-box">
+        <div class="more-control-collaborative-icon">
 
+        </div>
+        <h3>Código colaborativo</h3>
+        <span>Nossa avançada tecnologia de sincronização de código garante que seus dados estejam sempre atualizados e
+          precisos, não importa de onde venham. Esteja você integrando dados de diversas fontes ou trabalhando com uma
+          equipe de desenvolvedores, nossa tecnologia de sincronização facilita a colaboração e garante que seus dados
+          sejam consistentes e confiáveis.</span>
+        <a href="">Ver código colaborativo</a>
       </div>
-      <h3>Código colaborativo</h3>
-      <span>Nossa avançada tecnologia de sincronização de código garante que seus dados estejam sempre atualizados e precisos, não importa de onde venham. Esteja você integrando dados de diversas fontes ou trabalhando com uma equipe de desenvolvedores, nossa tecnologia de sincronização facilita a colaboração e garante que seus dados sejam consistentes e confiáveis.</span>
-      <a href="">Ver código colaborativo</a>
+      <img *ngIf="!isMobile" src="../../assets/images/access/codigo.png" alt="">
     </div>
+  </div>
+  <div class="footer-access">
+    <img src="../../assets/images/access/logo_footer.png" alt="logo v4 Company">
   </div>
 </ion-content>
