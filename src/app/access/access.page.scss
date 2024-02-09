@@ -62,8 +62,10 @@ ion-toolbar {
       margin: 0;
       font-size: 32px;
       font-size: 500;
-      background: -webkit-linear-gradient(#ececec 20.35%,
-          rgba(236, 236, 236, 0) 128.73%);
+      background: -webkit-linear-gradient(
+        #ececec 20.35%,
+        rgba(236, 236, 236, 0) 128.73%
+      );
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -87,9 +89,11 @@ ion-toolbar {
     }
 
     #btn-register {
-      --background: linear-gradient(92.69deg,
-          rgba(0, 0, 0, 0.5) 26.34%,
-          rgba(0, 0, 0, 0) 99.46%);
+      --background: linear-gradient(
+        92.69deg,
+        rgba(0, 0, 0, 0.5) 26.34%,
+        rgba(0, 0, 0, 0) 99.46%
+      );
       --background-hover: none;
       --background-activated: none;
       --box-shadow: none;
@@ -266,7 +270,6 @@ ion-toolbar {
         }
 
         .my-goal {
-
           h4,
           h3 {
             letter-spacing: -0.01em;
@@ -332,7 +335,6 @@ ion-toolbar {
         }
       }
     }
-
   }
 }
 
@@ -342,23 +344,31 @@ ion-toolbar {
   gap: 30px;
   padding: 10px 20px;
 
+  &-title{
+    text-align: center;
+    font-size: 30px;
+  }
+
   h3 {
     margin: 0;
   }
 
   &-analytic,
-  &-personalization,
-  &-collaborative {
+  &-personalization {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 40px 60px;
     border-radius: 11px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
     box-shadow: 0px -1.2733564376831055px 25.46712875366211px 0px rgba(187, 155, 255, 0.15);
 
     span {
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 12px;
       font-weight: 400;
       line-height: 18px;
@@ -370,6 +380,39 @@ ion-toolbar {
       width: 31px;
       height: 31px;
       border-radius: 6px;
+    }
+  }
+
+  &-collaborative {
+    padding: 40px 60px;
+    border-radius: 11px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    box-shadow: 0px -1.2733564376831055px 25.46712875366211px 0px rgba(187, 155, 255, 0.15);
+
+    span {
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: justified;
+    }
+
+    &-icon {
+      width: 31px;
+      height: 31px;
+      border-radius: 6px;
+    }
+
+    &-box {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 100%;
     }
   }
 
@@ -388,7 +431,6 @@ ion-toolbar {
   }
 
   &-collaborative {
-
     &-icon {
       background-color: rgba(201, 37, 171);
       box-shadow: 0px 0px 25.122318267822266px 0px rgba(201, 37, 171, 0.75);
@@ -396,18 +438,22 @@ ion-toolbar {
   }
 }
 
+.footer-access {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
 //media only desktop
 @media only screen and (min-width: 480px) {
   .info-access {
-    background-image: url('../../assets/images/access/img_v4.png') !important;
+    background-image: url("../../assets/images/access/img_v4.png") !important;
     height: 100dvh;
 
     &-message {
-
-
       .access-box {
-
-
         span {
           font-size: 16px;
         }
@@ -424,13 +470,12 @@ ion-toolbar {
     }
 
     .info-access-register {
-
-
       p {
         max-width: 800px;
       }
 
-      #btn-register {}
+      #btn-register {
+      }
     }
   }
 
@@ -449,5 +494,57 @@ ion-toolbar {
     ion-text:hover {
       color: #ffffff;
     }
+  }
+
+  .more-control {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &-title {
+      font-size: 40px;
+    }
+
+    h3 {
+      min-width: 100vw;
+    }
+
+    &-analytic,
+    &-personalization {
+      max-width: 400px;
+    }
+
+    &-collaborative {
+      max-width: 70vw;
+      display: flex;
+      gap: 20px;
+      flex-wrap: nowrap;
+
+      &-box {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 50%;
+      }
+
+      img {
+        max-width: 50%;
+      }
+    }
+  }
+
+  .container-example-img {
+    position: relative;
+    width: 100%;
+    padding-inline: 10px;
+
+    #img-dashboard-desktop {
+      margin-top: -100px !important;
+    }
+  }
+
+  .btn-login{
+    border-radius: 4px !important;
+    background-color: var(--primary-color) !important;
   }
 }
