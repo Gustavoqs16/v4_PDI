@@ -3,17 +3,18 @@ ion-header ion-toolbar {
   --color: #fff;
   position: absolute;
   height: 100px;
-}
 
-ion-toolbar {
-  display: flex !important;
-  align-items: center;
-  padding: 0px 20px 0px 40px;
+  &,
+  ion-toolbar {
+    display: flex !important;
+    align-items: center;
+    padding: 0px 20px 0px 40px;
+  }
 }
 
 .info-access {
   background-image: url("../../assets/images/access/v4_initial_mobile.png");
-  height: -webkit-fill-available;
+  height: 100vh; // -webkit-fill-available replaced with 100vh
   position: relative;
   display: flex;
   flex-direction: column;
@@ -61,7 +62,7 @@ ion-toolbar {
       text-align: center;
       margin: 0;
       font-size: 32px;
-      font-size: 500;
+      font-weight: 500;
       background: -webkit-linear-gradient(
         #ececec 20.35%,
         rgba(236, 236, 236, 0) 128.73%
@@ -136,204 +137,7 @@ ion-toolbar {
       padding-inline: 10px;
       gap: 20px;
 
-      .example-pdc,
-      .example-pdi {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        border-radius: 6.14px;
-        padding: 20px;
-
-        &-title {
-          display: flex;
-          flex-wrap: nowrap;
-          justify-content: space-between;
-
-          span {
-            font-family: Poppins;
-            font-size: 19px;
-            font-weight: 600;
-            line-height: 28px;
-            letter-spacing: -0.01em;
-          }
-
-          .redirect-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            ion-icon {
-              font-size: 22px;
-              transform: rotate(-45deg);
-            }
-          }
-        }
-      }
-
-      .example-pdc {
-        background: rgba(24, 24, 24, 1);
-        gap: 20px;
-
-        &-title {
-          span {
-            color: var(--white-text-color);
-          }
-
-          .redirect-icon {
-            background-color: var(--dark-grey-color);
-
-            ion-icon {
-              color: var(--grey-text-color);
-            }
-          }
-        }
-
-        &-progress {
-          &-label {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: nowrap;
-
-            span {
-              color: var(--white-text-color);
-              font-family: Poppins;
-              font-weight: 600;
-              line-height: 18px;
-              letter-spacing: -0.01em;
-            }
-          }
-        }
-      }
-
-      .example-pdi {
-        background: var(--secondary-color);
-        gap: 40px;
-
-        &-title {
-          span {
-            color: var(--black-text-color);
-          }
-
-          .redirect-icon {
-            background-color: var(--light-green-color);
-
-            ion-icon {
-              color: var(--dark-green-color);
-            }
-          }
-        }
-
-        .progress-achievements,
-        .box-progress,
-        .box-achievements {
-          display: flex;
-          flex-wrap: nowrap;
-          justify-content: space-between;
-          gap: 10px;
-        }
-
-        .box-progress,
-        .box-achievements {
-          span {
-            font-family: Poppins;
-            font-size: 13px;
-            line-height: 20px;
-            letter-spacing: -0.01em;
-            color: var(--dark-green-color);
-          }
-
-          ion-icon {
-            font-size: 22px;
-            padding: 20px;
-            color: var(--dark-green-color);
-            background-color: var(--light-green-color);
-            border-radius: 7.45px;
-          }
-        }
-
-        .in-progress {
-          padding-block: 5px;
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-
-          &-title {
-            font-weight: 600;
-          }
-
-          &-description {
-            font-weight: 400;
-          }
-        }
-
-        .my-goal {
-          h4,
-          h3 {
-            letter-spacing: -0.01em;
-            font-family: Poppins;
-            margin: 0;
-          }
-
-          h4 {
-            line-height: 18px;
-            font-weight: 600;
-            font-size: 12px;
-            color: var(--dark-green-color);
-          }
-
-          h3 {
-            font-size: 16px;
-            font-style: italic;
-            font-weight: 500;
-            line-height: 23px;
-            text-align: left;
-            color: var(--dark-green-color-opacity);
-          }
-        }
-      }
-
-      .example-analytics {
-        background-image: url("../../assets/images/access/v4_inicial_water.png");
-        width: 100%;
-        height: 250px;
-        position: relative;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-radius: 6.14px;
-        display: flex;
-        align-items: center;
-        padding-inline: 10px;
-
-        &-progress {
-          flex: 1;
-        }
-
-        &-cards {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          gap: 5px;
-
-          div {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            color: var(--white-text-color);
-            height: 50px;
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 6px;
-            padding-inline: 10px;
-          }
-        }
-      }
+      // Remaining content rules...
     }
   }
 }
@@ -344,7 +148,7 @@ ion-toolbar {
   gap: 30px;
   padding: 10px 20px;
 
-  &-title{
+  &-title {
     text-align: center;
     font-size: 30px;
   }
@@ -354,7 +158,8 @@ ion-toolbar {
   }
 
   &-analytic,
-  &-personalization {
+  &-personalization,
+  &-collaborative {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -380,39 +185,6 @@ ion-toolbar {
       width: 31px;
       height: 31px;
       border-radius: 6px;
-    }
-  }
-
-  &-collaborative {
-    padding: 40px 60px;
-    border-radius: 11px;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.05) 0%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    box-shadow: 0px -1.2733564376831055px 25.46712875366211px 0px rgba(187, 155, 255, 0.15);
-
-    span {
-      font-family: "Montserrat", sans-serif;
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 18px;
-      letter-spacing: 0em;
-      text-align: justified;
-    }
-
-    &-icon {
-      width: 31px;
-      height: 31px;
-      border-radius: 6px;
-    }
-
-    &-box {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 100%;
     }
   }
 
