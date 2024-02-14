@@ -1,15 +1,17 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonImg, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { AboutPage } from '../about/about.page';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-access',
   templateUrl: './access.page.html',
   styleUrls: ['./access.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [ IonicModule, CommonModule, FormsModule, IonImg, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonButtons, IonMenuButton, IonIcon, IonButton]
 })
 export class AccessPage implements OnInit {
   isMobile: boolean = false;
@@ -21,6 +23,19 @@ export class AccessPage implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  ionViewWillEnter() {
+    this.preloadImages([
+      '../../assets/images/access/image_compress.jpg',
+    ]);
+  }
+
+  preloadImages(urls: string[]) {
+    urls.forEach(url => {
+      const img = new Image();
+      img.src = url;
+    });
   }
 
   @HostListener('window:resize', ['$event'])

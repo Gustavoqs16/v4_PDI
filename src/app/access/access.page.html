@@ -3,7 +3,7 @@
     <ion-buttons slot="end" *ngIf="isMobile">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <img slot="start" src="../../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="Imagem com a logo da V4">
+    <ion-img slot="start" src="../../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="Imagem com a logo da V4"></ion-img>
     <div class="links-desktop" *ngIf="!isMobile">
       <ion-text>
         Sobre
@@ -26,6 +26,8 @@
 
 <ion-content [fullscreen]="true">
   <div class="info-access">
+    <ion-img class="background-info-access" alt="Imagem de fundo pagina inicial" src="../../assets/images/access/image_compress.jpg" *ngIf="!isMobile"></ion-img>
+    <ion-img class="background-info-access" alt="Imagem de fundo pagina inicial" src="../../assets/images/access/v4_initial_mobile.png" *ngIf="isMobile"></ion-img>
     <div class="info-access-message">
       <div class="access-box">
         <span>
@@ -46,7 +48,7 @@
     </div>
   </div>
   <div class="container-example-dashboard" *ngIf="isMobile">
-    <div class="example-dashboard">
+    <!-- <div class="example-dashboard">
       <div class="example-dashboard-header">
         <ion-icon name="menu-outline"></ion-icon>
         <img src="../../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="Imagem com a logo da V4">
@@ -146,7 +148,8 @@
           </ion-segment-button>
         </ion-segment>
       </div>
-    </div>
+    </div> -->
+    <ion-img class="example-dashboard" src="../../assets/images/access/dashboard_example.png" alt="Exemplo de um dashboard"></ion-img>
   </div>
   <div class="container-example-img" *ngIf="!isMobile">
     <ion-img id="img-dashboard-desktop" src="../../assets/images/access/dashboard_desktop.png"></ion-img>
