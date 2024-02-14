@@ -11,7 +11,7 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './access.page.html',
   styleUrls: ['./access.page.scss'],
   standalone: true,
-  imports: [ IonicModule, CommonModule, FormsModule, IonImg, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonButtons, IonMenuButton, IonIcon, IonButton]
+  imports: [ IonicModule, CommonModule, FormsModule]
 })
 export class AccessPage implements OnInit {
   isMobile: boolean = false;

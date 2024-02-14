@@ -10,11 +10,8 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }
