@@ -1,0 +1,302 @@
+ion-header ion-toolbar {
+  --background: var(--header-transparent) !important;
+  --color: #fff !important;
+  position: absolute;
+  height: 100px;
+
+  &,
+  ion-toolbar {
+    display: flex !important;
+    align-items: center;
+    padding: 0px 20px 0px 40px;
+  }
+}
+
+.info-access {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .background-info-access{
+    object-fit: cover;
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  &-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100vw;
+    height: calc(30vh + 100px);
+    z-index: 5;
+
+    .access-box {
+      width: 100vw;
+      height: 30vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        z-index: 5;
+        font-weight: 600;
+        color: #fff;
+        font-size: 13px;
+        width: 90vw;
+        border: 0.99px solid rgba(255, 255, 255, 0.5);
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 40px;
+        max-width: 500px;
+      }
+    }
+  }
+
+  .message-boost-business {
+    background-color: var(--card-transparent);
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+
+    h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 32px;
+      font-weight: 500;
+      background: -webkit-linear-gradient(
+        #ececec 20.35%,
+        rgba(236, 236, 236, 0) 128.73%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .info-access-register {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    z-index: 5;
+
+    p {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0px;
+      text-align: center;
+      color: rgb(236, 236, 236);
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+      padding: 0px 20px;
+    }
+
+    #btn-register {
+      --background: linear-gradient(
+        92.69deg,
+        rgba(0, 0, 0, 0.5) 26.34%,
+        rgba(0, 0, 0, 0) 99.46%
+      );
+      --background-hover: none;
+      --background-activated: none;
+      --box-shadow: none;
+    }
+  }
+}
+
+.container-example-dashboard {
+  padding-inline: 10px;
+
+  .example-dashboard {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 10;
+    margin-top: -40px;
+
+    object-fit: cover;
+  }
+}
+
+.more-control {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 10px 20px;
+
+  &-title {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  &-analytic,
+  &-personalization,
+  &-collaborative {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 60px;
+    border-radius: 11px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    box-shadow: 0px -1.2733564376831055px 25.46712875366211px 0px rgba(187, 155, 255, 0.15);
+
+    span {
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: justified;
+    }
+
+    &-icon {
+      width: 31px;
+      height: 31px;
+      border-radius: 6px;
+    }
+  }
+
+  &-analytic {
+    &-icon {
+      background-color: rgba(89, 29, 221);
+      box-shadow: 0px 0px 23.20989227294922px 0px rgba(89, 29, 221, 0.75);
+    }
+  }
+
+  &-personalization {
+    &-icon {
+      background-color: rgba(149, 37, 201);
+      box-shadow: 0px 0px 23.20989227294922px 0px rgba(149, 37, 201, 0.75);
+    }
+  }
+
+  &-collaborative {
+    &-icon {
+      background-color: rgba(201, 37, 171);
+      box-shadow: 0px 0px 25.122318267822266px 0px rgba(201, 37, 171, 0.75);
+    }
+  }
+}
+
+.footer-access {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+//media only desktop
+@media only screen and (min-width: 480px) {
+  .info-access {
+
+    &-message {
+      .access-box {
+        span {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .message-boost-business {
+      background-color: transparent;
+
+      h1 {
+        max-width: 1000px;
+        font-size: 50px;
+      }
+    }
+
+    .info-access-register {
+      p {
+        max-width: 800px;
+      }
+
+      #btn-register {
+      }
+    }
+  }
+
+  .links-desktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 100px;
+    gap: 60px;
+
+    ion-text {
+      color: rgba(204, 204, 204, 1);
+      cursor: pointer;
+    }
+
+    ion-text:hover {
+      color: #ffffff;
+    }
+  }
+
+  .more-control {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &-title {
+      font-size: 40px;
+    }
+
+    h3 {
+      min-width: 100vw;
+    }
+
+    &-analytic,
+    &-personalization {
+      max-width: 400px;
+    }
+
+    &-collaborative {
+      max-width: 70vw;
+      display: flex;
+      gap: 20px;
+      flex-wrap: nowrap;
+
+      &-box {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 50%;
+      }
+
+      img {
+        max-width: 50%;
+      }
+    }
+  }
+
+  .container-example-img {
+    position: relative;
+    width: 100%;
+    padding-inline: 10px;
+
+    #img-dashboard-desktop {
+      margin-top: -100px !important;
+    }
+  }
+
+  .btn-login{
+    border-radius: 4px !important;
+    background-color: var(--primary-color) !important;
+  }
+}
