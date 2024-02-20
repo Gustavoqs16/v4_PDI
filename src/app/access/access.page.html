@@ -1,0 +1,202 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end" *ngIf="isMobile">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-img slot="start" src="../../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="Imagem com a logo da V4"></ion-img>
+    <div class="links-desktop" *ngIf="!isMobile">
+      <ion-text>
+        Sobre
+      </ion-text>
+      <ion-text>
+        Dashboard
+      </ion-text>
+      <ion-text>
+        Planos
+      </ion-text>
+    </div>
+    <ion-buttons slot="end" *ngIf="!isMobile">
+      <ion-button fill="clear">Cadastro</ion-button>
+      <ion-button class="btn-login">
+        Login
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="info-access">
+    <ion-img class="background-info-access" alt="Imagem de fundo pagina inicial" src="../../assets/images/access/image_compress.jpg" *ngIf="!isMobile"></ion-img>
+    <ion-img class="background-info-access" alt="Imagem de fundo pagina inicial" src="../../assets/images/access/v4_initial_mobile.png" *ngIf="isMobile"></ion-img>
+    <div class="info-access-message">
+      <div class="access-box">
+        <span>
+          Sua jornada de crescimento começa agora.
+        </span>
+      </div>
+    </div>
+    <div class="message-boost-business">
+      <h1>Potencialize seu sucesso com a V4 Company</h1>
+    </div>
+    <div class="info-access-register">
+      <p>Descubra uma maneira revolucionária de simplificar processos e impulsionar seu negócio. Nosso sistema oferece
+        uma abordagem inovadora para a gestão, proporcionando flexibilidade, escalabilidade e desempenho incomparáveis.
+      </p>
+      <ion-button id="btn-register" shape="round">Cadastrar-se
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+  <div class="container-example-dashboard" *ngIf="isMobile">
+    <!-- <div class="example-dashboard">
+      <div class="example-dashboard-header">
+        <ion-icon name="menu-outline"></ion-icon>
+        <img src="../../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="Imagem com a logo da V4">
+        <ion-icon id="view-icon" name="eye-outline"></ion-icon>
+      </div>
+      <div class="example-dashboard-content">
+        <h1>
+          Dashboard
+        </h1>
+        <div class="example-pdc">
+          <div class="example-pdc-title">
+            <span>
+              Account manager | PDC
+            </span>
+            <div class="redirect-icon">
+              <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+            </div>
+          </div>
+          <div class="example-pdc-progress">
+            <div class="example-pdc-progress-label">
+              <span style="font-size: 12px;">
+                Nível V2
+              </span>
+              <span style="font-size: 9px;">
+                Faltam 04 steps para o nível V3
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="example-pdi">
+          <div class="example-pdi-title">
+            <span style="max-width: 270px;">
+              Plano de desenvolvimento individual | PDI
+            </span>
+            <div class="redirect-icon">
+              <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+            </div>
+          </div>
+          <div class="progress-achievements">
+            <div class="box-progress">
+              <ion-icon name="trending-up-outline"></ion-icon>
+              <div class="in-progress">
+                <span class="in-progress-title">
+                  Em progresso
+                </span>
+                <span class="in-progress-description">
+                  04 / 12 ações
+                </span>
+              </div>
+            </div>
+            <div class="box-achievements">
+              <ion-icon name="trophy-outline"></ion-icon>
+              <div class="in-progress">
+                <span class="in-progress-title">
+                  Conquistas
+                </span>
+                <span class="in-progress-description">
+                  03 Certificados
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="my-goal">
+            <h4>Minha meta é</h4>
+            <h3>Coloque sua meta aqui</h3>
+          </div>
+        </div>
+        <div class="example-analytics">
+          <div class="example-analytics-progress"></div>
+          <div class="example-analytics-cards">
+            <div id="card-miira">
+              <span>MIIRA</span>
+              <span>58</span>
+            </div>
+            <div id="card-pleasure-power">
+              <span>PLEASURE IS POWER</span>
+              <span>57</span>
+            </div>
+            <div id="card-macrovisao">
+              <span>MACROVISÃO</span>
+              <span>35</span>
+            </div>
+          </div>
+        </div>
+        <ion-segment [scrollable]="true" value="heart">
+          <ion-segment-button value="home">
+            <ion-icon name="home"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="heart">
+            <ion-icon name="heart"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="pin">
+            <ion-icon name="pin"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="star">
+            <ion-icon name="star"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </div> -->
+    <ion-img class="example-dashboard" src="../../assets/images/access/dashboard_example.png" alt="Exemplo de um dashboard"></ion-img>
+  </div>
+  <div class="container-example-img" *ngIf="!isMobile">
+    <ion-img id="img-dashboard-desktop" src="../../assets/images/access/dashboard_desktop.png"></ion-img>
+  </div>
+  <div class="more-control">
+    <h3 class="more-control-title">Maior controle sobre sua empresa</h3>
+    <span class="more-control-description">Com uma interface intuitiva, suporte dedicado e funcionalidades robustas,
+      nosso SaaS é projetado para atender às suas necessidades exclusivas.</span>
+    <div class="more-control-analytic">
+      <div class="more-control-analytic-icon">
+
+      </div>
+      <h3>
+        Dashboard analítico
+      </h3>
+      <span>
+        Nosso Dashboard fornece uma interface clara e intuitiva para você analisar facilmente seus dados. Desde gráficos
+        personalizáveis ​​até atualizações de dados em tempo real, nosso painel oferece tudo que você precisa para obter
+        insights valiosos.
+      </span>
+      <a href="">Ver dashboard</a>
+    </div>
+    <div class="more-control-personalization">
+      <div class="more-control-personalization-icon">
+
+      </div>
+      <h3>Personalização</h3>
+      <span>Nosso dashboard é focado na personalização dos processos e alinhamento com as expectativas e resultados da
+        empresa. Assim, é possível realizar uma análise mais intuitiva e clara dos dados.</span>
+      <a href="">Personalização da plataforma</a>
+    </div>
+    <div class="more-control-collaborative">
+      <div class="more-control-collaborative-box">
+        <div class="more-control-collaborative-icon">
+
+        </div>
+        <h3>Código colaborativo</h3>
+        <span>Nossa avançada tecnologia de sincronização de código garante que seus dados estejam sempre atualizados e
+          precisos, não importa de onde venham. Esteja você integrando dados de diversas fontes ou trabalhando com uma
+          equipe de desenvolvedores, nossa tecnologia de sincronização facilita a colaboração e garante que seus dados
+          sejam consistentes e confiáveis.</span>
+        <a href="">Ver código colaborativo</a>
+      </div>
+      <img *ngIf="!isMobile" src="../../assets/images/access/codigo.png" alt="">
+    </div>
+  </div>
+  <div class="footer-access">
+    <img src="../../assets/images/access/logo_footer.png" alt="logo v4 Company">
+  </div>
+</ion-content>
