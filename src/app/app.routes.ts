@@ -3,11 +3,11 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'access',
+    redirectTo: '',
     pathMatch: 'full',
   },
   {
-    path: 'access',
+    path: '',
     loadChildren: () => import('./access/access.module').then( m => m.AccessModule)
   },
   {
@@ -17,6 +17,10 @@ export const routes: Routes = [
   {
     path: 'about',
     loadChildren: () => import('./about/about.module').then( m => m.AboutModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterModule)
   },
 
 ];

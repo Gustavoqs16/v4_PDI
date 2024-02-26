@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true">
+  <div class="content-login">
+    <div class="container-login">
+      <ion-img src="../../assets/logos/LOGOTIPO VERMELHO 1.png"></ion-img>
+      <div class="login-title">
+        <ion-title>Acesso ao seu PDC I V4 Company</ion-title>
+        <ion-text>Login em sua conta</ion-text>
+      </div>
+        <ion-grid fixed style="height: 100%;">
+          <ion-row class="ion-justify-content-center space-block">
+            <ion-col size="10">
+              <ion-input label="Usuário" labelPlacement="stacked" placeholder="Digite o seu email V4 Company"></ion-input>
+              <ion-input label="Senha" labelPlacement="stacked" placeholder="Digite a sua senha"></ion-input>
+              <ion-row class="ion-justify-content-between" style="margin-top: 5px;">
+                <ion-checkbox labelPlacement="end">Mantenha logado</ion-checkbox>
+                <ion-text class="recovery-password">Esqueci minha senha</ion-text>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center space-block recovery-password-mobile">
+            <ion-col size="auto">
+              <ion-button fill="clear">Esqueci minha senha</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center space-block" >
+            <ion-col size="10">
+              <ion-button expand="block" class="btn-send-login">Entrar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </div>
+    <ion-img id="img-login" src="../../assets/images/login/img-login.png"></ion-img>
+  </div>
+</ion-content>

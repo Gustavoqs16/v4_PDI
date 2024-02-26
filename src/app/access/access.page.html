@@ -16,8 +16,8 @@
       </ion-text>
     </div>
     <ion-buttons slot="end" *ngIf="!isMobile">
-      <ion-button fill="clear">Cadastro</ion-button>
-      <ion-button class="btn-login">
+      <ion-button fill="clear" [routerLink]="['/register']">Cadastro</ion-button>
+      <ion-button class="btn-login" [routerLink]="['/login']">
         Login
       </ion-button>
     </ion-buttons>

@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonImg, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { AboutPage } from '../about/about.page';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,8 +13,12 @@ export class AccessPage implements OnInit {
   isMobile: boolean = false;
   component = AboutPage;
 
-  constructor() {
+  constructor(private router: Router) {
     this.detectarTamanhoDaTela();
+  }
+
+  navigate(){
+    this.router.navigate(['/about'])
   }
 
   ngOnInit() {

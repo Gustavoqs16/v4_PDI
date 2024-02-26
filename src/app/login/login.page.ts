@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
+  isMobile: boolean = false;
 
-  constructor() { }
+  constructor() {
+    this.detectarTamanhoDaTela();
+  }
 
+  ngOnInit(): void {}
+
+  detectarTamanhoDaTela() {
+    this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
+  }
 }
