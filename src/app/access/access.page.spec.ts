@@ -5,7 +5,7 @@ describe('AccessPage', () => {
   let component: AccessPage;
   let fixture: ComponentFixture<AccessPage>;
 
-  beforeEach(async(() => {
+  beforeEach((async() => {
     fixture = TestBed.createComponent(AccessPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

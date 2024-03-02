@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="content-login">
-    <div class="container-login">
+    <div class="container-login" [formGroup]="loginForm">
       <ion-img src="../../assets/logos/LOGOTIPO VERMELHO 1.png"></ion-img>
       <div class="login-title">
         <ion-title>Acesso ao seu PDC I V4 Company</ion-title>
@@ -9,11 +9,11 @@
         <ion-grid fixed style="height: 100%;">
           <ion-row class="ion-justify-content-center space-block">
             <ion-col size="10">
-              <ion-input label="Usuário" labelPlacement="stacked" placeholder="Digite o seu email V4 Company"></ion-input>
-              <ion-input label="Senha" labelPlacement="stacked" placeholder="Digite a sua senha"></ion-input>
+              <ion-input label="Usuário" labelPlacement="stacked" required errorText="Campo obrigatório *" placeholder="Digite o seu email V4 Company" type="email" formControlName="email"></ion-input>
+              <ion-input label="Senha" labelPlacement="stacked" required errorText="Campo obrigatório *" type="password" placeholder="Digite a sua senha" formControlName="password"></ion-input>
               <ion-row class="ion-justify-content-between" style="margin-top: 5px;">
                 <ion-checkbox labelPlacement="end">Mantenha logado</ion-checkbox>
-                <ion-text class="recovery-password">Esqueci minha senha</ion-text>
+                <ion-text class="recovery-password" [routerLink]="['/recovery-password']">Esqueci minha senha</ion-text>
               </ion-row>
             </ion-col>
           </ion-row>
@@ -24,7 +24,7 @@
           </ion-row>
           <ion-row class="ion-justify-content-center space-block" >
             <ion-col size="10">
-              <ion-button expand="block" class="btn-send-login">Entrar</ion-button>
+              <ion-button expand="block" class="btn-send-login" (click)="login()" [disabled]="!loginForm.valid">Entrar</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

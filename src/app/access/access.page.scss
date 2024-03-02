@@ -265,10 +265,11 @@ ion-header ion-toolbar {
     }
 
     &-collaborative {
-      max-width: 70vw;
+      max-width: calc(800px + 30px);
       display: flex;
       gap: 20px;
       flex-wrap: nowrap;
+      flex-direction: row;
 
       &-box {
         display: flex;

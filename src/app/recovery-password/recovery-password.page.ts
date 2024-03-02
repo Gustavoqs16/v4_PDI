@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-recovery-password',
+  templateUrl: './recovery-password.page.html',
+  styleUrls: ['./recovery-password.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RecoveryPasswordPage implements OnInit {
   isMobile: boolean = false;
   loginForm: FormGroup;
 
