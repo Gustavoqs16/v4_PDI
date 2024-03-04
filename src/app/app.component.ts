@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp } from 'ionicons/icons';
@@ -13,20 +13,22 @@ import { mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutlin
   // imports: [RouterLink, RouterLinkActive, CommonModule, IonApp, IonSplitPane, IonMenu, IonContent, IonList, IonListHeader, IonNote, IonMenuToggle, IonItem, IonIcon, IonLabel, IonRouterOutlet],
 })
 export class AppComponent {
+
+  isAccess = false;
+
   public appPages = [
-    { title: 'Inbox', url: '/access', icon: 'mail' },
-    { title: 'Outbox', url: '/access', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/login', icon: 'heart' },
-    { title: 'Archived', url: '/login', icon: 'archive' },
-    { title: 'Trash', url: '/login', icon: 'trash' },
-    { title: 'Spam', url: '/login', icon: 'warning' },
+    { title: 'Dashboard', url: '/access' },
+    { title: 'Planos', url: '/access' },
+    { title: 'Sobre', url: '/login'},
   ];
   isMobile: boolean = false;
+  classMenu: string = '';
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  constructor() {
+  constructor(private router: Router) {
     addIcons({ mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, heartOutline, heartSharp, archiveOutline, archiveSharp, trashOutline, trashSharp, warningOutline, warningSharp, bookmarkOutline, bookmarkSharp });
     this.detectarTamanhoDaTela();
+    this.classMenu = this.router.url === '/' ? 'menu-header-access' : 'menu-header';
   }
 
   @HostListener('window:resize', ['$event'])

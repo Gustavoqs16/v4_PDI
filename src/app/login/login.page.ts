@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginPage implements OnInit {
   isMobile: boolean = false;
   loginForm: FormGroup;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private router: Router) {
     this.detectarTamanhoDaTela();
 
     this.loginForm = new FormGroup({
@@ -27,8 +28,9 @@ export class LoginPage implements OnInit {
     this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
   }
 
-  login(){
+  async login() {
     try {
+      await this.router.navigate(['configuration']);
       if (this.loginForm.valid) {
         const objRequest = this.loginForm.value;
         this.httpService.post('v1/auth/login', objRequest).subscribe(data => {

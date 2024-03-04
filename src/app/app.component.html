@@ -1,27 +1,31 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" *ngIf="isMobile">
+    <ion-menu [class]="classMenu" contentId="main-content" type="overlay" *ngIf="isMobile">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi&#64;ionicframework.com</ion-note>
+          <ion-list-header>
+            <div class="list-header">
+              <img src="../assets/logos/LOGOTIPO V4 COMPANY (BRANCO) 1.png" alt="logo">
+            </div>
+          </ion-list-header>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+              routerLinkActive="selected">
+              <div class="menu-item">
+                <ion-label>{{ p.title }}</ion-label>
+              </div>
             </ion-item>
           </ion-menu-toggle>
+
+          <div class="menu-buttons">
+            <ion-button fill="clear" [routerLink]="['/register']">Cadastro</ion-button>
+            <ion-button class="btn-login" [routerLink]="['/login']">
+              Login
+            </ion-button>
+          </div>
         </ion-list>
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon aria-hidden="true" slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
