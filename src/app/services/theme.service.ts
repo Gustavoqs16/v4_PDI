@@ -1,21 +1,28 @@
 // theme.service.ts
 
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
-  private isDarkTheme = new BehaviorSubject<boolean>(false);
-  isDarkTheme$ = this.isDarkTheme.asObservable();
+  private renderer: Renderer2;
+  private isDarkMode: boolean = false;
 
-  constructor() {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    this.isDarkTheme.next(prefersDark.matches);
+  constructor(private rendererFactory: RendererFactory2) {
+    this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  toggleDarkTheme(isDarkTheme: boolean): void {
-    this.isDarkTheme.next(isDarkTheme);
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
+    } else {
+      this.renderer.removeClass(document.body, 'dark-theme');
+    }
+  }
+
+  isDarkTheme() {
+    return this.isDarkMode;
   }
 }

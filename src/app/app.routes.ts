@@ -27,8 +27,8 @@ export const routes: Routes = [
     loadChildren: () => import('./recovery-password/recovery-password.module').then( m => m.RecoveryPasswordModule)
   },
   {
-    path: 'configuration',
-    loadChildren: () => import('./configuration/configuration.module').then( m => m.ConfigurationModule)
+    path: 'app',
+    loadChildren: () => import('./restrict/restrict.module').then( m => m.RestrictModule)
   },
 
 ];

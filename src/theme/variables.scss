@@ -16,26 +16,24 @@
   --text-color: #000;
 }
 
-// Dark Mode
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #db0001;
-    --secondary-color: #56f294;
-    --tertiary-color: #181818;
-    --header-transparent: rgba(255, 255, 255, 0.75);
-    --card-transparent: rgba(255, 255, 255, 0.35);
-    --white-text-color: #fff;
-    --black-text-color: #000;
-    --grey-text-color: #a3a3a3;
-    --dark-grey-color: #464646;
-    --dark-green-color: #005a24;
-    --dark-green-color-opacity: rgba(0, 97, 39, 0.25);
-    --light-green-color: #ceffe2;
-    --light-blue: #00a0fa;
-    --bg-primary: #000;
-    --text-color: #fff;
-  }
+.dark-theme {
+  --primary-color: #db0001;
+  --secondary-color: #56f294;
+  --tertiary-color: #181818;
+  --header-transparent: rgba(255, 255, 255, 0.75);
+  --card-transparent: rgba(255, 255, 255, 0.35);
+  --white-text-color: #fff;
+  --black-text-color: #000;
+  --grey-text-color: #a3a3a3;
+  --dark-grey-color: #464646;
+  --dark-green-color: #005a24;
+  --dark-green-color-opacity: rgba(0, 97, 39, 0.25);
+  --light-green-color: #ceffe2;
+  --light-blue: #00a0fa;
+  --bg-primary: #000;
+  --text-color: #fff;
 }
+
 html {
   /*
    * For more information on dynamic font scaling, visit the documentation:

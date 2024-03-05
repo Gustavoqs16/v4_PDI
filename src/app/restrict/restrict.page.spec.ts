@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ConfigurationPage } from './configuration.page';
+import { RestrictPage } from './restrict.page';
 
-describe('ConfigurationPage', () => {
-  let component: ConfigurationPage;
-  let fixture: ComponentFixture<ConfigurationPage>;
+describe('RestrictPage', () => {
+  let component: RestrictPage;
+  let fixture: ComponentFixture<RestrictPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(ConfigurationPage);
+    fixture = TestBed.createComponent(RestrictPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

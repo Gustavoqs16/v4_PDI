@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RestrictModule } from './restrict/restrict.module';
+import { RestrictPage } from './restrict/restrict.page';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +21,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     CommonModule,
     FormsModule,
+    RestrictModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

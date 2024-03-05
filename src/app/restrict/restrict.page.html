@@ -1,7 +1,7 @@
 
 
-<ion-content [fullscreen]="true">
-  <ion-grid style="height: 100%;">
+<ion-content [fullscreen]="true" [ngClass]="{'dark-mode': isDarkTheme()}">
+  <ion-grid style="height: 100%;" [ngClass]="{'dark-mode': isDarkTheme()}">
     <ion-row style="height: 100%;">
       <ion-col sizeMd="3">
         <nav class="nav-sidebar">
@@ -18,7 +18,7 @@
               <ion-title id="title-config">Configuração</ion-title>
               <div class="content-header">
                 <ion-searchbar class="custom" animated="true" placeholder="Animated"></ion-searchbar>
-                <div class="icon-button">
+                <div class="icon-button" (click)="toggleDarkMode()">
                   <icon-bell></icon-bell>
                 </div>
                 <div class="icon-button">
@@ -37,9 +37,7 @@
             </div>
           </ion-toolbar>
         </ion-header>
-        <ion-content>
-
-        </ion-content>
+          <router-outlet></router-outlet>
       </ion-col>
     </ion-row>
   </ion-grid>
