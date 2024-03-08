@@ -21,7 +21,6 @@ export class LoginPage implements OnInit {
     });
   }
 
-
   ngOnInit(): void {}
 
   detectarTamanhoDaTela() {
@@ -30,7 +29,7 @@ export class LoginPage implements OnInit {
 
   async login() {
     try {
-      await this.router.navigate(['configuration']);
+      await this.router.navigate(['app', 'system-preferences']);
       if (this.loginForm.valid) {
         const objRequest = this.loginForm.value;
         this.httpService.post('v1/auth/login', objRequest).subscribe(data => {

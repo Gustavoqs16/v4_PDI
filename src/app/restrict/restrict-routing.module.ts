@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RestrictPage } from './restrict.page';
 import { ConfigurationPage } from './configuration/configuration.page';
+import { DashboardPage } from './dashboard/dashboard.page';
 
 const routes: Routes = [
   {
@@ -10,9 +11,14 @@ const routes: Routes = [
     children: [
       {
         path: 'configuration',
-        component: ConfigurationPage
+        component: ConfigurationPage,
+        data: { title: 'Configuração' }
       },
-      // Adicione outras rotas para suas páginas aqui
+      {
+        path: 'dashboard',
+        component: DashboardPage,
+        data: { title: 'Dashboard' }
+      },
     ]
   }
 ];

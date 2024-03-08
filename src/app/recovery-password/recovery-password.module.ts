@@ -13,8 +13,8 @@ import { RecoveryPasswordPage } from './recovery-password.page';
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
     RecoveryPasswordRoutingModule,
-    CommonModule
   ]
 })
 export class RecoveryPasswordModule { }

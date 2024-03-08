@@ -1,5 +1,3 @@
-
-
 <ion-content [fullscreen]="true" [ngClass]="{'dark-mode': isDarkTheme()}">
   <ion-grid style="height: 100%;" [ngClass]="{'dark-mode': isDarkTheme()}">
     <ion-row style="height: 100%;">
@@ -9,20 +7,43 @@
             <ion-icon name="menu"></ion-icon>
             <img src="../../assets/logos/LOGOTIPO PRETO 1.png" alt="logo preta v4">
           </div>
+          <div class="nav-sidebar-content">
+            <ion-title class="title-link">{{ title || 'TESTE'}}</ion-title>
+
+            <div class="links-nav">
+              <div class="link-card" *ngFor="let item of links" [routerLink]="item.url">
+                <ion-text>{{item.title}}</ion-text>
+              </div>
+            </div>
+
+            <div class="profile-complete">
+              <ion-text>Complete o seu perfil</ion-text>
+              <span id="complete-description">
+                Você ainda nao terminou de preencher seu perfil
+              </span>
+              <div class="loading-complete">
+                <div class="percentage-complete">
+                  <span>
+                    60% feito
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </nav>
       </ion-col>
       <ion-col sizeMd="9">
         <ion-header [translucent]="true" class="ion-no-border">
           <ion-toolbar>
             <div class="container-header">
-              <ion-title id="title-config">Configuração</ion-title>
+              <ion-title id="title-config">{{ title || 'TESTE'}}</ion-title>
               <div class="content-header">
-                <ion-searchbar class="custom" animated="true" placeholder="Animated"></ion-searchbar>
+                <ion-searchbar class="custom" animated="true" placeholder="O que você precisa?"></ion-searchbar>
                 <div class="icon-button" (click)="toggleDarkMode()">
-                  <icon-bell></icon-bell>
+                  <icon-v4 name="bell"></icon-v4>
                 </div>
                 <div class="icon-button">
-                  <icon-messages></icon-messages>
+                  <icon-v4 name="messages"></icon-v4>
                 </div>
                 <div class="menu-user">
                   <div class="info-user">
@@ -37,7 +58,7 @@
             </div>
           </ion-toolbar>
         </ion-header>
-          <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
       </ion-col>
     </ion-row>
   </ion-grid>

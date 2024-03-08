@@ -6,12 +6,22 @@ import { RestrictPage } from './restrict.page';
 
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ConfigurationPage } from './configuration/configuration.page';
 import { BellComponent } from '../icons/bell/bell.component';
 import { MessagesComponent } from '../icons/messages/messages.component';
+import { ConfigurationModule } from './configuration/configuration.module';
+import { SharedModule } from '../shared/shared.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
-  declarations: [RestrictPage, BellComponent, MessagesComponent, ConfigurationPage],
-  imports: [RestrictRoutingModule, IonicModule.forRoot(), CommonModule, FormsModule],
+  declarations: [RestrictPage, BellComponent, MessagesComponent],
+  imports: [
+    RestrictRoutingModule,
+    IonicModule.forRoot(),
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    ConfigurationModule,
+    DashboardModule,
+  ],
 })
 export class RestrictModule {}

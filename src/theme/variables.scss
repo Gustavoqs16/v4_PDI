@@ -13,7 +13,9 @@
   --light-green-color: #ceffe2;
   --light-blue: #00a0fa;
   --bg-primary: #fff;
+  --bg-white-primary: #000;
   --text-color: #000;
+  --text-color-white: #fff;
 }
 
 .dark-theme {
@@ -31,7 +33,10 @@
   --light-green-color: #ceffe2;
   --light-blue: #00a0fa;
   --bg-primary: #000;
+  --bg-white-primary: #fff;
   --text-color: #fff;
+  --text-color-white: #000;
+
 }
 
 html {

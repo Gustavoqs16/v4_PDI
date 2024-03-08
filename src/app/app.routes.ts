@@ -30,5 +30,9 @@ export const routes: Routes = [
     path: 'app',
     loadChildren: () => import('./restrict/restrict.module').then( m => m.RestrictModule)
   },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./restrict/dashboard/dashboard.page').then( m => m.DashboardPage)
+  },
 
 ];
