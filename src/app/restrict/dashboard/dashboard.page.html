@@ -1,3 +1,116 @@
-<ion-content [fullscreen]="true">
-  <ion-title>TESTE</ion-title>
-</ion-content>
+<ion-grid>
+  <ion-row class="ion-justify-content-between">
+    <ion-col sizeMd="auto">
+      <ion-col sizeMd="auto">
+        <ion-button class="btn-dash" shape="round">
+          <div class="btn-dash-icon">
+            <icon-v4 name="apps"></icon-v4>
+          </div>
+          <ion-text>
+            Layout
+          </ion-text>
+        </ion-button>
+      </ion-col>
+      <ion-col sizeMd="auto">
+        <ion-button class="btn-dash" shape="round">
+          <div class="btn-dash-icon">
+            <icon-v4 name="edit"></icon-v4>
+          </div>
+          <ion-text>
+            Customização
+          </ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-col>
+
+    <ion-col sizeMd="6">
+      <ion-row class="ion-justify-content-end">
+        <ion-text class="messages-dash">Última atualização pelo gestor no dia 27/03/2024 às 17:56hs</ion-text>
+        <div class="circle"></div>
+      </ion-row>
+      <ion-row class="ion-justify-content-end">
+        <ion-text class="messages-dash">Última atualização pelo usuário no dia 30/03/2024 às 10:45hs</ion-text>
+        <div class="circle"></div>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col sizeMd="4">
+      <ion-card class="cards-header card-pdc">
+        <ion-card-header>
+          <ion-card-title class="card-title">
+            Account manager | PDC
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-row class="ion-justify-content-between">
+            <ion-text>
+              Nível V2
+            </ion-text>
+            <ion-text>
+              Faltam 04 steps para o nível V3
+            </ion-text>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col sizeMd="8">
+      <ion-card class="cards-header card-pdi">
+        <ion-card-header>
+          <ion-card-title class="card-title">
+            Plano de desenvolvimento individual | PDI
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-input label="Minha meta é" labelPlacement="stacked" placeholder="Coloque a sua meta aqui"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-row>
+                <div class="icon-pdi">
+                  <icon-v4 name="chart-line-up"></icon-v4>
+                </div>
+                <ion-col>
+                  <ion-row>
+                    <ion-text class="label-pdi">
+                      Em progresso
+                    </ion-text>
+                  </ion-row>
+                  <ion-row>
+                    <ion-text class="sublabel-pdi">
+                      04/12 ações
+                    </ion-text>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col>
+              <ion-row>
+                <div class="icon-pdi">
+                  <icon-v4 name="trophy"></icon-v4>
+                </div>
+                <ion-col>
+                  <ion-row>
+                    <ion-text class="label-pdi">
+                      Conquistas
+                    </ion-text>
+                  </ion-row>
+                  <ion-row>
+                    <ion-text class="sublabel-pdi">
+                      03 certificados
+                    </ion-text>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

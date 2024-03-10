@@ -10,21 +10,46 @@ import { filter } from 'rxjs';
 })
 export class RestrictPage implements OnInit {
   title: string = '';
+  routeActive: string = '';
 
-  links: any = [
-    {
-      title: 'Preferências de sistema',
-      url: 'configuration/system-preferences',
-    },
-    {
-      title: 'Upload de arquivos',
-      url: 'configuration/file-upload',
-    },
-  ];
+  links: any = {
+    configuration: [
+      {
+        title: 'Preferências de sistema',
+        url: 'configuration/system-preferences',
+      },
+      {
+        title: 'Upload de arquivos',
+        url: 'configuration/file-upload',
+      },
+    ],
+    dashboard: [
+      {
+        title: 'Dashboard',
+        url: 'dashboard',
+      },
+      {
+        title: 'PDI',
+        url: 'dashboard',
+      },
+      {
+        title: 'PDC',
+        url: 'dashboard',
+      },
+      {
+        title: 'V4 Network',
+        url: 'dashboard',
+      },
+      {
+        title: 'Configurações',
+        url: 'configuration/system-preferences',
+      },
+    ],
+  };
 
   routes: any = {
-    'dashboard': 'Dashboard',
-    'configuration': 'Configurações',
+    dashboard: 'Dashboard',
+    configuration: 'Configurações',
     'system-preferences': 'Configurações',
     'file-upload': 'Configurações',
   };
@@ -38,7 +63,6 @@ export class RestrictPage implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log(event);
         let route = event.url;
         this.title = this.translationTitle(route);
       }
@@ -54,8 +78,8 @@ export class RestrictPage implements OnInit {
   }
 
   translationTitle(title: string) {
-    console.log(title.split('/'))
     let splitTitle: string = title.split('/')[2];
+    this.routeActive = splitTitle;
     return this.routes[splitTitle];
   }
 }

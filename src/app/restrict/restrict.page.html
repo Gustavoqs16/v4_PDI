@@ -11,7 +11,7 @@
             <ion-title class="title-link">{{ title || 'TESTE'}}</ion-title>
 
             <div class="links-nav">
-              <div class="link-card" *ngFor="let item of links" [routerLink]="item.url">
+              <div class="link-card" *ngFor="let item of links[routeActive]" [routerLink]="item.url">
                 <ion-text>{{item.title}}</ion-text>
               </div>
             </div>
@@ -39,11 +39,11 @@
               <ion-title id="title-config">{{ title || 'TESTE'}}</ion-title>
               <div class="content-header">
                 <ion-searchbar class="custom" animated="true" placeholder="O que você precisa?"></ion-searchbar>
-                <div class="icon-button" (click)="toggleDarkMode()">
-                  <icon-v4 name="bell"></icon-v4>
-                </div>
                 <div class="icon-button">
                   <icon-v4 name="messages"></icon-v4>
+                </div>
+                <div class="icon-button" (click)="toggleDarkMode()">
+                  <icon-v4 name="bell"></icon-v4>
                 </div>
                 <div class="menu-user">
                   <div class="info-user">

@@ -1,0 +1,112 @@
+.btn-dash {
+  --background: var(--bg-button-grey);
+  --color: #000;
+  --box-shadow: none;
+  width: 100%;
+  --padding-start: 0.5rem;
+  max-width: max-content;
+
+  &-icon {
+    padding: 5px;
+    border-radius: 30px;
+    background-color: #fff;
+  }
+
+  ion-text {
+    margin-left: 0.6rem;
+  }
+}
+
+.messages-dash {
+  font-family: "Poppins";
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  background-color: #41be73;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 5px #41be7326;
+  margin-left: 5px;
+  margin-top: 2px;
+}
+
+.icon-pdi {
+  width: 57px;
+  height: 57px;
+  border-radius: 8px;
+  background: #ceffe2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label-pdi {
+  width: 100px;
+  height: 22px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  --color: var(--text-card-green);
+  color: var(--text-card-green);
+}
+
+.card-title {
+  font-family: "Poppins";
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 41px;
+  letter-spacing: -0.01em;
+}
+
+.sublabel-pdi {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.01em;
+  --color: var(--text-card-green);
+  color: var(--text-card-green);
+}
+
+ion-card {
+  --border-radius: 9px;
+  --box-shadow: none;
+  box-shadow: none;
+  border-radius: 9px;
+  margin-inline: 0 !important;
+}
+
+.cards-header {
+  height: 159px;
+}
+
+.card-pdc {
+  background: var(--bg-card-black);
+  color: var(--text-color-white);
+  --color: var(--text-color-white);
+
+  .card-title {
+    color: var(--text-color-white);
+    --color: var(--text-color-white);
+  }
+}
+
+.card-pdi {
+  background: var(--bg-card-green);
+  --border-color: var(--border-card-green);
+
+  .card-title {
+    color: var(--text-color);
+    --color: var(--text-color);
+  }
+}

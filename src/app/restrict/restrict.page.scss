@@ -170,24 +170,24 @@ ion-searchbar.custom {
   align-items: center;
   cursor: pointer;
   border-radius: 9px;
+  background-color: #f5f5f5;
 
   ion-text {
     font-family: "Poppins";
     font-weight: 600;
     margin-left: 20px;
+    color: #000;
+    --color: #000;
   }
 }
 
-.link-card:hover {
-  background-color: #f5f5f5;
-}
 
 .profile-complete {
   background-color: #f5f5f5;
   border-radius: 9px;
   position: absolute;
   bottom: 0;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   padding: 20px;
   margin-inline: 48px 20px;
   display: flex;
