@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
 
   async login() {
     try {
-      await this.router.navigate(['app', 'system-preferences']);
+      await this.router.navigate(['app', 'dashboard']);
       if (this.loginForm.valid) {
         const objRequest = this.loginForm.value;
         this.httpService.post('v1/auth/login', objRequest).subscribe(data => {

@@ -14,11 +14,11 @@ export class RestrictPage implements OnInit {
   links: any = [
     {
       title: 'Preferências de sistema',
-      url: 'system-preferences',
+      url: 'configuration/system-preferences',
     },
     {
       title: 'Upload de arquivos',
-      url: 'file-upload',
+      url: 'configuration/file-upload',
     },
   ];
 

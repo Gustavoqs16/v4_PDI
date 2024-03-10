@@ -9,16 +9,8 @@ const routes: Routes = [
     path: '',
     component: RestrictPage,
     children: [
-      {
-        path: 'configuration',
-        component: ConfigurationPage,
-        data: { title: 'Configuração' }
-      },
-      {
-        path: 'dashboard',
-        component: DashboardPage,
-        data: { title: 'Dashboard' }
-      },
+      { path: 'configuration', loadChildren: () => import('./configuration/configuration.module').then(m => m.ConfigurationModule),},
+      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
     ]
   }
 ];

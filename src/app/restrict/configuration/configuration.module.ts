@@ -8,10 +8,12 @@ import { ConfigurationPage } from './configuration.page';
 import { SystemPreferencesPage } from '../system-preferences/system-preferences.page';
 import { FileUploadPage } from '../file-upload/file-upload.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FileUploadModule } from '../file-upload/file-upload.module';
+import { SystemPreferencesModule } from '../system-preferences/system-preferences.module';
 
 
 @NgModule({
-  declarations: [ConfigurationPage, SystemPreferencesPage, FileUploadPage],
+  declarations: [ConfigurationPage],
   imports: [
     IonicModule,
     FormsModule,
@@ -19,6 +21,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     ConfigurationRoutingModule,
     SharedModule,
+    FileUploadModule,
+    SystemPreferencesModule
   ]
 })
 export class ConfigurationModule { }
