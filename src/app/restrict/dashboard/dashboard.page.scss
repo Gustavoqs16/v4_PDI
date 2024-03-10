@@ -103,7 +103,8 @@ ion-card {
 
 .card-pdi {
   background: var(--bg-card-green);
-  --border-color: var(--border-card-green);
+  --border: 1px solid var(--border-card-green);
+  border: 1px solid var(--border-card-green);
 
   .card-title {
     color: var(--text-color);
