@@ -1,0 +1,66 @@
+<ion-grid>
+  <ion-row>
+    <ion-col sizeMd="8">
+      <div>
+        <ion-row>
+          <ion-col>
+            <ion-img class="img-user" src="../../../assets/images/configuration/user-off.png"
+              alt="Imagem com a logo da V4"></ion-img>
+          </ion-col>
+          <ion-col class="card-pdi">
+            <ion-row>
+              <ion-text>
+                Seu nome
+              </ion-text>
+            </ion-row>
+            <ion-row>
+              <ion-note>
+                seu cargo
+              </ion-note>
+            </ion-row>
+            <ion-col class="form-user">
+              <ion-row>
+                <ion-input label="Lideração imediata" placeholder="Nome do team leader"></ion-input>
+              </ion-row>
+              <ion-row>
+                <ion-input label="Data do último alinhamento do PDI" placeholder="Data atualizada"></ion-input>
+              </ion-row>
+              <ion-row>
+                <ion-input label="Tempo de V4 Company" placeholder="Coloque a data da contratação"></ion-input>
+              </ion-row>
+            </ion-col>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-col>
+    <ion-col sizeMd="4">
+      <div class="goal-term">
+        <ion-row>
+          <ion-label>Minha meta é</ion-label>
+          <ion-input label="Coloque aqui a sua meta" labelPlacement="floating"></ion-input>
+          <ion-note>Preenchido no dia 27/10/2023 às 17h55hs</ion-note>
+        </ion-row>
+        <ion-row class="term-label">
+          <ion-label>Prazo estimado</ion-label>
+          <ion-input label="Prazo possível para alcançar sua meta" labelPlacement="floating"></ion-input>
+          <ion-note>Preenchido no dia 27/10/2023 às 17h55hs</ion-note>
+        </ion-row>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top: 10px;">
+    <ion-col sizeMd="8">
+      <div class="actions-goal">
+        <ion-title>Ações para alcançar seu objetivo</ion-title>
+        <ion-row>
+          <ion-col sizeMd="12" class="item-check" *ngFor="let item of checklist" [ngClass]="{'check-disabled': item?.disabled}">
+            <ion-checkbox labelPlacement="end">{{item.label}}</ion-checkbox>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-col>
+    <ion-col sizeMd="4">
+
+    </ion-col>
+  </ion-row>
+</ion-grid>

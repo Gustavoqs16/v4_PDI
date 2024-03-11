@@ -11,6 +11,7 @@ import { MessagesComponent } from '../icons/messages/messages.component';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { PdiModule } from './pdi/pdi.module';
 
 @NgModule({
   declarations: [RestrictPage, BellComponent, MessagesComponent],
@@ -22,6 +23,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     SharedModule,
     ConfigurationModule,
     DashboardModule,
+    PdiModule
   ],
 })
 export class RestrictModule {}

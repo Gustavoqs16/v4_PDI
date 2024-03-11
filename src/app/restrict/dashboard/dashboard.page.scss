@@ -17,6 +17,10 @@
   }
 }
 
+ion-item {
+  --background: transparent !important;
+}
+
 .messages-dash {
   font-family: "Poppins";
   font-size: 11px;

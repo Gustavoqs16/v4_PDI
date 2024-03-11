@@ -23,14 +23,14 @@ export class RestrictPage implements OnInit {
         url: 'configuration/file-upload',
       },
     ],
-    dashboard: [
+    menu: [
       {
         title: 'Dashboard',
         url: 'dashboard',
       },
       {
         title: 'PDI',
-        url: 'dashboard',
+        url: 'pdi',
       },
       {
         title: 'PDC',
@@ -52,6 +52,8 @@ export class RestrictPage implements OnInit {
     configuration: 'Configurações',
     'system-preferences': 'Configurações',
     'file-upload': 'Configurações',
+    pdi: 'PDI',
+    pdc: 'PDC'
   };
 
   constructor(

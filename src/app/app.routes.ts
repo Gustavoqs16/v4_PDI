@@ -34,5 +34,9 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () => import('./restrict/dashboard/dashboard.page').then( m => m.DashboardPage)
   },
+  {
+    path: 'pdi',
+    loadComponent: () => import('./restrict/pdi/pdi.page').then( m => m.PdiPage)
+  },
 
 ];
