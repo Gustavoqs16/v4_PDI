@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../services/http.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login/login.service';
+import { ToastService } from '../services/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ export class LoginPage implements OnInit {
   isMobile: boolean = false;
   loginForm: FormGroup;
 
-  constructor(private httpService: HttpService, private router: Router) {
+  constructor(
+    private loginService: LoginService,
+    private toast: ToastService
+  ) {
     this.detectarTamanhoDaTela();
 
     this.loginForm = new FormGroup({
@@ -21,7 +25,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   detectarTamanhoDaTela() {
     this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
@@ -29,16 +33,14 @@ export class LoginPage implements OnInit {
 
   async login() {
     try {
-      await this.router.navigate(['app', 'dashboard']);
       if (this.loginForm.valid) {
-        const objRequest = this.loginForm.value;
-        this.httpService.post('v1/auth/login', objRequest).subscribe(data => {
-          console.log(data);
-        });
+        const { email, password } = this.loginForm.value;
+        this.loginService.login(email, password);
       } else {
-        console.log("Formulário inválido. Por favor, preencha os campos corretamente.");
+        this.toast.show('Necessário informar login e senha');
       }
     } catch (error) {
+      this.toast.show('Não foi possível realizar o login');
       console.error("Erro durante a tentativa de login:", error);
     }
   }

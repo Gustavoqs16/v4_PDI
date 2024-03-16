@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RestrictModule } from './restrict/restrict.module';
-import { RestrictPage } from './restrict/restrict.page';
+import { HttpService } from './services/http/http.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +26,7 @@ import { RestrictPage } from './restrict/restrict.page';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    HttpService
   ],
   bootstrap: [AppComponent],
 })
