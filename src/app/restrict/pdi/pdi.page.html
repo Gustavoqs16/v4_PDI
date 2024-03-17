@@ -48,19 +48,72 @@
       </div>
     </ion-col>
   </ion-row>
-  <ion-row style="margin-top: 10px;">
-    <ion-col sizeMd="8">
+  <ion-row style="margin-top: 5px;">
+    <ion-col style="padding: 0; padding-right: 5px;" sizeMd="8">
       <div class="actions-goal">
         <ion-title>Ações para alcançar seu objetivo</ion-title>
         <ion-row>
-          <ion-col sizeMd="12" class="item-check" *ngFor="let item of checklist" [ngClass]="{'check-disabled': item?.disabled}">
-            <ion-checkbox labelPlacement="end">{{item.label}}</ion-checkbox>
+          <ion-col sizeMd="12" class="item-check" *ngFor="let item of checklist"
+            [ngClass]="{'check-disabled': item?.disabled}">
+            <ion-checkbox labelPlacement="end" [disabled]="item?.disabled">{{item.label}}</ion-checkbox>
           </ion-col>
         </ion-row>
       </div>
     </ion-col>
-    <ion-col sizeMd="4">
+    <ion-col style="padding: 0; padding-left: 5px;" sizeMd="4">
+      <ion-row>
+        <ion-col class="trophy-upload" sizeMd="12">
+          <ion-row>
+            <ion-title>Conquistas</ion-title>
+            <div class="box-trophy">
+              <icon-v4 class="colorTextColor" name="trophy"></icon-v4>
+            </div>
+          </ion-row>
+          <ion-row>
+            <ion-text id="sub-title-trophy">Faça o upload dos seus certificados aqui</ion-text>
+          </ion-row>
+          <ion-row class="mt-20 ion-justify-content-center">
+            <icon-v4 class="colorTextColorWhite" name="cloud-upload"></icon-v4>
+          </ion-row>
+        </ion-col>
+        <ion-col class="content-recognition" sizeMd="12">
+          <ion-row class="ion-justify-content-between ion-align-items-center">
+            <ion-title>Reconhecimento da equipe</ion-title>
+            <icon-v4 name="eye"></icon-v4>
+          </ion-row>
+          <ion-row>
+            <ion-col id="user-recognition" sizeMd="12" *ngFor="let item of list; let i = index">
+              <ion-row class="ion-justify-content-between ion-align-items-center">
+                <ion-img src="../../../assets/images/configuration/user-off.png" alt="user-off"></ion-img>
+                <div id="name-message">
+                  <ion-text>{{item.name}}</ion-text>
+                  <ion-text>{{item.message}}</ion-text>
+                </div>
+                <ion-icon [name]="getCheck(item)" (click)="toggleCheck(i);" color="danger"></ion-icon>
+              </ion-row>
+            </ion-col>
 
+            <ion-col sizeMd="12">
+              <ion-button>
+                Quero deixar um elogio
+                <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
     </ion-col>
+  </ion-row>
+  <ion-row class="awards-pdi">
+    <ion-row>
+      <ion-title>
+        Prêmios
+      </ion-title>
+    </ion-row>
+    <ion-row>
+      <ion-col class="photo-awards" sizeMd="2" *ngFor="let award of awards">
+        <ion-img [src]="award?.url" [alt]="award?.type"></ion-img>
+      </ion-col>
+    </ion-row>
   </ion-row>
 </ion-grid>

@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true" [ngClass]="{'dark-mode': isDarkTheme()}">
   <ion-grid style="height: 100%;" [ngClass]="{'dark-mode': isDarkTheme()}">
     <ion-row style="height: 100%;">
-      <ion-col sizeMd="3">
+      <ion-col sizeMd="3" style="max-height: 100%;">
         <nav class="nav-sidebar">
           <div class="nav-sidebar-header">
             <ion-icon name="menu" *ngIf="routeActive == 'configuration'"></ion-icon>
@@ -32,7 +32,7 @@
           </div>
         </nav>
       </ion-col>
-      <ion-col sizeMd="9">
+      <ion-col sizeMd="9" style="max-height: 100%;">
         <ion-header [translucent]="true" class="ion-no-border">
           <ion-toolbar>
             <div class="container-header">

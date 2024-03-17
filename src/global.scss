@@ -39,3 +39,10 @@ ion-input {
   --highlight-color-focused: #000;
   --highlight-color-invalid: #DB0001;
 }
+
+
+.colorTextColor {
+  svg {
+    fill: var(--text-color);
+  }
+}

@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class IconV4Component implements OnInit {
   @Input() name = '';
+  @Input() class = '';
   constructor() { }
 
   ngOnInit() {}

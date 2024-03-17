@@ -1,0 +1,21 @@
+.colorPrimary {
+  svg {
+    fill: var(--primary-color);
+  }
+}
+
+.colorTextColor {
+  svg {
+    path {
+      fill: var(--text-color);
+    }
+  }
+}
+
+.colorTextColorWhite {
+  svg {
+    path {
+      fill: var(--text-color-white);
+    }
+  }
+}

@@ -17,11 +17,12 @@
   --text-color: #000;
   --text-color-white: #fff;
   --bg-button-grey: #F4F4F4;
+  --bg-item-grey: #F4F4F4;
   --bg-card-black: #181818;
   --bg-card-green: #56F294;
   --border-card-green: #56F294;
   --text-card-green: #005a24;
-
+  --border-card: #E0E0E0;
 }
 
 .dark-theme {
@@ -43,10 +44,12 @@
   --text-color: #fff;
   --text-color-white: #000;
   --bg-button-grey: #F4F4F4;
+  --bg-item-grey: #F4F4F4;
   --bg-card-black: #E6E6E6;
   --bg-card-green: #00FFAD4D;
   --border-card-green: #00FF0A;
   --text-card-green: #fff;
+  --border-card: #E0E0E0;
 }
 
 html {
