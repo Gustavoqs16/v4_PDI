@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-recovery-password',
@@ -13,7 +12,7 @@ export class RecoveryPasswordPage implements OnInit {
   isMobile: boolean = false;
   loginForm: FormGroup;
 
-  constructor(private httpService: HttpService) {
+  constructor() {
     this.detectarTamanhoDaTela();
 
     this.loginForm = new FormGroup({
@@ -33,9 +32,9 @@ export class RecoveryPasswordPage implements OnInit {
     try {
       if (this.loginForm.valid) {
         const objRequest = this.loginForm.value;
-        this.httpService.post('v1/auth/login', objRequest).subscribe(data => {
-          console.log(data);
-        });
+        // this.httpService.post('v1/auth/login', objRequest).subscribe(data => {
+        //   console.log(data);
+        // });
       } else {
         console.log("Formulário inválido. Por favor, preencha os campos corretamente.");
       }
