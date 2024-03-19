@@ -9,8 +9,8 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RestrictModule } from './restrict/restrict.module';
 import { HttpService } from './services/http/http.service';
+import { RestrictModule } from './pages/restrict/restrict.module';
 
 @NgModule({
   declarations: [AppComponent],

@@ -1,14 +1,14 @@
 <ion-content [fullscreen]="true" [ngClass]="{'dark-mode': isDarkTheme()}">
   <ion-grid style="height: 100%;" [ngClass]="{'dark-mode': isDarkTheme()}">
-    <ion-row style="height: 100%;">
-      <ion-col sizeMd="3" style="max-height: 100%;">
+    <ion-row style="height: 100%;" >
+      <ion-col sizeMd="3" style="max-height: 100%;" *ngIf="!isMobile">
         <nav class="nav-sidebar">
           <div class="nav-sidebar-header">
             <ion-icon name="menu" *ngIf="routeActive == 'configuration'"></ion-icon>
             <img src="../../assets/logos/LOGOTIPO PRETO 1.png" alt="logo preta v4">
           </div>
           <div class="nav-sidebar-content">
-            <ion-title class="title-link" *ngIf="routeActive == 'configuration'">{{ title || 'TESTE'}}</ion-title>
+              <ion-title class="title-link" *ngIf="routeActive == 'configuration'">{{ title || 'TESTE'}}</ion-title>
 
             <div class="links-nav">
               <div class="link-card" *ngFor="let item of links[routeActive !== 'configuration' ? 'menu' : 'configuration']" [routerLink]="item.url">
@@ -36,7 +36,11 @@
         <ion-header [translucent]="true" class="ion-no-border">
           <ion-toolbar>
             <div class="container-header">
-              <ion-title id="title-config">{{ title || 'TESTE'}}</ion-title>
+              <div id="title-and-icon">
+                <ion-title id="title-config">{{ title || 'TESTE'}}</ion-title>
+                <icon-v4 name="eye"></icon-v4>
+              </div>
+
               <div class="content-header">
                 <ion-searchbar class="custom" animated="true" placeholder="O que você precisa?"></ion-searchbar>
                 <div class="icon-button">

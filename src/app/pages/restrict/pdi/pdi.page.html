@@ -3,20 +3,26 @@
     <ion-col sizeMd="8">
       <div>
         <ion-row>
-          <ion-col>
+          <ion-col sizeSm="12" sizeMd="6" *ngIf="!isMobile">
             <ion-img class="img-user" src="../../../assets/images/configuration/user-off.png"
-              alt="Imagem com a logo da V4"></ion-img>
+              alt="Imagem com a logo da V4" ></ion-img>
           </ion-col>
-          <ion-col class="card-pdi">
+          <ion-col sizeSm="12" sizeMd="6" class="card-pdi">
             <ion-row>
-              <ion-text>
-                Seu nome
-              </ion-text>
-            </ion-row>
-            <ion-row>
-              <ion-note>
-                seu cargo
-              </ion-note>
+              <ion-img class="img-user-mobile" src="../../../assets/images/configuration/user-off.png"
+              alt="Imagem com a logo da V4" *ngIf="isMobile"></ion-img>
+              <ion-col>
+                <ion-row>
+                  <ion-text>
+                    Seu nome
+                  </ion-text>
+                </ion-row>
+                <ion-row>
+                  <ion-note>
+                    seu cargo
+                  </ion-note>
+                </ion-row>
+              </ion-col>
             </ion-row>
             <ion-col class="form-user">
               <ion-row>
@@ -33,7 +39,7 @@
         </ion-row>
       </div>
     </ion-col>
-    <ion-col sizeMd="4">
+    <ion-col sizeSm="12" sizeMd="4">
       <div class="goal-term">
         <ion-row>
           <ion-label>Minha meta é</ion-label>
@@ -49,20 +55,20 @@
     </ion-col>
   </ion-row>
   <ion-row style="margin-top: 5px;">
-    <ion-col style="padding: 0; padding-right: 5px;" sizeMd="8">
+    <ion-col style="padding: 0; padding-right: 5px;" sizeMd="8" sizeSm="12">
       <div class="actions-goal">
         <ion-title>Ações para alcançar seu objetivo</ion-title>
         <ion-row>
-          <ion-col sizeMd="12" class="item-check" *ngFor="let item of checklist"
+          <ion-col size="12" class="item-check" *ngFor="let item of checklist"
             [ngClass]="{'check-disabled': item?.disabled}">
             <ion-checkbox labelPlacement="end" [disabled]="item?.disabled">{{item.label}}</ion-checkbox>
           </ion-col>
         </ion-row>
       </div>
     </ion-col>
-    <ion-col style="padding: 0; padding-left: 5px;" sizeMd="4">
+    <ion-col [ngStyle]="{'padding: 0; padding-left: 5px;': !isMobile}" sizeMd="4" sizeSm="12">
       <ion-row>
-        <ion-col class="trophy-upload" sizeMd="12">
+        <ion-col class="trophy-upload" sizeSm="5" sizeMd="12" [ngClass]="{'mt-10': isMobile}">
           <ion-row>
             <ion-title>Conquistas</ion-title>
             <div class="box-trophy">
@@ -76,13 +82,13 @@
             <icon-v4 class="colorTextColorWhite" name="cloud-upload"></icon-v4>
           </ion-row>
         </ion-col>
-        <ion-col class="content-recognition" sizeMd="12">
+        <ion-col class="content-recognition" sizeSm="6" offsetSm="1" sizeMd="12" offsetMd="0">
           <ion-row class="ion-justify-content-between ion-align-items-center">
             <ion-title>Reconhecimento da equipe</ion-title>
             <icon-v4 name="eye"></icon-v4>
           </ion-row>
           <ion-row>
-            <ion-col id="user-recognition" sizeMd="12" *ngFor="let item of list; let i = index">
+            <ion-col id="user-recognition" size="12" *ngFor="let item of list; let i = index">
               <ion-row class="ion-justify-content-between ion-align-items-center">
                 <ion-img src="../../../assets/images/configuration/user-off.png" alt="user-off"></ion-img>
                 <div id="name-message">
@@ -111,7 +117,7 @@
       </ion-title>
     </ion-row>
     <ion-row>
-      <ion-col class="photo-awards" sizeMd="2" *ngFor="let award of awards">
+      <ion-col class="photo-awards" sizeMd="2" sizeSm="4" *ngFor="let award of awards">
         <ion-img [src]="award?.url" [alt]="award?.type"></ion-img>
       </ion-col>
     </ion-row>

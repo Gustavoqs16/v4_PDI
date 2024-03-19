@@ -8,11 +8,11 @@ export const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./access/access.module').then( m => m.AccessModule)
+    loadChildren: () => import('./pages/public/access/access.module').then( m => m.AccessModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginModule)
+    loadChildren: () => import('./pages/public/login/login.module').then( m => m.LoginModule)
   },
   {
     path: 'about',
@@ -20,23 +20,15 @@ export const routes: Routes = [
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterModule)
+    loadChildren: () => import('./pages/public/register/register.module').then( m => m.RegisterModule)
   },
   {
     path: 'recovery-password',
-    loadChildren: () => import('./recovery-password/recovery-password.module').then( m => m.RecoveryPasswordModule)
+    loadChildren: () => import('./pages/public/recovery-password/recovery-password.module').then( m => m.RecoveryPasswordModule)
   },
   {
     path: 'app',
-    loadChildren: () => import('./restrict/restrict.module').then( m => m.RestrictModule)
-  },
-  {
-    path: 'dashboard',
-    loadComponent: () => import('./restrict/dashboard/dashboard.page').then( m => m.DashboardPage)
-  },
-  {
-    path: 'pdi',
-    loadComponent: () => import('./restrict/pdi/pdi.page').then( m => m.PdiPage)
+    loadChildren: () => import('./pages/restrict/restrict.module').then( m => m.RestrictModule)
   },
 
 ];

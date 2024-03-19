@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -86,11 +86,24 @@ export class PdiPage implements OnInit {
       message: 'mensagem nova',
       check: true
     },
-  ]
+  ];
 
-  constructor() {}
+  isMobile: boolean = false;
+
+  constructor() {
+    this.detectarTamanhoDaTela();
+  }
 
   ngOnInit() {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.detectarTamanhoDaTela();
+  }
+
+  detectarTamanhoDaTela() {
+    this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
+  }
 
   favoriteChanged(event: any) {
     // Lógica para lidar com a mudança de estado do checkbox
@@ -105,4 +118,5 @@ export class PdiPage implements OnInit {
   toggleCheck(index: number) {
     this.list[index].check = !this.list[index].check;
   }
+
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ThemeService } from '../services/theme.service';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-restrict',
@@ -56,11 +56,15 @@ export class RestrictPage implements OnInit {
     pdc: 'PDC'
   };
 
+  isMobile: boolean = false;
+
   constructor(
     private themeService: ThemeService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.detectarTamanhoDaTela();
+  }
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -83,5 +87,14 @@ export class RestrictPage implements OnInit {
     let splitTitle: string = title.split('/')[2];
     this.routeActive = splitTitle;
     return this.routes[splitTitle];
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.detectarTamanhoDaTela();
+  }
+
+  detectarTamanhoDaTela() {
+    this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
   }
 }

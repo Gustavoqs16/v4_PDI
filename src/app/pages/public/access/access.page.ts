@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonImg, IonIcon, IonButton } from '@ionic/angular/standalone';
-import { AboutPage } from '../about/about.page';
 import { Router } from '@angular/router';
+import { AboutPage } from 'src/app/about/about.page';
 
 
 @Component({

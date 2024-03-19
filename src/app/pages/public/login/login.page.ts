@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login/login.service';
-import { ToastService } from '../services/toast/toast.service';
+import { LoginService } from 'src/app/services/login/login.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private toast: ToastService
+    private toast: ToastService,
+    private router: Router
   ) {
     this.detectarTamanhoDaTela();
 
@@ -32,16 +33,17 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    try {
-      if (this.loginForm.valid) {
-        const { email, password } = this.loginForm.value;
-        this.loginService.login(email, password);
-      } else {
-        this.toast.show('Necessário informar login e senha');
-      }
-    } catch (error) {
-      this.toast.show('Não foi possível realizar o login');
-      console.error("Erro durante a tentativa de login:", error);
-    }
+    this.router.navigate(['app', 'dashboard', 'pdi']);
+    // try {
+    //   if (this.loginForm.valid) {
+    //     const { email, password } = this.loginForm.value;
+    //     this.loginService.login(email, password);
+    //   } else {
+    //     this.toast.show('Necessário informar login e senha');
+    //   }
+    // } catch (error) {
+    //   this.toast.show('Não foi possível realizar o login');
+    //   console.error("Erro durante a tentativa de login:", error);
+    // }
   }
 }
