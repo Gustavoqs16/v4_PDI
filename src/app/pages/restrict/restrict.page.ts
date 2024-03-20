@@ -1,7 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
 import { ThemeService } from 'src/app/services/theme.service';
+import { PopoverController } from '@ionic/angular';
+import { MenuListComponent } from 'src/app/components/menu-list/menu-list.component';
+import { IMenuList } from 'src/app/@core/domain/interfaces/IMenulist.interface';
 
 @Component({
   selector: 'app-restrict',
@@ -53,7 +55,7 @@ export class RestrictPage implements OnInit {
     'system-preferences': 'Configurações',
     'file-upload': 'Configurações',
     pdi: 'PDI',
-    pdc: 'PDC'
+    pdc: 'PDC',
   };
 
   isMobile: boolean = false;
@@ -61,7 +63,8 @@ export class RestrictPage implements OnInit {
   constructor(
     private themeService: ThemeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private popoverCtrl: PopoverController
   ) {
     this.detectarTamanhoDaTela();
   }
@@ -96,5 +99,53 @@ export class RestrictPage implements OnInit {
 
   detectarTamanhoDaTela() {
     this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
+  }
+
+  async presentPopover(ev: any) {
+    const headerMenu = {
+      label: 'Nome',
+      subLabel: 'Cargo',
+    };
+
+    const footerMenu = {
+      label: 'Sair',
+      icon: 'log-out-outline',
+      onClick: () => {},
+    };
+
+    const menuItems: IMenuList[] = [
+      {
+        label: 'Perfil',
+        onClick: () => {},
+        icon: 'person-circle',
+      },
+      {
+        label: 'Configurações',
+        onClick: () => {},
+        icon: 'settings-sharp',
+      },
+      {
+        label: 'Tema',
+        onClick: () => {
+          this.toggleDarkMode();
+        },
+        icon: `${this.isDarkTheme() ? 'sunny' : 'moon'}`,
+      },
+      // Mais itens...
+    ];
+
+    const popover = await this.popoverCtrl.create({
+      component: MenuListComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        items: menuItems,
+        headerMenu: headerMenu,
+        footerMenu: footerMenu,
+      },
+      cssClass: 'menu-list',
+    });
+
+    await popover.present();
   }
 }

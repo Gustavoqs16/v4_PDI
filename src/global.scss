@@ -58,3 +58,19 @@ ion-input {
 .mr-10 {
   margin-right: 10px;
 }
+
+.menu-list {
+  ion-list, ion-item {
+    --background: var(--bg-menu);
+    background: var(--bg-menu);
+    ion-label, ion-icon {
+      --color: #fff;
+      color: #fff !important;
+    }
+  }
+}
+
+ion-popover::part(content) {
+  border-radius: 17px !important;
+  --border-radius: 17px !important;
+}

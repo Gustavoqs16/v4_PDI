@@ -46,10 +46,10 @@
                 <div class="icon-button">
                   <icon-v4 name="messages"></icon-v4>
                 </div>
-                <div class="icon-button" (click)="toggleDarkMode()">
+                <div class="icon-button">
                   <icon-v4 name="bell"></icon-v4>
                 </div>
-                <div class="menu-user">
+                <div class="menu-user" (click)="presentPopover($event)">
                   <div class="info-user">
                     <ion-label>Nome do usuário</ion-label>
                     <ion-note>cargo</ion-note>

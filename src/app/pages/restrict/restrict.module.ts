@@ -9,12 +9,10 @@ import { IonicModule } from '@ionic/angular';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PdiModule } from './pdi/pdi.module';
-import { BellComponent } from 'src/app/icons/bell/bell.component';
-import { MessagesComponent } from 'src/app/icons/messages/messages.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [RestrictPage, BellComponent, MessagesComponent],
+  declarations: [RestrictPage],
   imports: [
     RestrictRoutingModule,
     IonicModule.forRoot(),

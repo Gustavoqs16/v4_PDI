@@ -14,7 +14,6 @@ import { RestrictModule } from './pages/restrict/restrict.module';
 
 @NgModule({
   declarations: [AppComponent],
-  // entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
