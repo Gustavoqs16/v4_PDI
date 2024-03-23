@@ -5,33 +5,33 @@
         <ion-row>
           <ion-col sizeSm="12" sizeMd="6" *ngIf="!isMobile">
             <ion-img class="img-user" src="../../../assets/images/configuration/user-off.png"
-              alt="Imagem com a logo da V4" ></ion-img>
+              alt="Imagem com a logo da V4"></ion-img>
           </ion-col>
           <ion-col sizeSm="12" sizeMd="6" class="card-pdi">
             <ion-row>
               <ion-img class="img-user-mobile" src="../../../assets/images/configuration/user-off.png"
-              alt="Imagem com a logo da V4" *ngIf="isMobile"></ion-img>
+                alt="Imagem com a logo da V4" *ngIf="isMobile"></ion-img>
               <ion-col>
                 <ion-row>
                   <ion-text>
-                    Seu nome
+                    {{ nomeUsuario }}
                   </ion-text>
                 </ion-row>
                 <ion-row>
                   <ion-note>
-                    seu cargo
+                    {{ cargoNome }}
                   </ion-note>
                 </ion-row>
               </ion-col>
             </ion-row>
             <ion-col class="form-user">
-              <ion-row>
-                <ion-input label="Lideração imediata" placeholder="Nome do team leader"></ion-input>
+              <ion-row *ngIf="!!nomeLideranca">
+                <ion-input label="Lideração imediata" disabled="true" [value]="nomeLideranca" placeholder="Nome do team leader"></ion-input>
               </ion-row>
               <ion-row>
                 <ion-input label="Data do último alinhamento do PDI" placeholder="Data atualizada"></ion-input>
               </ion-row>
-              <ion-row>
+              <ion-row *ngIf="!!tempoDeEmpresa">
                 <ion-input label="Tempo de V4 Company" placeholder="Coloque a data da contratação"></ion-input>
               </ion-row>
             </ion-col>

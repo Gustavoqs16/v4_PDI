@@ -78,8 +78,6 @@ export class HttpService<T> {
 
     const result = (await res.json()) as any;
 
-    console.log(status)
-
     switch (status) {
       case 400:
         this.toast.show(this.checkStatusText(result));

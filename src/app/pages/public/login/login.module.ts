@@ -5,6 +5,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LoginPage } from './login.page';
+import { LoginService } from 'src/app/services/v1/login/login.service';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { LoginPage } from './login.page';
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+  ],
+  providers: [LoginService]
 })
 export class LoginModule { }

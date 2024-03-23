@@ -1,13 +1,10 @@
+import { BaseModel } from "../base.model";
 import { CompanyModel } from "../company/company.model";
 import { StatusPdiModel } from "../statusPdi/statusPdi.model";
 import { UsersModel } from "../users/users.model";
 
-export class PdiModel {
+export class PdiModel extends BaseModel {
 
-    id: number;
-    create_at: Date;
-    update_at: Date;
-    deleted_at?: Date;
     name: string;
     userId: number;
     status_pdiId: number;

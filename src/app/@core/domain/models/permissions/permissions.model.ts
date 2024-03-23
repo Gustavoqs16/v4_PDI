@@ -1,9 +1,7 @@
-export class PermissionsModel {
+import { BaseModel } from "../base.model";
 
-    id: number;
-    create_at: Date;
-    update_at: Date;
-    deleted_at?: Date;
+export class PermissionsModel extends BaseModel {
+
     name: string;
     description: string;
     show: boolean;

@@ -1,12 +1,9 @@
 import { UserGenero } from "../../enums/genero.enum";
+import { BaseModel } from "../base.model";
 import { RolesModel } from "../roles/roles.model";
 
-export class UsersModel {
+export class UsersModel extends BaseModel {
 
-    id: number;
-    create_at: Date;
-    update_at: Date;
-    deleted_at?: Date;
     name: string;
     email: string;
     password: string;
@@ -18,6 +15,7 @@ export class UsersModel {
     companiesId: number;
     photo?: string;
     roleId: number;
-    role: RolesModel; 
+    roleUser: RolesModel;
+    data_admissao: Date;
 
 }
