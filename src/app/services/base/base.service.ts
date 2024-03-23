@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
+import { IOperator } from 'src/app/@core/domain/interfaces/IOperator.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class BaseService<T, CreateDto, UpdateDto> {
 
   public base_url: string;
@@ -28,7 +26,11 @@ export class BaseService<T, CreateDto, UpdateDto> {
     return this.http.post(`${this.base_url}/${id}`, data);
   }
 
-  delete(): Promise<T> {
-    return this.http.delete(`${this.base_url}`)
+  delete(id: number): Promise<T> {
+    return this.http.delete(`${this.base_url}/${id}`);
+  }
+
+  findCustom(operator: IOperator) {
+    return this.http.post(`${this.base_url}/find/custom`, operator);
   }
 }

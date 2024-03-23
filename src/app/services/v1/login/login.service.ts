@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from '../http/http.service';
+import { HttpService } from '../../http/http.service';
 import { LoginModel } from 'src/app/@core/domain/models/login/login.model';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-import { StorageService } from '../storage/storage.service';
+import { StorageService } from '../../storage/storage.service';
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LoginService {
 
   $isLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   $user: BehaviorSubject<UsersModel> = new BehaviorSubject<UsersModel>(new UsersModel());
-
 
   constructor(
     private readonly httpService: HttpService<LoginModel>,
