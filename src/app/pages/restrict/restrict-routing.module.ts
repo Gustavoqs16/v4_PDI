@@ -1,21 +1,38 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RestrictPage } from './restrict.page';
+import { AuthGuard } from 'src/app/@core/domain/auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: RestrictPage,
     children: [
-      { path: 'configuration', loadChildren: () => import('./configuration/configuration.module').then(m => m.ConfigurationModule),},
-      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
-      { path: 'pdi', loadChildren: () => import('./pdi/pdi.module').then(m => m.PdiModule) },
-    ]
-  }
+      {
+        path: 'configuration',
+        canLoad: [AuthGuard],
+        loadChildren: () =>
+          import('./configuration/configuration.module').then(
+            (m) => m.ConfigurationModule
+          ),
+      },
+      {
+        path: 'dashboard',
+        canLoad: [AuthGuard],
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+      },
+      {
+        path: 'pdi',
+        canLoad: [AuthGuard],
+        loadChildren: () => import('./pdi/pdi.module').then((m) => m.PdiModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class RestrictRoutingModule { }
+export class RestrictRoutingModule {}
