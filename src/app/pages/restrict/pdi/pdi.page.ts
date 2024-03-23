@@ -2,6 +2,9 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { LoginService } from 'src/app/services/v1/login/login.service';
+import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
+import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service';
 
 @Component({
   selector: 'app-pdi',
@@ -90,11 +93,29 @@ export class PdiPage implements OnInit {
 
   isMobile: boolean = false;
 
-  constructor() {
+  nomeUsuario: string;
+  cargoNome: string;
+  dataUltimoAlinhamento: Date;
+  tempoDeEmpresa: Date;
+  nomeLideranca: string | null;
+
+  constructor(
+    private readonly loginService: LoginService,
+    private readonly pdiService: PdiService,
+    private readonly pdiTaskService: PdiTasksService
+  ) {
     this.detectarTamanhoDaTela();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const user = this.loginService.$user.getValue();
+    const { name, roleUser } = user;
+    console.log(user);
+    this.nomeUsuario = name;
+    this.cargoNome = roleUser.name;
+    this.nomeLideranca = !!roleUser.managerId ? roleUser.manager.name : null;
+    console.log(this.nomeLideranca)
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -111,7 +132,7 @@ export class PdiPage implements OnInit {
   }
 
   getCheck(elem: any): string {
-    let checkIcon = elem.check? 'heart' : 'heart-outline';
+    let checkIcon = elem.check ? 'heart' : 'heart-outline';
     return checkIcon;
   }
 

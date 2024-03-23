@@ -4,6 +4,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 import { PopoverController } from '@ionic/angular';
 import { MenuListComponent } from 'src/app/components/menu-list/menu-list.component';
 import { IMenuList } from 'src/app/@core/domain/interfaces/IMenulist.interface';
+import { LoginService } from 'src/app/services/v1/login/login.service';
 
 @Component({
   selector: 'app-restrict',
@@ -59,12 +60,15 @@ export class RestrictPage implements OnInit {
   };
 
   isMobile: boolean = false;
+  nomeUsuario: string;
+  cargoUsuario: string;
 
   constructor(
     private themeService: ThemeService,
     private route: ActivatedRoute,
     private router: Router,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private loginService: LoginService
   ) {
     this.detectarTamanhoDaTela();
   }
@@ -76,6 +80,14 @@ export class RestrictPage implements OnInit {
         this.title = this.translationTitle(route);
       }
     });
+
+    if (this.loginService.$isLogged.getValue()) {
+
+      const { name, roleUser } = this.loginService.$user.getValue();
+
+      this.nomeUsuario = name;
+      this.cargoUsuario = roleUser.name;
+    }
   }
 
   toggleDarkMode() {
@@ -103,25 +115,28 @@ export class RestrictPage implements OnInit {
 
   async presentPopover(ev: any) {
     const headerMenu = {
-      label: 'Nome',
-      subLabel: 'Cargo',
+      label: this.nomeUsuario,
+      subLabel: this.cargoUsuario,
     };
 
     const footerMenu = {
       label: 'Sair',
       icon: 'log-out-outline',
-      onClick: () => {},
+      onClick: async () => {
+        console.log('sair')
+        await this.loginService.logout()
+      },
     };
 
     const menuItems: IMenuList[] = [
       {
         label: 'Perfil',
-        onClick: () => {},
+        onClick: () => { },
         icon: 'person-circle',
       },
       {
         label: 'Configurações',
-        onClick: () => {},
+        onClick: () => { },
         icon: 'settings-sharp',
       },
       {

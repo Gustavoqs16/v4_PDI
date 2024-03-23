@@ -10,6 +10,7 @@ import { ConfigurationModule } from './configuration/configuration.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PdiModule } from './pdi/pdi.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { LoginService } from 'src/app/services/v1/login/login.service';
 
 @NgModule({
   declarations: [RestrictPage],
@@ -23,5 +24,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     DashboardModule,
     PdiModule
   ],
+  providers: [LoginService]
 })
-export class RestrictModule {}
+export class RestrictModule { }

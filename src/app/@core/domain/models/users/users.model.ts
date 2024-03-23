@@ -15,6 +15,7 @@ export class UsersModel extends BaseModel {
     companiesId: number;
     photo?: string;
     roleId: number;
-    role: RolesModel;
+    roleUser: RolesModel;
+    data_admissao: Date;
 
 }

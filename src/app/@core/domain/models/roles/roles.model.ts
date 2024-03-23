@@ -1,4 +1,5 @@
 import { BaseModel } from "../base.model";
+import { UsersModel } from "../users/users.model";
 
 export class RolesModel extends BaseModel {
 
@@ -7,5 +8,6 @@ export class RolesModel extends BaseModel {
     userId: number;
     companiesId: number;
     managerId: number;
+    manager: UsersModel;
 
 }
