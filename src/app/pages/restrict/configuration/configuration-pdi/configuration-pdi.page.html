@@ -2,8 +2,8 @@
   <ion-row>
     <ion-col sizeMd="10" offsetMd="1">
       <ion-item [formGroup]="newPdiForm">
-        <ion-input label="Novo PDI" [value]="newPdi.name"
-          placeholder="Digite o título do PDI" formControlName="name"></ion-input>
+        <ion-input label="Novo PDI" [value]="newPdi.name" placeholder="Digite o título do PDI"
+          formControlName="name"></ion-input>
         <ion-button shape="round" fill="outline" slot="end" (click)="createdPdi()">
           <ion-icon slot="icon-only" name="add-outline"></ion-icon>
         </ion-button>
@@ -16,12 +16,31 @@
       <ion-list>
         <ion-list-header>
           <ion-title>
-            PDI's criados
+            PDI's
           </ion-title>
         </ion-list-header>
-        <ion-item *ngFor="let pdi of listPdi">
-          <ion-label>pdi.name</ion-label>
-        </ion-item>
+        <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+          <ion-card *ngFor="let pdi of listPdi">
+            <ion-reorder>
+              <ion-card-header>
+                <ion-item lines="none">
+                  <ion-col slot="start">
+                    <ion-label>{{pdi.name}}</ion-label>
+                    <ion-note>user</ion-note>
+                  </ion-col>
+                  <ion-button shape="round" fill="clear" slot="end" (click)="deletePdi(pdi.id)">
+                    <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-row class="ion-justify-content-center">
+                  <ion-button>Adicionar tarefa</ion-button>
+                </ion-row>
+              </ion-card-content>
+            </ion-reorder>
+            </ion-card>
+        </ion-reorder-group>
       </ion-list>
     </ion-col>
   </ion-row>
