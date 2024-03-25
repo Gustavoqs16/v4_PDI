@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { StorageService } from '../../storage/storage.service';
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
+import { ApiRoutes } from 'src/app/routes/api-routes';
 
 @Injectable()
 export class LoginService {
@@ -21,11 +22,9 @@ export class LoginService {
   }
 
   async login(email: string, password: string) {
-    const res = await this.httpService.post(`v1/auth/login`, { email, password });
+    const res = await this.httpService.post(ApiRoutes.login, { email, password });
 
     const data: LoginModel = res;
-
-    console.log(data.data)
 
     this.storageService.set('token', data.data.access_token);
     this.storageService.set('user', JSON.stringify(data.user));

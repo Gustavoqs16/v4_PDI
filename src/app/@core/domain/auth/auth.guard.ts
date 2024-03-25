@@ -12,7 +12,7 @@ export class AuthGuard implements CanLoad {
     route: Route,
     segments: UrlSegment[]
   ): Observable<boolean> | Promise<boolean> | boolean {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('token');
     if (token) {
       return true;
     } else {

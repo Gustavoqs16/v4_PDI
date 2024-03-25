@@ -1,0 +1,28 @@
+<ion-grid>
+  <ion-row>
+    <ion-col sizeMd="10" offsetMd="1">
+      <ion-item [formGroup]="newPdiForm">
+        <ion-input label="Novo PDI" [value]="newPdi.name"
+          placeholder="Digite o título do PDI" formControlName="name"></ion-input>
+        <ion-button shape="round" fill="outline" slot="end" (click)="createdPdi()">
+          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="listPdi.length > 0">
+    <ion-col sizeMd="10" offsetMd="1">
+      <ion-list>
+        <ion-list-header>
+          <ion-title>
+            PDI's criados
+          </ion-title>
+        </ion-list-header>
+        <ion-item *ngFor="let pdi of listPdi">
+          <ion-label>pdi.name</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>

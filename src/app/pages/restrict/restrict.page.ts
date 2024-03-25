@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ThemeService } from 'src/app/services/theme.service';
+import { ThemeService } from 'src/app/services/theme/theme.service';
 import { PopoverController } from '@ionic/angular';
 import { MenuListComponent } from 'src/app/components/menu-list/menu-list.component';
 import { IMenuList } from 'src/app/@core/domain/interfaces/IMenulist.interface';
@@ -20,32 +20,44 @@ export class RestrictPage implements OnInit {
       {
         title: 'Preferências de sistema',
         url: 'configuration/system-preferences',
+        active: false,
       },
       {
         title: 'Upload de arquivos',
         url: 'configuration/file-upload',
+        active: false,
+      },
+      {
+        title: 'Configuração do PDI',
+        url: 'configuration/configuration-pdi',
+        active: false,
       },
     ],
     menu: [
       {
         title: 'Dashboard',
         url: 'dashboard',
+        active: false,
       },
       {
         title: 'PDI',
         url: 'pdi',
+        active: false,
       },
       {
         title: 'PDC',
         url: 'dashboard',
+        active: false,
       },
       {
         title: 'V4 Network',
         url: 'dashboard',
+        active: false,
       },
       {
         title: 'Configurações',
         url: 'configuration/system-preferences',
+        active: false,
       },
     ],
   };
@@ -82,7 +94,6 @@ export class RestrictPage implements OnInit {
     });
 
     if (this.loginService.$isLogged.getValue()) {
-
       const { name, roleUser } = this.loginService.$user.getValue();
 
       this.nomeUsuario = name;
@@ -100,7 +111,23 @@ export class RestrictPage implements OnInit {
 
   translationTitle(title: string) {
     let splitTitle: string = title.split('/')[2];
+    let splitSubTitle: string = title.split('/')[3];
     this.routeActive = splitTitle;
+
+    let finded = this.links[
+      this.routeActive !== 'configuration' ? 'menu' : 'configuration'
+    ].findIndex((elem: any) =>
+      elem?.url.includes(
+        this.routeActive !== 'configuration' ? splitTitle : splitSubTitle
+      )
+    );
+    if (finded != -1)
+      this.setActiveLink(
+        this.links[
+          this.routeActive !== 'configuration' ? 'menu' : 'configuration'
+        ][finded]
+      );
+
     return this.routes[splitTitle];
   }
 
@@ -110,7 +137,7 @@ export class RestrictPage implements OnInit {
   }
 
   detectarTamanhoDaTela() {
-    this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
+    this.isMobile = window.innerWidth <= 768;
   }
 
   async presentPopover(ev: any) {
@@ -123,20 +150,26 @@ export class RestrictPage implements OnInit {
       label: 'Sair',
       icon: 'log-out-outline',
       onClick: async () => {
-        console.log('sair')
-        await this.loginService.logout()
+        console.log('sair');
+        await this.loginService.logout();
       },
     };
 
     const menuItems: IMenuList[] = [
       {
         label: 'Perfil',
-        onClick: () => { },
+        onClick: () => {},
         icon: 'person-circle',
       },
       {
         label: 'Configurações',
-        onClick: () => { },
+        onClick: async () => {
+          await this.router.navigate([
+            'app',
+            'configuration',
+            'system-preferences',
+          ]);
+        },
         icon: 'settings-sharp',
       },
       {
@@ -162,5 +195,12 @@ export class RestrictPage implements OnInit {
     });
 
     await popover.present();
+  }
+
+  setActiveLink(selectedLink: any) {
+    this.links.menu.forEach((link: any) => (link.active = false));
+    this.links.configuration.forEach((link: any) => (link.active = false));
+
+    selectedLink.active = true;
   }
 }

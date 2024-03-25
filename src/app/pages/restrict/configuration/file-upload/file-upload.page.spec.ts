@@ -5,7 +5,7 @@ describe('FileUploadPage', () => {
   let component: FileUploadPage;
   let fixture: ComponentFixture<FileUploadPage>;
 
-  beforeEach(async(() => {
+  beforeEach((async() => {
     fixture = TestBed.createComponent(FileUploadPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

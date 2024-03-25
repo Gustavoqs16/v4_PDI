@@ -241,3 +241,13 @@ ion-searchbar.custom {
   display: flex;
   align-items: center;
 }
+
+
+.link-active {
+  background-color: var(--bg-white-primary);
+
+  ion-text {
+    color: var(--text-color-white);
+    --color: var(--text-color-white);
+  }
+}

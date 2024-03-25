@@ -11,7 +11,7 @@
               <ion-title class="title-link" *ngIf="routeActive == 'configuration'">{{ title || 'TESTE'}}</ion-title>
 
             <div class="links-nav">
-              <div class="link-card" *ngFor="let item of links[routeActive !== 'configuration' ? 'menu' : 'configuration']" [routerLink]="item.url">
+              <div class="link-card" *ngFor="let item of links[routeActive !== 'configuration' ? 'menu' : 'configuration']" [routerLink]="item.url" [ngClass]="{'link-active': item.active}" (click)="setActiveLink(item)">
                 <ion-text>{{item.title}}</ion-text>
               </div>
             </div>

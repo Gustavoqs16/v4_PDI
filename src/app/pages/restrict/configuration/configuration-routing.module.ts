@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfigurationPage } from './configuration.page';
 import { AuthGuard } from 'src/app/@core/domain/auth/auth.guard';
+import { ConfigurationPdiPage } from './configuration-pdi/configuration-pdi.page';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
         path: 'system-preferences',
         canLoad: [AuthGuard],
         loadChildren: () =>
-          import('../system-preferences/system-preferences.module').then(
+          import('./system-preferences/system-preferences.module').then(
             (m) => m.SystemPreferencesModule
           ),
       },
@@ -20,10 +21,18 @@ const routes: Routes = [
         path: 'file-upload',
         canLoad: [AuthGuard],
         loadChildren: () =>
-          import('../file-upload/file-upload.module').then(
+          import('./file-upload/file-upload.module').then(
             (m) => m.FileUploadModule
           ),
       },
+      {
+        path: 'configuration-pdi',
+        canLoad: [AuthGuard],
+        loadChildren: () =>
+          import('./configuration-pdi/configuration-pdi.module').then(
+            (m) => m.ConfigurationPdiModule
+          ),
+      }
     ],
   },
 ];

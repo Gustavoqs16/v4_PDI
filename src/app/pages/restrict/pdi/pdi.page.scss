@@ -4,6 +4,11 @@ ion-grid {
   overflow-y: auto;
 }
 
+ion-checkbox {
+  --checkbox-background-checked: var(--secondary-color);
+  --border-color-checked: var(--secondary-color);
+}
+
 .img-user {
   max-width: 371px;
   max-height: 371px;

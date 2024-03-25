@@ -3,6 +3,7 @@ import { ToastService } from '../toast/toast.service';
 import { StorageService } from '../storage/storage.service';
 import { Injectable } from '@angular/core';
 import { ErrorModel } from 'src/app/@core/domain/models/error/error.model';
+import { LoadingService } from '../loading/loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class HttpService<T> {
 
   constructor(
     private readonly toast: ToastService,
-    private readonly storageService: StorageService
+    private readonly storageService: StorageService,
+    private loadingService: LoadingService
   ) {
     this.url = environment.url;
     this.init();
@@ -110,40 +112,49 @@ export class HttpService<T> {
   }
 
   async get(url: string) {
+    await this.loadingService.showLoading();
     const res = await fetch(`${this.url}/${url}`, {
       method: 'GET',
       headers: this.headers
     });
 
+    await this.loadingService.hideLoading();
     return this.tratamentStatusCode<T>(res);
   }
 
   async post<Model>(url: string, data: Model) {
+    await this.loadingService.showLoading();
     const res = await fetch(`${this.url}/${url}`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify(data)
     });
 
+    await this.loadingService.hideLoading();
     return this.tratamentStatusCode<T>(res);
   }
 
   async put<Model>(url: string, data: Model) {
+    await this.loadingService.showLoading();
     const res = await fetch(`${this.url}/${url}`, {
       method: 'PUT',
       headers: this.headers,
       body: JSON.stringify(data)
     });
 
+    await this.loadingService.hideLoading();
     return this.tratamentStatusCode<T>(res);
   }
 
   async delete(url: string) {
+    await this.loadingService.showLoading();
+
     const res = await fetch(`${this.url}/${url}`, {
       method: 'DELETE',
       headers: this.headers,
     });
 
+    await this.loadingService.hideLoading();
     return this.tratamentStatusCode<T>(res);
   }
 }
