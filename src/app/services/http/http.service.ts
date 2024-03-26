@@ -112,13 +112,13 @@ export class HttpService<T> {
   }
 
   async get(url: string) {
-    await this.loadingService.showLoading();
+    // await this.loadingService.showLoading();
     const res = await fetch(`${this.url}/${url}`, {
       method: 'GET',
       headers: this.headers
     });
 
-    await this.loadingService.hideLoading();
+    // await this.loadingService.hideLoading();
     return this.tratamentStatusCode<T>(res);
   }
 
