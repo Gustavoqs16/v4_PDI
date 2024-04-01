@@ -2,6 +2,9 @@
   <ion-row>
     <ion-col sizeMd="10" offsetMd="1">
       <ion-item [formGroup]="newPdiForm">
+          <ion-select aria-label="Usúario" interface="popover" placeholder="Selecione o usuário responsável" formControlName="userId">
+            <ion-select-option [value]="user.value" *ngFor="let user of listUsers">{{user.label}}</ion-select-option>
+          </ion-select>
         <ion-input label="Novo PDI" placeholder="Digite o título do PDI" formControlName="name"></ion-input>
         <ion-button shape="round" fill="outline" slot="end" (click)="createdPdi()" class="btn-outline-primary">
           <ion-icon slot="icon-only" name="add-outline"></ion-icon>
@@ -20,8 +23,8 @@
           <ion-row class="ion-align-items-center">
             <ion-img class="img-logo-pdi" src="../../../../../assets/images/configuration/user-off.png"
               alt="Imagem do usuário" (click)="openUserSelect(pdi)"></ion-img>
-            <ion-item lines="none" color="transparent" style="flex: 1;" (click)="openPdiTasks(pdi)">
-              <ion-col slot="start">
+            <ion-item lines="none" color="transparent" style="flex: 1;" >
+              <ion-col slot="start" (click)="openPdiTasks(pdi)">
                 <ion-label>{{ pdi.name }}</ion-label>
                 <ion-note>{{ pdi.selectedUser?.name || 'Nenhum usuário selecionado' }}</ion-note>
               </ion-col>

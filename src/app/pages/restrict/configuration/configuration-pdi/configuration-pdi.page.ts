@@ -37,6 +37,7 @@ export class ConfigurationPdiPage implements OnInit {
   ) {
     this.newPdiForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
+      userId: new FormControl(0)
     });
 
   }
@@ -55,7 +56,9 @@ export class ConfigurationPdiPage implements OnInit {
           `PDI ${response?.name} criado com sucesso`,
           'success'
         );
+
         this.getAllPdi();
+        this.newPdiForm.reset();
       } else {
         await this.toast.show(
           'Por favor, preencha os campos corretamente.',
