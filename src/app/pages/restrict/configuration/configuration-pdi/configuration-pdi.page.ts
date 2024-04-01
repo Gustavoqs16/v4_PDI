@@ -152,7 +152,7 @@ export class ConfigurationPdiPage implements OnInit {
 
   async openUserSelect(pdi: any) {
     const alert = await this.alertController.create({
-      header: 'Selecione os usúarios responsáveis',
+      header: 'Selecione os usúario responsável',
       inputs: [
         ...this.listUsers
       ],
