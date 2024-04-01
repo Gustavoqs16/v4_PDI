@@ -23,8 +23,8 @@
           <ion-row class="ion-align-items-center">
             <ion-img class="img-logo-pdi" src="../../../../../assets/images/configuration/user-off.png"
               alt="Imagem do usuário" (click)="openUserSelect(pdi)"></ion-img>
-            <ion-item lines="none" color="transparent" style="flex: 1;" >
-              <ion-col slot="start" (click)="openPdiTasks(pdi)">
+            <ion-item lines="none" color="transparent" style="flex: 1;">
+              <ion-col size="9" slot="start" (click)="openPdiTasks(pdi)" style="cursor: pointer;">
                 <ion-label>{{ pdi.name }}</ion-label>
                 <ion-note>{{ pdi.selectedUser?.name || 'Nenhum usuário selecionado' }}</ion-note>
               </ion-col>
