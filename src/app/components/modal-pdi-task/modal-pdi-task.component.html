@@ -1,0 +1,31 @@
+<ion-content>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-col sizeMd="11">
+      <ion-item [formGroup]="newTaskPdiForm">
+        <ion-input labelPlacement="stacked" label="Nova tarefa PDI" placeholder="Digite a descrição da tarefa"
+          formControlName="descricao"></ion-input>
+        <ion-button class="btn-primary" slot="end" (click)="createNewTask(pdi.id)">Adicionar tarefa</ion-button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center" *ngIf="pdi.tasks.length > 0">
+    <ion-col sizeMd="12">
+      <ion-list>
+        <ion-card *ngFor="let task of pdi.tasks">
+          <ion-item lines="none">
+            <ion-label>{{task?.descricao}}</ion-label>
+            <div class="status-delete-task" slot="end">
+              <ion-button shape="round" fill="clear" slot="end" (click)="deleteTaskPdi(task.id)">
+                <ion-icon slot="icon-only" name="trash-outline" class="icon-trash"></ion-icon>
+              </ion-button>
+              <ion-icon class="icon-danger" name="close" *ngIf="!task.concluido"></ion-icon>
+              <ion-icon ></ion-icon>
+              <icon-v4 class="icon-success" name="check-circle" *ngIf="task.concluido"></icon-v4>
+            </div>
+          </ion-item>
+        </ion-card>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>

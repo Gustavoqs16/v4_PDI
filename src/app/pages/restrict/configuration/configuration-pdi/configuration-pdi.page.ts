@@ -7,8 +7,11 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { ItemReorderEventDetail } from '@ionic/angular';
 import { CreatePdiTasksDto } from 'src/app/@core/domain/models/pdi-tasks/dto/pdiTasksCreateDto.model';
 import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service';
-import { PdiTasksModel } from 'src/app/@core/domain/models/pdi-tasks/pdi-tasks.model';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { ModalController, AlertController } from '@ionic/angular';
+import { ModalPdiTaskComponent } from 'src/app/components/modal-pdi-task/modal-pdi-task.component';
+import { UsersService } from 'src/app/services/v1/users/users.service';
+import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 
 @Component({
   selector: 'app-configuration-pdi',
@@ -16,7 +19,8 @@ import { LoadingService } from 'src/app/services/loading/loading.service';
   styleUrls: ['./configuration-pdi.page.scss'],
 })
 export class ConfigurationPdiPage implements OnInit {
-  listPdi: Array<PdiModel> = [];
+  listPdi: Array<any> = [];
+  listUsers: Array<any> = [];
   newPdi: CreatePdiDto = { name: '' };
   newTaskPdi: CreatePdiTasksDto = { descricao: '', pdiId: 0 };
   newTaskPdiForm: FormGroup;
@@ -24,20 +28,22 @@ export class ConfigurationPdiPage implements OnInit {
 
   constructor(
     private pdiService: PdiService,
+    private userService: UsersService,
     private pdiTasksService: PdiTasksService,
     private readonly toast: ToastService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private modalController: ModalController,
+    private alertController: AlertController
   ) {
     this.newPdiForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
     });
-    this.newTaskPdiForm = new FormGroup({
-      descricao: new FormControl('', [Validators.required]),
-    });
+
   }
 
   ngOnInit() {
     this.getAllPdi();
+    this.getAllUsers();
   }
 
   async createdPdi() {
@@ -120,28 +126,7 @@ export class ConfigurationPdiPage implements OnInit {
     }
   }
 
-  async createNewTask(id: number) {
-    try {
-      if (this.newTaskPdiForm.valid) {
-        const objRequest = this.newTaskPdiForm.value;
-        let payload = {
-          ...objRequest,
-          pdiId: id
-        }
-        let response = await this.pdiTasksService.create(payload);
-        await this.toast.show(
-          `Tarefa ${response?.descricao} criado com sucesso`,
-          'success'
-        );
-        this.getAllPdi();
-      } else {
-        await this.toast.show(
-          `Necessário preencher a descrição da tarefa`,
-          'danger'
-        );
-      }
-    } catch (error) {}
-  }
+
 
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
     // The `from` and `to` properties contain the index of the item
@@ -152,5 +137,58 @@ export class ConfigurationPdiPage implements OnInit {
     // where the gesture ended. This method can also be called directly
     // by the reorder group
     ev.detail.complete();
+  }
+
+  async openPdiTasks(pdi: any) {
+    let modal = await this.modalController.create({
+      component: ModalPdiTaskComponent,
+      componentProps: { pdi: pdi },
+    });
+    await modal.present();
+  }
+
+  async openUserSelect(pdi: any) {
+    const alert = await this.alertController.create({
+      header: 'Selecione os usúarios responsáveis',
+      inputs: [
+        ...this.listUsers
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirmação Cancelada');
+          }
+        }, {
+          text: 'Ok',
+          handler: (selected: any) => {
+            let findedUser = this.listUsers.find(user => user.value === selected);
+            console.log('Selecionados:', findedUser, this.listUsers, selected);
+            pdi.selectedUser = findedUser; // Atualiza a lista de usuários selecionados para o PDI
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async getAllUsers() {
+    try {
+      let response = await this.userService.getAll();
+
+      this.listUsers = response.map((item: UsersModel) => {
+        return { name: item.name, type: 'radio', label: item.name, value: item.id }
+      });
+
+    } catch (error) {
+
+      await this.toast.show(
+        "Erro ao listar os usúarios, entre em contato com o suporte",
+        'danger'
+      );
+    }
   }
 }

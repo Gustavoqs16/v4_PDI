@@ -1,0 +1,16 @@
+.icon-success, .icon-danger {
+  font-size: 24px;
+}
+
+.icon-success{
+  color: rgb(0, 244, 0);
+}
+
+.icon-danger{
+  color: rgb(244, 0, 0);
+}
+
+.status-delete-task {
+  display: flex;
+  align-items: center;
+}

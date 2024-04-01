@@ -6,6 +6,7 @@ import { ConfigurationPdiRoutingModule } from './configuration-pdi-routing.modul
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ConfigurationPdiPage } from './configuration-pdi.page';
+import { UsersService } from 'src/app/services/v1/users/users.service';
 
 
 @NgModule({
@@ -17,6 +18,9 @@ import { ConfigurationPdiPage } from './configuration-pdi.page';
     ConfigurationPdiRoutingModule,
     SharedModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    UsersService
   ]
 })
 export class ConfigurationPdiModule { }

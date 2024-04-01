@@ -3,3 +3,63 @@ ion-grid {
   height: calc(100% - 100px);
   overflow-y: auto;
 }
+
+ion-list {
+  --border-radius: 9px;
+  border-radius: 9px;
+
+  ion-item {
+    --background: transparent;
+    background: transparent;
+  }
+}
+
+ion-card,
+ion-text {
+  --background: var(--bg-item-grey);
+  background: var(--bg-item-grey);
+}
+
+.btn-primary {
+  --background: var(--primary-color);
+  color: #fff;
+}
+
+.icon-trash {
+  --color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary {
+  --border-color: var(--primary-color);
+  --color: var(--primary-color);
+}
+
+.img-logo-pdi {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  --border-radius: 30px;
+  margin-left: 10px;
+}
+
+.reorder-btn {
+  position: absolute;
+  left: 2px;
+  top: 0;
+  background: transparent;
+  border-radius: 10px;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+}
+
+ion-card {
+  ion-col {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}

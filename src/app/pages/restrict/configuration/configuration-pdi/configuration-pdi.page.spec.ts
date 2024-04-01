@@ -5,7 +5,7 @@ describe('ConfigurationPdiPage', () => {
   let component: ConfigurationPdiPage;
   let fixture: ComponentFixture<ConfigurationPdiPage>;
 
-  beforeEach(async(() => {
+  beforeEach((async() => {
     fixture = TestBed.createComponent(ConfigurationPdiPage);
     component = fixture.componentInstance;
     fixture.detectChanges();

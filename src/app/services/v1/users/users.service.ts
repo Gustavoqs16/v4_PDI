@@ -6,7 +6,7 @@ import { CreateUserDto } from 'src/app/@core/domain/models/users/dto/userCreateD
 import { UpdateUserDto } from 'src/app/@core/domain/models/users/dto/userUpdateDto.model';
 
 @Injectable()
-export class UsersService extends BaseService<UsersService, CreateUserDto, UpdateUserDto> {
+export class UsersService extends BaseService<UsersModel, CreateUserDto, UpdateUserDto> {
 
   constructor(http: HttpService<UsersModel>) {
     super(http, 'v1/users');

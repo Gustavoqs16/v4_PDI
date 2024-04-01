@@ -3,7 +3,7 @@
     <ion-col sizeMd="10" offsetMd="1">
       <ion-item [formGroup]="newPdiForm">
         <ion-input label="Novo PDI" placeholder="Digite o título do PDI" formControlName="name"></ion-input>
-        <ion-button shape="round" fill="outline" slot="end" (click)="createdPdi()">
+        <ion-button shape="round" fill="outline" slot="end" (click)="createdPdi()" class="btn-outline-primary">
           <ion-icon slot="icon-only" name="add-outline"></ion-icon>
         </ion-button>
       </ion-item>
@@ -14,51 +14,23 @@
     <ion-col sizeMd="10" offsetMd="1">
       <ion-list>
         <ion-list-header>
-          <ion-title>
-            PDI's
-          </ion-title>
+          <ion-title>PDI's</ion-title>
         </ion-list-header>
-        <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
-          <ion-card *ngFor="let pdi of listPdi">
-            <ion-card-header>
-              <ion-item lines="full">
-                <ion-col slot="start">
-                  <ion-label>{{pdi.name}}</ion-label>
-                  <ion-note>user</ion-note>
-                </ion-col>
-                <ion-button shape="round" fill="clear" slot="end" (click)="deletePdi(pdi.id)">
-                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-                </ion-button>
-              </ion-item>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-row class="ion-justify-content-center">
-                <ion-col sizeMd="11">
-                  <ion-item [formGroup]="newTaskPdiForm">
-                    <ion-input labelPlacement="stacked" label="Nova tarefa PDI" placeholder="Digite a descrição da tarefa"
-                      formControlName="descricao"></ion-input>
-                    <ion-button slot="end" (click)="createNewTask(pdi.id)">Adicionar tarefa</ion-button>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-              <ion-row class="ion-justify-content-center" *ngIf="pdi.tasks.length > 0">
-                <ion-col sizeMd="12">
-                  <ion-title>Tarefas</ion-title>
-                  <ion-list>
-                    <ion-item *ngFor="let task of pdi.tasks">
-                      <ion-label>{{task?.descricao}}</ion-label>
-                    </ion-item>
-                  </ion-list>
-                </ion-col>
-              </ion-row>
-              <ion-reorder>
-                <div class="reorder-btn">
-                  <ion-icon name="reorder-two-outline"></ion-icon>
-                </div>
-              </ion-reorder>
-            </ion-card-content>
-          </ion-card>
-        </ion-reorder-group>
+        <ion-card *ngFor="let pdi of listPdi" >
+          <ion-row class="ion-align-items-center">
+            <ion-img class="img-logo-pdi" src="../../../../../assets/images/configuration/user-off.png"
+              alt="Imagem do usuário" (click)="openUserSelect(pdi)"></ion-img>
+            <ion-item lines="none" color="transparent" style="flex: 1;" (click)="openPdiTasks(pdi)">
+              <ion-col slot="start">
+                <ion-label>{{ pdi.name }}</ion-label>
+                <ion-note>{{ pdi.selectedUser?.name || 'Nenhum usuário selecionado' }}</ion-note>
+              </ion-col>
+              <ion-button shape="round" fill="clear" slot="end" (click)="deletePdi(pdi.id)">
+                <ion-icon slot="icon-only" name="trash-outline" class="icon-trash"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-row>
+        </ion-card>
       </ion-list>
     </ion-col>
   </ion-row>
