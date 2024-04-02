@@ -4,7 +4,6 @@ services:
   front:
     build:
       context: .
-      no_cache: true
     restart: on-failure
     ports:
       - "8100:80"
