@@ -11,4 +11,8 @@ export class PdiService extends BaseService<PdiModel, CreatePdiDto, UpdatePdiDto
   constructor(http: HttpService<PdiModel>) {
     super(http, 'v1/pdi');
   }
+
+  async getMyPdi(): Promise<PdiModel> {
+    return await this.http.get(`my-pdi`);
+  }
 }
