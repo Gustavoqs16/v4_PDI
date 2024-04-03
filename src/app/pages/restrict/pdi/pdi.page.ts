@@ -1,10 +1,22 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  Validators,
+} from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LoginService } from 'src/app/services/v1/login/login.service';
 import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
 import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service';
+import { PdiModel } from 'src/app/@core/domain/models/pdi/pdi.model';
+import { UsersService } from 'src/app/services/v1/users/users.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
+import { PdiTasksModel } from 'src/app/@core/domain/models/pdi-tasks/pdi-tasks.model';
+import { ModalController } from '@ionic/angular';
+import { ModalPdiTaskComponent } from 'src/app/components/modal-pdi-task/modal-pdi-task.component';
 
 @Component({
   selector: 'app-pdi',
@@ -12,82 +24,49 @@ import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service
   styleUrls: ['./pdi.page.scss'],
 })
 export class PdiPage implements OnInit {
-  checklist: any = [
-    {
-      label: 'teste',
-      key: false,
-      disabled: true
-    },
-    {
-      label: 'teste',
-      key: false,
-      disabled: true
-    },
-    {
-      label: 'teste',
-      key: false,
-      disabled: true
-    },
-    {
-      label: 'teste',
-      key: false,
-      disabled: true
-    },
-    {
-      label: 'teste',
-      key: false,
-    },
-    {
-      label: 'teste',
-      key: false,
-    },
-    {
-      label: 'teste',
-      key: false,
-    },
-  ];
+  checklist: any;
 
   awards = [
     {
       type: 'awards',
-      url: '../../../assets/images/awards/awards.png'
+      url: '../../../assets/images/awards/awards.png',
     },
     {
       type: 'collab',
-      url: '../../../assets/images/awards/collab.png'
+      url: '../../../assets/images/awards/collab.png',
     },
     {
       type: 'stars',
-      url: '../../../assets/images/awards/stars.png'
+      url: '../../../assets/images/awards/stars.png',
     },
     {
       type: 'performance',
-      url: '../../../assets/images/awards/performance.png'
+      url: '../../../assets/images/awards/performance.png',
     },
     {
       type: 'medal-of-honor',
-      url: '../../../assets/images/awards/medal-of-honor.png'
+      url: '../../../assets/images/awards/medal-of-honor.png',
     },
     {
       type: 'account',
-      url: '../../../assets/images/awards/account.png'
+      url: '../../../assets/images/awards/account.png',
     },
     {
       type: 'forever',
-      url: '../../../assets/images/awards/forever.png'
+      url: '../../../assets/images/awards/forever.png',
     },
-  ]
+  ];
 
   list = [
     {
       name: 'nome 1',
       message: 'mensagem nova',
-      check: false
+      check: false,
     },
     {
       name: 'nome 2',
       message: 'mensagem nova',
-      check: true
+      check: true,
     },
   ];
 
@@ -99,22 +78,33 @@ export class PdiPage implements OnInit {
   tempoDeEmpresa: Date;
   nomeLideranca: string | null;
 
+  pdiUser: PdiModel | null = null;
+  newPdiForm: FormGroup;
+  listUsers: Array<any> = [];
+
   constructor(
     private readonly loginService: LoginService,
     private readonly pdiService: PdiService,
-    private readonly pdiTaskService: PdiTasksService
+    private userService: UsersService,
+    private readonly toast: ToastService,
+    private pdiTasksService: PdiTasksService,
+    private modalController: ModalController
   ) {
     this.detectarTamanhoDaTela();
+    this.newPdiForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      userId: new FormControl(0),
+    });
   }
 
   ngOnInit() {
     const user = this.loginService.$user.getValue();
     const { name, roleUser } = user;
-    console.log(user);
     this.nomeUsuario = name;
     this.cargoNome = roleUser.name;
     this.nomeLideranca = !!roleUser.managerId ? roleUser.manager.name : null;
-    console.log(this.nomeLideranca)
+
+    this.getInfoPdiUser();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -140,4 +130,85 @@ export class PdiPage implements OnInit {
     this.list[index].check = !this.list[index].check;
   }
 
+  async getInfoPdiUser() {
+    let pdiUser = await this.pdiService.getMyPdi();
+
+    this.pdiUser = pdiUser || {};
+
+    if (pdiUser?.id) this.getListTasks();
+  }
+
+  async getAllUsers() {
+    try {
+      let response = await this.userService.getAll();
+
+      this.listUsers = response.map((item: UsersModel) => {
+        return {
+          name: item.name,
+          type: 'radio',
+          label: item.name,
+          value: item.id,
+        };
+      });
+    } catch (error) {
+      await this.toast.show(
+        'Erro ao listar os usúarios, entre em contato com o suporte',
+        'danger'
+      );
+    }
+  }
+
+  async createdPdi() {
+    try {
+      if (this.newPdiForm.valid) {
+        const objRequest = this.newPdiForm.value;
+        let response = await this.pdiService.create(objRequest);
+        await this.toast.show(
+          `PDI ${response?.name} criado com sucesso`,
+          'success'
+        );
+
+        this.getInfoPdiUser();
+        this.newPdiForm.reset();
+      } else {
+        await this.toast.show(
+          'Por favor, preencha os campos corretamente.',
+          'danger'
+        );
+      }
+    } catch (error) {
+      await this.toast.show(
+        'Formulário inválido. Por favor, preencha os campos corretamente.',
+        'danger'
+      );
+    }
+  }
+
+  async getListTasks() {
+    try {
+      if (this.pdiUser) {
+        let response = await this.pdiTasksService.getOne(this.pdiUser?.id);
+        this.checklist = response || [];
+      }
+    } catch (error) {
+      await this.toast.show(
+        'Erro ao  as tarefas, entre em contato com o suporte',
+        'danger'
+      );
+      this.checklist = [];
+    }
+  }
+
+  async openPdiTasks() {
+    let modal = await this.modalController.create({
+      component: ModalPdiTaskComponent,
+      cssClass: 'max-wh-500-250-modal',
+      componentProps: { pdi: this.pdiUser, isCreated: true },
+    });
+    await modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'add') this.getListTasks();
+  }
 }

@@ -13,6 +13,6 @@ export class PdiService extends BaseService<PdiModel, CreatePdiDto, UpdatePdiDto
   }
 
   async getMyPdi(): Promise<PdiModel> {
-    return await this.http.get(`my-pdi`);
+    return await this.http.get(`v1/pdi/my-pdi`);
   }
 }

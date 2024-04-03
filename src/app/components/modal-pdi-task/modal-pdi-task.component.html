@@ -1,15 +1,20 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="title-modal">Adicionar tarefa</ion-title>
+      <ion-button *ngIf="isCreated" slot="end" class="btn-primary border-r-3" (click)="createNewTask(pdi.id)">Adicionar</ion-button>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-
   <ion-row class="ion-justify-content-center">
     <ion-col sizeMd="11">
       <ion-item [formGroup]="newTaskPdiForm">
         <ion-input labelPlacement="stacked" label="Nova tarefa PDI" placeholder="Digite a descrição da tarefa"
           formControlName="descricao"></ion-input>
-        <ion-button class="btn-primary" slot="end" (click)="createNewTask(pdi.id)">Adicionar tarefa</ion-button>
+        <ion-button *ngIf="!isCreated" class="btn-primary" slot="end" (click)="createNewTask(pdi.id)">Adicionar tarefa</ion-button>
       </ion-item>
     </ion-col>
   </ion-row>
-  <ion-row class="ion-justify-content-center" *ngIf="pdi.tasks.length > 0">
+  <ion-row class="ion-justify-content-center" *ngIf="pdi?.tasks && pdi.tasks?.length > 0">
     <ion-col sizeMd="12">
       <ion-list>
         <ion-card *ngFor="let task of pdi.tasks">

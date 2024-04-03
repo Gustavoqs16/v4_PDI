@@ -74,3 +74,32 @@ ion-popover::part(content) {
   border-radius: 17px !important;
   --border-radius: 17px !important;
 }
+
+.max-wh-500-250-modal {
+  --max-width: 500px;
+  --max-height: 250px;
+}
+
+.btn-primary {
+  --background: var(--primary-color);
+  background: var(--primary-color);
+  --color: #fff;
+  color: #fff;
+}
+
+.border-r-3 {
+  --border-radius: 3px;
+  border-radius: 3px;
+}
+
+.title-modal {
+  font-family: 'Poppins';
+  font-size: 25.9px;
+  font-weight: 500;
+  line-height: 38.84px;
+  letter-spacing: -0.01em;
+  padding: 0;
+  margin: 0;
+  --color: var(--text-color);
+  color: var(--text-color);
+}

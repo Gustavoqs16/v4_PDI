@@ -274,6 +274,11 @@ ion-grid {
   flex-direction: column;
 }
 
+.btn-outline-primary {
+  --border-color: var(--primary-color);
+  --color: var(--primary-color);
+}
+
 @media screen and (max-width: 1440px) {
   .img-user {
     max-width: 300px;

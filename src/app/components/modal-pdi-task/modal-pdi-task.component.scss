@@ -14,3 +14,17 @@
   display: flex;
   align-items: center;
 }
+
+ion-toolbar {
+  padding-inline: 20px;
+}
+
+ion-content, ion-toolbar, ion-item {
+  background: var(--bg-primary);
+  --background: var(--bg-primary);
+}
+
+ion-item, ion-input {
+  --color: var(--text-color);
+  color: var(--text-color);
+}

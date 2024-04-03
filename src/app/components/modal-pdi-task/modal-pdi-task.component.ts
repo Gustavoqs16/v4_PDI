@@ -12,6 +12,7 @@ import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service
 export class ModalPdiTaskComponent  implements OnInit {
 
   @Input() pdi: any; // Substitua por um tipo mais específico se possível
+  @Input() isCreated: boolean = false;
   newTaskPdiForm: FormGroup;
 
 
@@ -37,6 +38,8 @@ export class ModalPdiTaskComponent  implements OnInit {
           'success'
         );
         // this.getAllPdi();
+
+        if(this.isCreated) await this.modalController.dismiss(null, 'add');
       } else {
         await this.toast.show(
           `Necessário preencher a descrição da tarefa`,
