@@ -6,4 +6,4 @@ services:
       context: .
     restart: on-failure
     ports:
-      - "8100:80"
+      - "80:80"
