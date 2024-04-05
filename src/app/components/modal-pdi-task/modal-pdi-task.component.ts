@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service';
+import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
+import { UsersService } from 'src/app/services/v1/users/users.service';
 
 @Component({
   selector: 'app-modal-pdi-task',
@@ -11,18 +14,35 @@ import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service
 })
 export class ModalPdiTaskComponent  implements OnInit {
 
-  @Input() pdi: any; // Substitua por um tipo mais específico se possível
-  @Input() isCreated: boolean = false;
+  @Input() pdi: any;
+  @Input() isPdi: boolean = false;
+  @Input() title: string = 'Adicionar tarefa';
   newTaskPdiForm: FormGroup;
+  newPdiForm: FormGroup;
+  listUsers: Array<any> = [];
+  editDescription: string = '';
 
-
-    constructor(private modalController: ModalController, private pdiTasksService: PdiTasksService, private readonly toast: ToastService,) {
+    constructor(
+      public modalController: ModalController,
+      private pdiTasksService: PdiTasksService,
+      private readonly toast: ToastService,
+      private pdiService: PdiService,
+      private userService: UsersService,
+    ) {
     this.newTaskPdiForm = new FormGroup({
       descricao: new FormControl('', [Validators.required]),
     });
+    this.newPdiForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      userId: new FormControl(0)
+    });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllUsers();
+    this.newPdiForm.controls['name'].setValue(this.pdi.name);
+    this.newPdiForm.controls['userId'].setValue(this.pdi.userId);
+  }
 
   async createNewTask(id: number) {
     try {
@@ -37,9 +57,8 @@ export class ModalPdiTaskComponent  implements OnInit {
           `Tarefa ${response?.descricao} criado com sucesso`,
           'success'
         );
-        // this.getAllPdi();
 
-        if(this.isCreated) await this.modalController.dismiss(null, 'add');
+        this.getListTasks(this.pdi?.id);
       } else {
         await this.toast.show(
           `Necessário preencher a descrição da tarefa`,
@@ -60,6 +79,95 @@ export class ModalPdiTaskComponent  implements OnInit {
     } catch (error) {
       await this.toast.show(
         'Formulário inválido. Por favor, preencha os campos corretamente.',
+        'danger'
+      );
+    }
+  }
+
+  async closeModal(isCallback: boolean = false) {
+    await this.modalController.dismiss(isCallback, 'pdi-task');
+  }
+
+  async getListTasks(id: number) {
+    try {
+      let response: any = await this.pdiTasksService.getOne(id);
+      this.pdi.tasks = response.map((item: any) => {
+        return {
+          ...item,
+          isEdit: false
+        }
+      });;
+    } catch (error) {
+      await this.toast.show(
+        'Erro ao  as tarefas, entre em contato com o suporte',
+        'danger'
+      );
+    }
+  }
+
+  async putPdi() {
+    try {
+      if (this.newPdiForm.valid) {
+        const objRequest = this.newPdiForm.value;
+        let response = await this.pdiService.update(this.pdi.id, objRequest);
+        await this.toast.show(
+          `PDI ${response?.name} atualizado com sucesso`,
+          'success'
+        );
+
+      } else {
+        await this.toast.show(
+          'Por favor, preencha os campos corretamente.',
+          'danger'
+        );
+      }
+    } catch (error) {
+      await this.toast.show(
+        'Formulário inválido. Por favor, preencha os campos corretamente.',
+        'danger'
+      );
+    }
+  }
+
+  async putTaskPdi(task: any) {
+    try {
+      if (task.descricao) {
+        const objRequest = {
+          descricao: task.descricao
+        };
+        let response = await this.pdiTasksService.update(task.id, objRequest);
+        await this.toast.show(
+          `Tarefa ${response?.descricao} atualizado com sucesso`,
+          'success'
+        );
+
+        task.isEdit = false;
+;      } else {
+        await this.toast.show(
+          'Por favor, preencha os campos corretamente.',
+          'danger'
+        );
+      }
+    } catch (error) {
+      await this.toast.show(
+        'Formulário inválido. Por favor, preencha os campos corretamente.',
+        'danger'
+      );
+    }
+  }
+
+  async getAllUsers() {
+    try {
+      let response = await this.userService.getAll();
+
+      this.listUsers = response.map((item: UsersModel) => {
+        return { name: item.name, type: 'radio', label: item.name, value: item.id }
+      });
+
+    } catch (error) {
+
+      await this.toast.show(
+        "Erro ao listar os usúarios, entre em contato com o suporte",
         'danger'
       );
     }

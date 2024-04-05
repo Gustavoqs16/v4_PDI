@@ -5,7 +5,8 @@ import { MenuListComponent } from '../components/menu-list/menu-list.component';
 import { IonicModule } from '@ionic/angular';
 import { ModalComponent } from '../components/modal/modal.component';
 import { ModalPdiTaskComponent } from '../components/modal-pdi-task/modal-pdi-task.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalPdiComponent } from '../components/modal-pdi/modal-pdi.component';
 
 @NgModule({
   declarations: [
@@ -13,13 +14,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     MenuListComponent,
     ModalComponent,
     ModalPdiTaskComponent,
+    ModalPdiComponent
   ],
-  imports: [CommonModule, IonicModule, ReactiveFormsModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule],
   exports: [
     IconV4Component,
     MenuListComponent,
     ModalComponent,
     ModalPdiTaskComponent,
+    ModalPdiComponent
   ],
 })
 export class SharedModule {}

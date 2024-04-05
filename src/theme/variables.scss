@@ -1,6 +1,7 @@
 :root {
   --primary-color: #db0001;
   --secondary-color: #56f294;
+  --create-bg: #0BB07B;
   --tertiary-color: #181818;
   --header-transparent: rgba(0, 0, 0, 0.75);
   --card-transparent: rgba(0, 0, 0, 0.35);
@@ -13,12 +14,15 @@
   --light-green-color: #ceffe2;
   --light-blue: #00a0fa;
   --bg-primary: #fff;
+  --bg-card: #fff;
   --bg-white-primary: #000;
   --text-color: #000;
   --text-color-white: #fff;
   --bg-button-grey: #F4F4F4;
   --bg-item-grey: #F4F4F4;
   --bg-card-black: #181818;
+  --bg-modal: #ffffff;
+  --subtext-color-card: #585858;
   --bg-card-green: #56F294;
   --border-card-green: #56F294;
   --text-card-green: #005a24;
@@ -29,6 +33,7 @@
 .dark-theme {
   --primary-color: #db0001;
   --secondary-color: #56f294;
+  --create-bg: #0BB07B;
   --tertiary-color: #181818;
   --header-transparent: rgba(255, 255, 255, 0.75);
   --card-transparent: rgba(255, 255, 255, 0.35);
@@ -41,12 +46,15 @@
   --light-green-color: #ceffe2;
   --light-blue: #00a0fa;
   --bg-primary: #000;
+  --bg-card: #000;
   --bg-white-primary: #fff;
   --text-color: #fff;
   --text-color-white: #000;
   --bg-button-grey: #F4F4F4;
   --bg-item-grey: #F4F4F4;
   --bg-card-black: #E6E6E6;
+  --bg-modal: #181818;
+  --subtext-color-card: #E6E6E6;
   --bg-card-green: #00FFAD4D;
   --border-card-green: #00FF0A;
   --text-card-green: #fff;

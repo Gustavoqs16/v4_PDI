@@ -12,6 +12,7 @@ import { ModalController, AlertController } from '@ionic/angular';
 import { ModalPdiTaskComponent } from 'src/app/components/modal-pdi-task/modal-pdi-task.component';
 import { UsersService } from 'src/app/services/v1/users/users.service';
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
+import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.component';
 
 @Component({
   selector: 'app-configuration-pdi',
@@ -118,8 +119,13 @@ export class ConfigurationPdiPage implements OnInit {
 
   async getListTasks(id: number) {
     try {
-      let response = await this.pdiTasksService.getOne(id);
-      return response;
+      let response: any = await this.pdiTasksService.getOne(id);
+      return response.map((item: any) => {
+        return {
+          ...item,
+          isEdit: false
+        }
+      });
     } catch (error) {
       await this.toast.show(
         'Erro ao  as tarefas, entre em contato com o suporte',
@@ -145,9 +151,26 @@ export class ConfigurationPdiPage implements OnInit {
   async openPdiTasks(pdi: any) {
     let modal = await this.modalController.create({
       component: ModalPdiTaskComponent,
-      componentProps: { pdi: pdi },
+      cssClass: 'min-w-75vw',
+      componentProps: { pdi: pdi, title: `PDI - ${pdi.name}` },
     });
     await modal.present();
+
+    const {data, role} = await modal.onWillDismiss();
+
+    if(role == 'pdi-task') await this.getAllPdi();
+  }
+
+  async openPdi() {
+    let modal = await this.modalController.create({
+      component: ModalPdiComponent,
+      cssClass: "max-h-300"
+    });
+    await modal.present();
+
+    const {data, role} = await modal.onWillDismiss();
+
+    if(role == 'pdi') await this.getAllPdi();
   }
 
   async openUserSelect(pdi: any) {

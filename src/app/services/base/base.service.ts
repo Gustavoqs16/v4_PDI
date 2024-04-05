@@ -23,7 +23,7 @@ export class BaseService<T, CreateDto, UpdateDto> {
   }
 
   update(id: number, data: UpdateDto): Promise<T> {
-    return this.http.post(`${this.base_url}/${id}`, data);
+    return this.http.put(`${this.base_url}/${id}`, data);
   }
 
   delete(id: number): Promise<T> {

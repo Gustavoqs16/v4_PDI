@@ -17,6 +17,7 @@ import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 import { PdiTasksModel } from 'src/app/@core/domain/models/pdi-tasks/pdi-tasks.model';
 import { ModalController } from '@ionic/angular';
 import { ModalPdiTaskComponent } from 'src/app/components/modal-pdi-task/modal-pdi-task.component';
+import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.component';
 
 @Component({
   selector: 'app-pdi',
@@ -78,7 +79,7 @@ export class PdiPage implements OnInit {
   tempoDeEmpresa: Date;
   nomeLideranca: string | null;
 
-  pdiUser: PdiModel | null = null;
+  pdiUser: any | null = null;
   newPdiForm: FormGroup;
   listUsers: Array<any> = [];
 
@@ -187,28 +188,45 @@ export class PdiPage implements OnInit {
   async getListTasks() {
     try {
       if (this.pdiUser) {
-        let response = await this.pdiTasksService.getOne(this.pdiUser?.id);
-        this.checklist = response || [];
+        let response: any = await this.pdiTasksService.getOne(this.pdiUser?.id);
+        this.pdiUser.tasks = response.map((item: any) => {
+          return {
+            ...item,
+            isEdit: false
+          }
+        }) || [];
       }
     } catch (error) {
       await this.toast.show(
         'Erro ao  as tarefas, entre em contato com o suporte',
         'danger'
       );
-      this.checklist = [];
+      this.pdiUser.tasks = [];
     }
   }
 
   async openPdiTasks() {
     let modal = await this.modalController.create({
       component: ModalPdiTaskComponent,
-      cssClass: 'max-wh-500-250-modal',
-      componentProps: { pdi: this.pdiUser, isCreated: true },
+      componentProps: { pdi: this.pdiUser, isPdi: true},
+      cssClass: "min-w-75vw"
     });
     await modal.present();
 
     const { data, role } = await modal.onWillDismiss();
 
-    if (role === 'add') this.getListTasks();
+    if (role === 'pdi-task') this.getListTasks();
+  }
+
+  async openPdi() {
+    let modal = await this.modalController.create({
+      component: ModalPdiComponent,
+      cssClass:[ "max-h-300" ,"min-w-75vw"]
+    });
+    await modal.present();
+
+    const {data, role} = await modal.onWillDismiss();
+
+    if(role == 'pdi') await this.getInfoPdiUser();
   }
 }

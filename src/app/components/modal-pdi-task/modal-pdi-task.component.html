@@ -1,32 +1,63 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title class="title-modal">Adicionar tarefa</ion-title>
-      <ion-button *ngIf="isCreated" slot="end" class="btn-primary border-r-3" (click)="createNewTask(pdi.id)">Adicionar</ion-button>
+    <ion-title class="title-modal">{{title}}</ion-title>
+      <ion-icon class="icon-close" name="close" slot="end" (click)="closeModal()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-row class="ion-justify-content-center" [formGroup]="newPdiForm" *ngIf="!isPdi">
+    <ion-col sizeSm="5">
+      <ion-item>
+        <ion-select style="margin-top: 11px;" aria-label="Usúario" interface="popover" placeholder="Selecione o usuário" formControlName="userId" [value]="pdi.userId">
+          <ion-select-option [value]="user.value" *ngFor="let user of listUsers">{{user.label}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col sizeSm="5">
+      <ion-item>
+        <ion-label position="stacked">Novo PDI</ion-label>
+        <ion-input placeholder="Digite o título do PDI" formControlName="name" [value]="pdi.name"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col sizeMd="2">
+      <ion-button class="btn-secondary border-r-3 w-full" (click)="putPdi()">
+        Salvar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top: 20px;"  *ngIf="!isPdi">
+    <ion-title>Adicionar tarefa</ion-title>
+  </ion-row>
   <ion-row class="ion-justify-content-center">
     <ion-col sizeMd="11">
       <ion-item [formGroup]="newTaskPdiForm">
         <ion-input labelPlacement="stacked" label="Nova tarefa PDI" placeholder="Digite a descrição da tarefa"
           formControlName="descricao"></ion-input>
-        <ion-button *ngIf="!isCreated" class="btn-primary" slot="end" (click)="createNewTask(pdi.id)">Adicionar tarefa</ion-button>
+        <ion-button class="btn-secondary border-r-3" slot="end" (click)="createNewTask(pdi.id)">
+          <ion-text>
+            Adicionar tarefa
+          </ion-text>
+          <ion-icon class="icon-create" name="add-circle-outline"></ion-icon>
+        </ion-button>
       </ion-item>
     </ion-col>
   </ion-row>
   <ion-row class="ion-justify-content-center" *ngIf="pdi?.tasks && pdi.tasks?.length > 0">
     <ion-col sizeMd="12">
       <ion-list>
-        <ion-card *ngFor="let task of pdi.tasks">
+        <ion-card class="card-primary" *ngFor="let task of pdi.tasks" (click)="task.isEdit = true">
           <ion-item lines="none">
-            <ion-label>{{task?.descricao}}</ion-label>
+            <ion-label *ngIf="!task?.isEdit">{{task?.descricao}}</ion-label>
+            <div class="f-items-center" *ngIf="task?.isEdit">
+              <ion-input placeholder="Digite a descrição da tarefa" [value]="task?.descricao" [(ngModel)]="task.descricao"></ion-input>
+              <ion-icon class="save-icon" name="save-outline" (click)="putTaskPdi(task);"></ion-icon>
+            </div>
             <div class="status-delete-task" slot="end">
+              <ion-text class="text-danger" name="close" *ngIf="!task.concluido">Não concluído</ion-text>
+              <icon-v4 class="icon-success" name="check-circle" *ngIf="task.concluido"></icon-v4>
               <ion-button shape="round" fill="clear" slot="end" (click)="deleteTaskPdi(task.id)">
                 <ion-icon slot="icon-only" name="trash-outline" class="icon-trash"></ion-icon>
               </ion-button>
-              <ion-icon class="icon-danger" name="close" *ngIf="!task.concluido"></ion-icon>
-              <ion-icon ></ion-icon>
-              <icon-v4 class="icon-success" name="check-circle" *ngIf="task.concluido"></icon-v4>
             </div>
           </ion-item>
         </ion-card>

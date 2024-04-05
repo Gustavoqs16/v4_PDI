@@ -1,0 +1,32 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="title-modal">Criar PDI</ion-title>
+    <ion-icon class="icon-close" name="close" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row class="ion-justify-content-center" [formGroup]="newPdiForm">
+    <ion-col sizeSm="6">
+      <ion-item>
+        <ion-select style="margin-top: 11px;" aria-label="Usúario" interface="popover" placeholder="Selecione o usuário" formControlName="userId">
+          <ion-select-option [value]="user.value" *ngFor="let user of listUsers">{{user.label}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col sizeSm="6">
+      <ion-item>
+        <ion-label position="stacked">Novo PDI</ion-label>
+        <ion-input placeholder="Digite o título do PDI" formControlName="name"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-button class="btn-secondary border-r-3" slot="end" (click)="createdPdi()">
+        Salvar
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

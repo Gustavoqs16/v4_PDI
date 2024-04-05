@@ -1,6 +1,6 @@
 <ion-grid>
-  <ion-title *ngIf="pdiUser">{{pdiUser.name}}</ion-title>
-  <ion-row *ngIf="pdiUser">
+  <ion-title *ngIf="pdiUser?.id">{{pdiUser.name}}</ion-title>
+  <ion-row *ngIf="pdiUser?.id">
     <ion-col sizeMd="8">
       <div>
         <ion-row>
@@ -55,7 +55,7 @@
       </div>
     </ion-col>
   </ion-row>
-  <ion-row style="margin-top: 5px;" *ngIf="pdiUser">
+  <ion-row style="margin-top: 5px;" *ngIf="pdiUser?.id">
     <ion-col style="padding: 0; padding-right: 5px;" sizeMd="8" sizeSm="12">
       <div class="actions-goal">
         <ion-item lines="none">
@@ -65,9 +65,9 @@
           </ion-button>
         </ion-item>
         <ion-row>
-          <ion-col size="12" class="item-check" *ngFor="let item of checklist"
-            > <!--[ngClass]="{'check-disabled': item?.}"-->
-            <ion-checkbox labelPlacement="end" [(ngModel)]="item.concluido">{{item.descricao}}</ion-checkbox><!--[disabled]="item?.disabled"-->
+          <ion-col size="12" class="item-check" *ngFor="let item of pdiUser.tasks"
+            >
+            <ion-checkbox labelPlacement="end" [(ngModel)]="item.concluido">{{item.descricao}}</ion-checkbox>
           </ion-col>
         </ion-row>
       </div>
@@ -116,7 +116,7 @@
       </ion-row>
     </ion-col>
   </ion-row>
-  <ion-row class="awards-pdi" *ngIf="pdiUser">
+  <ion-row class="awards-pdi" *ngIf="pdiUser?.id">
     <ion-row>
       <ion-title>
         Prêmios
@@ -129,16 +129,11 @@
     </ion-row>
   </ion-row>
 
-  <ion-row *ngIf="!pdiUser">
+  <ion-row *ngIf="!pdiUser?.name">
     <ion-col sizeMd="10" offsetMd="1">
-      <ion-item [formGroup]="newPdiForm">
-          <ion-select aria-label="Usúario" interface="popover" placeholder="Selecione o usuário responsável" formControlName="userId">
-            <ion-select-option [value]="user.value" *ngFor="let user of listUsers">{{user.label}}</ion-select-option>
-          </ion-select>
-        <ion-input label="Novo PDI" placeholder="Digite o título do PDI" formControlName="name"></ion-input>
-        <ion-button shape="round" fill="outline" slot="end" (click)="createdPdi()" class="btn-outline-primary">
-          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-        </ion-button>
+      <ion-item lines="none">
+        <ion-text>Nenhum PDI configurado para esse usuário</ion-text>
+        <ion-button slot="end" class="btn-primary border-r-3" (click)="openPdi()">Criar PDI</ion-button>
       </ion-item>
     </ion-col>
   </ion-row>
