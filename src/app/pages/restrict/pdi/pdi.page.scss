@@ -25,6 +25,7 @@ ion-checkbox {
   background: var(--bg-primary);
   border: 1px solid #e0e0e0;
   padding: 10px 20px;
+  height: 371px;
 
   ion-text {
     font-family: "Poppins";
@@ -262,6 +263,10 @@ ion-grid {
   }
 }
 
+.label-input {
+  font-size: 16px !important;
+}
+
 .img-user-mobile {
   max-width: 80px;
   max-height: 80px;
@@ -287,11 +292,24 @@ ion-grid {
     height: auto;
   }
 
+  .title-content-recognition {
+    font-size: 16px !important;
+    --font-size: 16px;
+  }
+
+  .actions-goal {
+    ion-title {
+      font-size: 20px !important;
+    }
+  }
+
   .goal-term,
   .card-pdi {
     max-height: 300px;
     height: 300px;
+  }
 
+  .goal-term {
     ion-label {
       font-size: 24px !important;
     }

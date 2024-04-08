@@ -27,10 +27,16 @@
             </ion-row>
             <ion-col class="form-user">
               <ion-row *ngIf="!!nomeLideranca">
-                <ion-input label="Lideração imediata" disabled="true" [value]="nomeLideranca" placeholder="Nome do team leader"></ion-input>
+                <ion-item lines="none">
+                  <ion-label class="label-input">Lideração imediata</ion-label>
+                  <ion-input disabled="true" [value]="nomeLideranca" placeholder="Nome do team leader"></ion-input>
+                </ion-item>
               </ion-row>
               <ion-row>
-                <ion-input label="Data do último alinhamento do PDI" placeholder="Data atualizada"></ion-input>
+                <ion-item lines="none">
+                  <ion-label class="label-input">Data do último alinhamento do PDI</ion-label>
+                  <ion-input placeholder="Data atualizada"></ion-input>
+                </ion-item>
               </ion-row>
               <ion-row *ngIf="!!tempoDeEmpresa">
                 <ion-input label="Tempo de V4 Company" placeholder="Coloque a data da contratação"></ion-input>
@@ -56,7 +62,7 @@
     </ion-col>
   </ion-row>
   <ion-row style="margin-top: 5px;" *ngIf="pdiUser?.id">
-    <ion-col style="padding: 0; padding-right: 5px;" sizeMd="8" sizeSm="12">
+    <ion-col sizeMd="8" sizeSm="12">
       <div class="actions-goal">
         <ion-item lines="none">
           <ion-title slot="start">Ações para alcançar seu objetivo</ion-title>
@@ -67,7 +73,7 @@
         <ion-row>
           <ion-col size="12" class="item-check" *ngFor="let item of pdiUser.tasks"
             >
-            <ion-checkbox labelPlacement="end" [(ngModel)]="item.concluido">{{item.descricao}}</ion-checkbox>
+            <ion-checkbox labelPlacement="end" [(ngModel)]="item.concluido" (ionChange)="putTaskPdi(item)">{{item.descricao}}</ion-checkbox>
           </ion-col>
         </ion-row>
       </div>
@@ -90,7 +96,7 @@
         </ion-col>
         <ion-col class="content-recognition" sizeSm="6" offsetSm="1" sizeMd="12" offsetMd="0">
           <ion-row class="ion-justify-content-between ion-align-items-center">
-            <ion-title>Reconhecimento da equipe</ion-title>
+            <ion-title class="title-content-recognition">Reconhecimento da equipe</ion-title>
             <icon-v4 name="eye"></icon-v4>
           </ion-row>
           <ion-row>

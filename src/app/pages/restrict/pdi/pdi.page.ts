@@ -229,4 +229,32 @@ export class PdiPage implements OnInit {
 
     if(role == 'pdi') await this.getInfoPdiUser();
   }
+
+  async putTaskPdi(task: any) {
+    try {
+      if (task?.descricao) {
+        let payload = {
+          descricao: task.descricao,
+          concluido: task.concluido
+        }
+        let response = await this.pdiTasksService.update(task.id, payload);
+        await this.toast.show(
+          `Tarefa ${response?.descricao} atualizado com sucesso`,
+          'success'
+        );
+
+        task.isEdit = false;
+;      } else {
+        await this.toast.show(
+          'Por favor, preencha os campos corretamente.',
+          'danger'
+        );
+      }
+    } catch (error) {
+      await this.toast.show(
+        'Formulário inválido. Por favor, preencha os campos corretamente.',
+        'danger'
+      );
+    }
+  }
 }
