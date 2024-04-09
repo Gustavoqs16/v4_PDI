@@ -13,6 +13,7 @@ import { ModalPdiTaskComponent } from 'src/app/components/modal-pdi-task/modal-p
 import { UsersService } from 'src/app/services/v1/users/users.service';
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.component';
+import { ModalConfirmComponent } from 'src/app/components/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-configuration-pdi',
@@ -135,6 +136,25 @@ export class ConfigurationPdiPage implements OnInit {
     }
   }
 
+  async confirmDeletePdi(title: string = 'Confirmar Ação', message: string = 'Você realmente deseja fazer isso?', id: number) {
+    const modal = await this.modalController.create({
+      component: ModalConfirmComponent,
+      cssClass: 'modal-confirm-w-h',
+      componentProps: {
+        'title': title,
+        'message': message
+      }
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data.confirmed) {
+      await this.deletePdi(id);
+    } else {
+      console.log('Cancelado');
+    }
+  }
 
 
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {

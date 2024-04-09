@@ -1,0 +1,19 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="title-modal">{{ title }}</ion-title>
+    <ion-icon class="icon-close" name="close" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p>{{ message }}</p>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-item lines="none">
+    <ion-buttons slot="end">
+      <ion-button color="medium" (click)="cancel()">Cancelar</ion-button>
+      <ion-button (click)="confirm()">Confirmar</ion-button>
+    </ion-buttons>
+  </ion-item>
+</ion-footer>

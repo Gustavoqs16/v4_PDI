@@ -6,6 +6,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service';
 import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
 import { UsersService } from 'src/app/services/v1/users/users.service';
+import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-modal-pdi-task',
@@ -44,6 +45,26 @@ export class ModalPdiTaskComponent  implements OnInit {
     this.newPdiForm.controls['userId'].setValue(this.pdi.userId);
   }
 
+  async confirmModalTask(title: string = 'Confirmar Ação', message: string = 'Você realmente deseja fazer isso?', id: number) {
+    const modal = await this.modalController.create({
+      component: ModalConfirmComponent,
+      cssClass: 'modal-confirm-w-h',
+      componentProps: {
+        'title': title,
+        'message': message
+      }
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data.confirmed) {
+      this.deleteTaskPdi(id);
+    } else {
+      console.log('Cancelado');
+    }
+  }
+
   async createNewTask(id: number) {
     try {
       if (this.newTaskPdiForm.valid) {
@@ -73,6 +94,8 @@ export class ModalPdiTaskComponent  implements OnInit {
       if (id) {
         let response = await this.pdiTasksService.delete(id);
         await this.toast.show(`Tarefa deletada com sucesso`, 'success');
+
+        this.getListTasks(this.pdi?.id);
       } else {
         await this.toast.show('PDI não encontrado', 'danger');
       }

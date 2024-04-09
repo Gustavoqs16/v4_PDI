@@ -154,6 +154,11 @@ ion-modal {
   --min-width: 75vw;
 }
 
+.modal-confirm-w-h {
+  --max-width: 300px;
+  --max-height: 300px;
+}
+
 .icon-create {
   font-size: 22px;
   margin-left: 4px;

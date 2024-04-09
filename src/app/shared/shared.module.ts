@@ -7,6 +7,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 import { ModalPdiTaskComponent } from '../components/modal-pdi-task/modal-pdi-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalPdiComponent } from '../components/modal-pdi/modal-pdi.component';
+import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ModalPdiComponent } from '../components/modal-pdi/modal-pdi.component';
     MenuListComponent,
     ModalComponent,
     ModalPdiTaskComponent,
-    ModalPdiComponent
+    ModalPdiComponent,
+    ModalConfirmComponent
   ],
   imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -22,7 +24,8 @@ import { ModalPdiComponent } from '../components/modal-pdi/modal-pdi.component';
     MenuListComponent,
     ModalComponent,
     ModalPdiTaskComponent,
-    ModalPdiComponent
+    ModalPdiComponent,
+    ModalConfirmComponent
   ],
 })
 export class SharedModule {}

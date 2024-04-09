@@ -55,7 +55,7 @@
             <div class="status-delete-task" slot="end">
               <ion-text class="text-danger" name="close" *ngIf="!task.concluido">Não concluído</ion-text>
               <icon-v4 class="icon-success" name="check-circle" *ngIf="task.concluido"></icon-v4>
-              <ion-button shape="round" fill="clear" slot="end" (click)="deleteTaskPdi(task.id)">
+              <ion-button shape="round" fill="clear" slot="end" (click)="confirmModalTask('Confirmar ?', 'Deseja mesmo deletar essa tarefa ?', task.id)">
                 <ion-icon slot="icon-only" name="trash-outline" class="icon-trash"></ion-icon>
               </ion-button>
             </div>

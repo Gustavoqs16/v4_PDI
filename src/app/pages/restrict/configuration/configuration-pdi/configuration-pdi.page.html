@@ -22,7 +22,7 @@
                 <ion-label>{{ pdi.name }}</ion-label>
                 <ion-note>{{ pdi.selectedUser?.name || 'Nenhum usuário selecionado' }}</ion-note>
               </ion-col>
-              <ion-button shape="round" fill="clear" slot="end" (click)="deletePdi(pdi.id)">
+              <ion-button shape="round" fill="clear" slot="end" (click)="confirmDeletePdi('Confirmar ?', 'Deseja mesmo deletar o PDI ' + pdi.name + ' ?', pdi.id)">
                 <ion-icon slot="icon-only" name="trash-outline" class="icon-trash"></ion-icon>
               </ion-button>
             </ion-item>
