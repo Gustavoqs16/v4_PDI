@@ -1,0 +1,25 @@
+<svg [attr.width]="sqSize" [attr.height]="sqSize" [attr.viewBox]="viewBox" >
+  <circle
+    class="circle-background"
+    [attr.cx]="sqSize / 2"
+    [attr.cy]="sqSize / 2"
+    [attr.r]="radius"
+    [attr.stroke-width]="strokeWidth + 'px'"></circle>
+    <circle
+    class="circle-progress"
+    [attr.cx]="sqSize / 2"
+    [attr.cy]="sqSize / 2"
+    [attr.r]="radius"
+    [attr.stroke-width]="strokeWidth + 'px'"
+    [attr.transform]="transformString"
+    [attr.stroke-dasharray]="dashArray"
+    [attr.stroke-dashoffset]="dashOffset"></circle>
+  <text
+    class="circle-text"
+    x="50%"
+    y="50%"
+    dy=".3em"
+    text-anchor="middle">
+    {{ percentage }}%
+  </text>
+</svg>

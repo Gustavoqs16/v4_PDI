@@ -1,0 +1,102 @@
+ion-grid {
+  max-height: calc(100% - 100px);
+  height: calc(100% - 100px);
+  overflow-y: auto;
+}
+
+.step-pdc,
+.progress-pdc {
+  position: relative;
+  ion-img {
+    height: 100%;
+    object-fit: fill;
+  }
+}
+
+.step-monitoring {
+  --background: var(--bg-card-secondary);
+  background: var(--bg-card-secondary);
+  --border-radius: 4px;
+  border-radius: 4px;
+  box-shadow: 0px 10px 60px 0px #00000080;
+  --box-shadow: 0px 10px 60px 0px #00000080;
+  margin: 0;
+  --margin: 0;
+
+  ion-card-header {
+    padding-inline: 0 !important;
+  }
+
+  #title-step-pdc {
+    font-family: "Poppins";
+    font-size: 26.67px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-right: 10px;
+
+    color: #fff;
+  }
+
+  ion-note {
+    font-family: "Poppins";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: -0.01em;
+    color: #16c098;
+  }
+}
+
+ion-card-content {
+  padding: 0;
+  --padding: 0;
+}
+
+#header-steps-pdc {
+  border-bottom: 1px solid #eeeeee;
+
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  color: #b5b7c0;
+}
+
+#body-steps-pdc > ion-col {
+  border-bottom: 1px solid #eeeeee;
+
+  font-family: "Poppins";
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 25.5px;
+  letter-spacing: -0.01em;
+  color: #fff;
+
+  .nao-concluido, .concluido {
+    height: 29px;
+    padding: 4px 12px 4px 12px;
+    border-radius: 4px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    width: 100%;
+
+    font-family: "Poppins";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: -0.01em;
+  }
+
+  .nao-concluido {
+    background: #888888;
+    color: #fff;
+    border: 1px solid #b2b2b2;
+  }
+
+  .concluido {
+    background: #16C09861;
+    border: 1px solid #00B087;
+    color: #00FF66;
+  }
+}

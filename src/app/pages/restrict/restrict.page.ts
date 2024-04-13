@@ -46,7 +46,7 @@ export class RestrictPage implements OnInit {
       },
       {
         title: 'PDC',
-        url: 'dashboard',
+        url: 'pdc',
         active: false,
       },
       {

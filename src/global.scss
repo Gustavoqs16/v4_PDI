@@ -47,6 +47,12 @@ ion-input {
   }
 }
 
+.svg-white{
+  svg {
+    fill: #fff;
+  }
+}
+
 .mt-20 {
   margin-top: 20px;
 }
@@ -174,4 +180,12 @@ ion-modal {
 .w-full {
   width: 100%;
   --width: 100%;
+}
+
+.w-20 {
+  width: 20px;
+}
+
+.w-23 {
+  width: 23px;
 }

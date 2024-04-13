@@ -27,6 +27,11 @@ const routes: Routes = [
         canLoad: [AuthGuard],
         loadChildren: () => import('./pdi/pdi.module').then((m) => m.PdiModule),
       },
+      {
+        path: 'pdc',
+        canLoad: [AuthGuard],
+        loadChildren: () => import('./pdc/pdc.module').then((m) => m.PdcModule),
+      },
     ],
   },
 ];

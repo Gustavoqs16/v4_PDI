@@ -8,6 +8,7 @@ import { ModalPdiTaskComponent } from '../components/modal-pdi-task/modal-pdi-ta
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalPdiComponent } from '../components/modal-pdi/modal-pdi.component';
 import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm.component';
+import { CircleProgressComponent } from '../components/circle-progress/circle-progress.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm
     ModalComponent,
     ModalPdiTaskComponent,
     ModalPdiComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    CircleProgressComponent
   ],
   imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -25,7 +27,8 @@ import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm
     ModalComponent,
     ModalPdiTaskComponent,
     ModalPdiComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    CircleProgressComponent
   ],
 })
 export class SharedModule {}

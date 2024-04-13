@@ -1,0 +1,75 @@
+<ion-grid>
+  <ion-row>
+    <ion-col class="progress-pdc" sizeSm="7">
+      <div class="content-pdc">
+        <ion-img src="../../../../assets/images/pdc/card-pdc.png" alt="progresso do pdc"></ion-img>
+        <!-- <app-circle-progress
+        [strokeWidth]="10"
+        [sqSize]="200"
+        [percentage]="10"></app-circle-progress> -->
+      </div>
+    </ion-col>
+    <ion-col class="step-pdc" sizeSm="5">
+      <ion-img src="../../../../assets/images/pdc/card-step-pdc.png" alt="step do pdc"></ion-img>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-card class="step-monitoring">
+        <ion-card-header>
+          <ion-col size="11" offset="1">
+            <ion-row class="ion-align-items-center">
+              <ion-text id="title-step-pdc">Acompanhamento por steps</ion-text>
+              <icon-v4 name="lock" class="w-23 svg-white"></icon-v4>
+            </ion-row>
+            <ion-note>Atualização por ******</ion-note>
+          </ion-col>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row id="header-steps-pdc">
+            <ion-col offset="1" size="10">
+              <ion-row>
+                <ion-col>
+                  <ion-text>
+                    Metas
+                  </ion-text>
+                </ion-col>
+                <ion-col>
+                  <ion-text>
+                    Objetivo
+                  </ion-text>
+                </ion-col>
+                <ion-col size="auto" style="min-width: 110px !important;">
+                  <ion-text>
+                    Status
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="10" offset="1">
+              <ion-row id="body-steps-pdc" *ngFor="let step of steps">
+                <ion-col>
+                  <ion-text>
+                    {{step.meta}}
+                  </ion-text>
+                </ion-col>
+                <ion-col>
+                  <ion-text>
+                    {{step.objetivo}}
+                  </ion-text>
+                </ion-col>
+                <ion-col size="auto">
+                  <button [class]="getClassButton(step.concluido)">
+                    {{getTextButton(step.concluido)}}
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
