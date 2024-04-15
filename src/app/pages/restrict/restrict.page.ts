@@ -32,6 +32,11 @@ export class RestrictPage implements OnInit {
         url: 'configuration/configuration-pdi',
         active: false,
       },
+      {
+        title: 'Configuração do PDC',
+        url: 'configuration/configuration-pdc',
+        active: false,
+      },
     ],
     menu: [
       {
@@ -102,7 +107,11 @@ export class RestrictPage implements OnInit {
   }
 
   toggleDarkMode() {
-    this.themeService.toggleDarkMode();
+    if(this.routeActive == 'pdc') {
+      this.themeService.toggleDarkMode(true);
+    } else {
+      this.themeService.toggleDarkMode();
+    }
   }
 
   isDarkTheme() {

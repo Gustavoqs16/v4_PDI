@@ -32,6 +32,14 @@ const routes: Routes = [
           import('./configuration-pdi/configuration-pdi.module').then(
             (m) => m.ConfigurationPdiModule
           ),
+      },
+      {
+        path: 'configuration-pdc',
+        canLoad: [AuthGuard],
+        loadChildren: () =>
+          import('./configuration-pdc/configuration-pdc.module').then(
+            (m) => m.ConfigurationPdcModule
+          ),
       }
     ],
   },

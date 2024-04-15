@@ -58,7 +58,40 @@
   --subtext-color-card: #E6E6E6;
   --bg-card-green: #00FFAD4D;
   --border-card-green: #00FF0A;
-  --text-card-green: #fff;
+  --text-card-green: #005a24;
+  --border-card: #E0E0E0;
+  --bg-menu:#333333;
+  --bg-card-secondary: #2E3033;
+}
+
+.dark-theme-pdc {
+  --primary-color: #db0001;
+  --secondary-color: #56f294;
+  --create-bg: #0BB07B;
+  --tertiary-color: #181818;
+  --header-transparent: rgba(255, 255, 255, 0.75);
+  --card-transparent: rgba(255, 255, 255, 0.35);
+  --white-text-color: #fff;
+  --black-text-color: #000;
+  --grey-text-color: #a3a3a3;
+  --dark-grey-color: #464646;
+  --dark-green-color: #005a24;
+  --dark-green-color-opacity: rgba(0, 97, 39, 0.25);
+  --light-green-color: #ceffe2;
+  --light-blue: #00a0fa;
+  --bg-primary: #1a1b1e;
+  --bg-card: #000;
+  --bg-white-primary: #fff;
+  --text-color: #fff;
+  --text-color-white: #000;
+  --bg-button-grey: #F4F4F4;
+  --bg-item-grey: #F4F4F4;
+  --bg-card-black: #E6E6E6;
+  --bg-modal: #181818;
+  --subtext-color-card: #E6E6E6;
+  --bg-card-green: #00FFAD4D;
+  --border-card-green: #00FF0A;
+  --text-card-green: #005a24;
   --border-card: #E0E0E0;
   --bg-menu:#333333;
   --bg-card-secondary: #2E3033;

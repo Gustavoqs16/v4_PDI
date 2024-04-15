@@ -1,12 +1,24 @@
 <ion-grid>
   <ion-row>
     <ion-col class="progress-pdc" sizeSm="7">
+      <ion-img src="../../../../assets/images/pdc/card-pdc.png" alt="progresso do pdc"></ion-img>
       <div class="content-pdc">
-        <ion-img src="../../../../assets/images/pdc/card-pdc.png" alt="progresso do pdc"></ion-img>
-        <!-- <app-circle-progress
-        [strokeWidth]="10"
-        [sqSize]="200"
-        [percentage]="10"></app-circle-progress> -->
+        <ion-text id="hashtag-pdc">
+          #GROWTHERS
+        </ion-text>
+        <ion-title id="pdc-name-user">
+          {{nomeUsuario}}
+        </ion-title>
+        <ion-note>
+          Sobre o seu progresso
+        </ion-note>
+        <div class="progress">
+          <ion-text id="text-progress">Progresso</ion-text>
+          <app-circle-progress
+          [strokeWidth]="10"
+          [sqSize]="125"
+          [percentage]="10"></app-circle-progress>
+        </div>
       </div>
     </ion-col>
     <ion-col class="step-pdc" sizeSm="5">

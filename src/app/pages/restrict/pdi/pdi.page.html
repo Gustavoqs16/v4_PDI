@@ -33,7 +33,7 @@
                 </ion-item>
               </ion-row>
               <ion-row>
-                <ion-item lines="none">
+                <ion-item lines="none" color="transparent">
                   <ion-label class="label-input">Data do último alinhamento do PDI</ion-label>
                   <ion-input placeholder="Data atualizada"></ion-input>
                 </ion-item>
@@ -64,8 +64,8 @@
   <ion-row style="margin-top: 5px;" *ngIf="pdiUser?.id">
     <ion-col sizeMd="8" sizeSm="12">
       <div class="actions-goal">
-        <ion-item lines="none">
-          <ion-title slot="start">Ações para alcançar seu objetivo</ion-title>
+        <ion-item lines="none" color="transparent">
+          <ion-title style="color: var(--text-color);" slot="start">Ações para alcançar seu objetivo</ion-title>
           <ion-button shape="round" fill="outline" slot="end" (click)="openPdiTasks()" class="btn-outline-primary">
             <ion-icon slot="icon-only" name="add-outline"></ion-icon>
           </ion-button>

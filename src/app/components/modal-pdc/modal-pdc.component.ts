@@ -3,15 +3,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
-import { UsersService } from 'src/app/services/v1/users/users.service';
 import { ModalController } from '@ionic/angular';
+import { UsersService } from 'src/app/services/v1/users/users.service';
 
 @Component({
-  selector: 'app-modal-pdi',
-  templateUrl: './modal-pdi.component.html',
-  styleUrls: ['./modal-pdi.component.scss'],
+  selector: 'app-modal-pdc',
+  templateUrl: './modal-pdc.component.html',
+  styleUrls: ['./modal-pdc.component.scss'],
 })
-export class ModalPdiComponent implements OnInit {
+export class ModalPdcComponent implements OnInit {
   newPdiForm: FormGroup;
   listUsers: Array<any> = [];
 

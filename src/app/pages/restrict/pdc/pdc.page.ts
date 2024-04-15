@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { LoginService } from 'src/app/services/v1/login/login.service';
 
 @Component({
   selector: 'app-pdc',
@@ -56,10 +57,19 @@ export class PdcPage implements OnInit {
       objetivo: 1,
       concluido: false
     },
-
   ];
 
+  nomeUsuario: string = '';
+
+  constructor(private loginService: LoginService) {
+
+  }
+
   ngOnInit() {
+    const user = this.loginService.$user.getValue();
+    const { name, roleUser } = user;
+    this.nomeUsuario = name;
+
     this.updateProgress();
   }
 

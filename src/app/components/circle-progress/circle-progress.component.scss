@@ -9,17 +9,17 @@
 }
 
 .circle-background {
-  stroke: #ddd;
+  stroke: transparent;
 }
 
 .circle-progress {
-  stroke: red;
+  stroke: #00ff66;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .circle-text {
-  font-size: 3em;
+  font-size: 1em;
   font-weight: bold;
-  fill: red;
+  fill: #fff;
 }
