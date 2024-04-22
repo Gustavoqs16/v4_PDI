@@ -11,7 +11,7 @@
     <ion-label>{{ item?.label }}</ion-label>
   </ion-item>
 
-  <ion-item button lines="none" style="border-top: 0.5px solid #FFFFFF">
+  <ion-item button lines="none" style="border-top: 0.5px solid #FFFFFF" (click)="footerMenu.onClick()">
     <ion-icon *ngIf="footerMenu?.icon" [name]="footerMenu?.icon" slot="start"></ion-icon>
     <ion-label>{{ footerMenu?.label }}</ion-label>
   </ion-item>

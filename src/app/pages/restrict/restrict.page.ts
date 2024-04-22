@@ -37,6 +37,11 @@ export class RestrictPage implements OnInit {
         url: 'configuration/configuration-pdc',
         active: false,
       },
+      {
+        title: 'Setores',
+        url: 'configuration/sectors',
+        active: false,
+      },
     ],
     menu: [
       {
@@ -159,8 +164,10 @@ export class RestrictPage implements OnInit {
       label: 'Sair',
       icon: 'log-out-outline',
       onClick: async () => {
-        console.log('sair');
+        console.log('entrou')
         await this.loginService.logout();
+        window.localStorage.clear();
+        this.router.navigate(['login']);
       },
     };
 

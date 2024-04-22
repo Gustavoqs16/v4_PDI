@@ -189,3 +189,12 @@ ion-modal {
 .w-23 {
   width: 23px;
 }
+
+.py-20-important {
+  padding-block: 20px !important;
+}
+
+.color-text {
+  --color: var(--text-color);
+  color: var(--text-color);
+}

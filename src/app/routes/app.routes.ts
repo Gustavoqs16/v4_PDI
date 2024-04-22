@@ -16,14 +16,13 @@ export const routes: Routes = [
     loadChildren: () => import('../pages/public/login/login.module').then( m => m.LoginModule)
   },
   {
+    path: 'register',
+    loadChildren: () => import('../pages/public/register/register.module').then( m => m.RegisterModule)
+  },
+  {
     path: 'about',
     canLoad: [AuthGuard],
     loadChildren: () => import('../about/about.module').then( m => m.AboutModule)
-  },
-  {
-    path: 'register',
-    canLoad: [AuthGuard],
-    loadChildren: () => import('../pages/public/register/register.module').then( m => m.RegisterModule)
   },
   {
     path: 'recovery-password',

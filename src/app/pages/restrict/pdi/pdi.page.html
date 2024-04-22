@@ -137,8 +137,8 @@
 
   <ion-row *ngIf="!pdiUser?.name">
     <ion-col sizeMd="10" offsetMd="1">
-      <ion-item lines="none">
-        <ion-text>Nenhum PDI configurado para esse usuário</ion-text>
+      <ion-item lines="none" color="transparent">
+        <ion-text class="color-text">Nenhum PDI configurado para esse usuário</ion-text>
         <ion-button slot="end" class="btn-primary border-r-3" (click)="openPdi()">Criar PDI</ion-button>
       </ion-item>
     </ion-col>
