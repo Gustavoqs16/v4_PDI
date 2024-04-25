@@ -10,7 +10,8 @@ export class ModalConfirmComponent implements OnInit {
   @Input() title: string;
   @Input() message: string;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController) {
+  }
 
   ngOnInit(): void {}
 

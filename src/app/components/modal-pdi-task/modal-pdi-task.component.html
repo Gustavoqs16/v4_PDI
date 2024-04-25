@@ -45,10 +45,10 @@
   <ion-row class="ion-justify-content-center" *ngIf="pdi?.tasks && pdi.tasks?.length > 0">
     <ion-col sizeMd="12">
       <ion-list>
-        <ion-card class="card-primary" *ngFor="let task of pdi.tasks" (click)="task.isEdit = true">
+        <ion-card class="card-primary" *ngFor="let task of pdi.tasks">
           <ion-item lines="none">
-            <ion-label *ngIf="!task?.isEdit">{{task?.descricao}}</ion-label>
-            <div class="f-items-center" *ngIf="task?.isEdit">
+            <ion-label (click)="task.isEdit = true" *ngIf="!task?.isEdit">{{task?.descricao}}</ion-label>
+            <div class="f-items-center" *ngIf="task?.isEdit" [ngClass]="{'border-secondary': task.isEdit}">
               <ion-input placeholder="Digite a descrição da tarefa" [value]="task?.descricao" [(ngModel)]="task.descricao"></ion-input>
               <ion-icon class="save-icon" name="save-outline" (click)="putTaskPdi(task);"></ion-icon>
             </div>

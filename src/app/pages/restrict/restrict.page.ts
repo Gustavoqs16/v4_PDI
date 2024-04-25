@@ -48,26 +48,31 @@ export class RestrictPage implements OnInit {
         title: 'Dashboard',
         url: 'dashboard',
         active: false,
+        icon: 'chart'
       },
       {
         title: 'PDI',
         url: 'pdi',
         active: false,
+        icon: 'circle-user'
       },
       {
         title: 'PDC',
         url: 'pdc',
         active: false,
+        icon: 'chart-user'
       },
       {
         title: 'V4 Network',
         url: 'dashboard',
         active: false,
+        icon: 'chart-user'
       },
       {
         title: 'Configurações',
         url: 'configuration/system-preferences',
         active: false,
+        icon: 'engine'
       },
     ],
   };
@@ -94,6 +99,7 @@ export class RestrictPage implements OnInit {
   ) {
     this.detectarTamanhoDaTela();
   }
+
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {

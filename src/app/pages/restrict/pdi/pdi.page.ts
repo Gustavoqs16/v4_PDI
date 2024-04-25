@@ -114,7 +114,7 @@ export class PdiPage implements OnInit {
   }
 
   detectarTamanhoDaTela() {
-    this.isMobile = window.innerWidth <= 768; // Defina o limite que você considera como mobile
+    this.isMobile = window.innerWidth <= 800; // Defina o limite que você considera como mobile
   }
 
   favoriteChanged(event: any) {
@@ -209,7 +209,7 @@ export class PdiPage implements OnInit {
     let modal = await this.modalController.create({
       component: ModalPdiTaskComponent,
       componentProps: { pdi: this.pdiUser, isPdi: true},
-      cssClass: "min-w-75vw"
+      cssClass: ["min-w-75vw"]
     });
     await modal.present();
 

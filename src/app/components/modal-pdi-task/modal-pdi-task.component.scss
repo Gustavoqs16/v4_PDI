@@ -44,3 +44,8 @@ ion-title {
   --background: var(--bg-card);
   background: var(--bg-card);
 }
+
+
+.border-secondary {
+  border: 1px solid var(--secondary);
+}

@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu [class]="classMenu" contentId="main-content" type="overlay" *ngIf="isMobile">
+    <ion-menu [class]="classMenu" contentId="main-content" type="overlay" *ngIf="isMobile && !isRestrictedPage()">
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>
@@ -26,6 +26,40 @@
           </div>
         </ion-list>
 
+      </ion-content>
+    </ion-menu>
+    <ion-menu contentId="main-content" type="overlay" *ngIf="isMobile && isRestrictedPage()">
+      <ion-content *ngIf="isRestrictedPage()">
+        <nav class="nav-sidebar">
+          <div class="nav-sidebar-header">
+            <ion-icon name="menu" *ngIf="routeActive == 'configuration'"></ion-icon>
+            <img src="../../assets/logos/LOGOTIPO PRETO 1.png" alt="logo preta v4" *ngIf="!isDarkTheme()">
+            <img src="../../assets/logos/logo_branco.png" alt="logo preta v4" *ngIf="isDarkTheme()">
+          </div>
+          <div class="nav-sidebar-content">
+              <ion-title class="title-link" *ngIf="routeActive == 'configuration'">{{ title || 'TESTE'}}</ion-title>
+
+            <div class="links-nav">
+              <div class="link-card" *ngFor="let item of links[routeActive !== 'configuration' ? 'menu' : 'configuration']" [routerLink]="item.url" [ngClass]="{'link-active': item.active}" (click)="setActiveLink(item)">
+                <ion-text>{{item.title}}</ion-text>
+              </div>
+            </div>
+
+            <div class="profile-complete">
+              <ion-text>Complete o seu perfil</ion-text>
+              <span id="complete-description">
+                Você ainda nao terminou de preencher seu perfil
+              </span>
+              <div class="loading-complete">
+                <div class="percentage-complete">
+                  <span>
+                    60% feito
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

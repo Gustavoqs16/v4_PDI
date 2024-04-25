@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true" [ngClass]="{'dark-mode': isDarkTheme()}">
   <ion-grid style="height: 100%;" [ngClass]="{'dark-mode': isDarkTheme()}">
-    <ion-row style="height: 100%;" >
+    <ion-row style="height: 100%;">
       <ion-col sizeMd="3" style="max-height: 100%;" *ngIf="!isMobile">
         <nav class="nav-sidebar">
           <div class="nav-sidebar-header">
@@ -9,10 +9,13 @@
             <img src="../../assets/logos/logo_branco.png" alt="logo preta v4" *ngIf="isDarkTheme()">
           </div>
           <div class="nav-sidebar-content">
-              <ion-title class="title-link" *ngIf="routeActive == 'configuration'">{{ title || 'TESTE'}}</ion-title>
+            <ion-title class="title-link" *ngIf="routeActive == 'configuration'">{{ title || 'TESTE'}}</ion-title>
 
             <div class="links-nav">
-              <div class="link-card" *ngFor="let item of links[routeActive !== 'configuration' ? 'menu' : 'configuration']" [routerLink]="item.url" [ngClass]="{'link-active': item.active}" (click)="setActiveLink(item)">
+              <div class="link-card"
+                *ngFor="let item of links[routeActive !== 'configuration' ? 'menu' : 'configuration']"
+                [routerLink]="item.url" [ngClass]="{'link-active': item.active}" (click)="setActiveLink(item)">
+                <icon-v4 [name]="item.icon" *ngIf="item?.icon" [class]="item.active ? 'colorTextWhite' : 'colorTextColor'" style="margin-left: 15px;"></icon-v4>
                 <ion-text>{{item.title}}</ion-text>
               </div>
             </div>
@@ -37,6 +40,9 @@
         <ion-header [translucent]="true" class="ion-no-border">
           <ion-toolbar>
             <div class="container-header">
+              <ion-buttons slot="start" *ngIf="isMobile">
+                <ion-menu-button></ion-menu-button>
+              </ion-buttons>
               <div id="title-and-icon">
                 <ion-title id="title-config">{{ title || 'TESTE'}}</ion-title>
                 <icon-v4 name="eye" class="colorTextColor"></icon-v4>

@@ -43,7 +43,13 @@ ion-input {
 
 .colorTextColor {
   svg {
-    fill: var(--text-color);
+    fill: var(--text-color) !important;
+  }
+}
+
+.colorTextWhite {
+  svg {
+    fill: #fff !important;
   }
 }
 
@@ -163,6 +169,7 @@ ion-modal {
 .modal-confirm-w-h {
   --max-width: 300px;
   --max-height: 300px;
+  --backdrop-opacity: 0.32 !important;
 }
 
 .icon-create {
