@@ -7,13 +7,9 @@ WORKDIR ./front
 
 COPY package*.json ./
 
-RUN npm install -g @angular/cli
-
-CMD ["npm", "run", "install", "--max-old-space-size=4096"]
+RUN npm install
 
 COPY . .
-
-# CMD ["npm", "run", "build"]
 
 RUN npm run build
 
