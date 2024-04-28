@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { SystemPreferencesModule } from './system-preferences/system-preferences.module';
 import { ConfigurationPdiPage } from './configuration-pdi/configuration-pdi.page';
+import { SectorsModule } from './sectors/sectors.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ConfigurationPdiPage } from './configuration-pdi/configuration-pdi.page
     ConfigurationRoutingModule,
     SharedModule,
     FileUploadModule,
-    SystemPreferencesModule
+    SystemPreferencesModule,
+    SectorsModule
   ]
 })
 export class ConfigurationModule { }

@@ -10,6 +10,8 @@ import { LoginService } from 'src/app/services/v1/login/login.service';
 import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
 import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service';
 import { UsersService } from 'src/app/services/v1/users/users.service';
+import { PermissionsService } from 'src/app/services/v1/permissions/permissions.service';
+import { RolePermissionsService } from 'src/app/services/v1/role-permissions/role-permissions.service';
 
 @NgModule({
   declarations: [PdiPage],
@@ -25,7 +27,9 @@ import { UsersService } from 'src/app/services/v1/users/users.service';
     LoginService,
     PdiService,
     PdiTasksService,
-    UsersService
+    UsersService,
+    PermissionsService,
+    RolePermissionsService
   ]
 })
 export class PdiModule { }

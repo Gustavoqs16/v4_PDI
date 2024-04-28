@@ -1,5 +1,5 @@
 <ion-grid>
-  <ion-title *ngIf="pdiUser?.id">{{pdiUser.name}}</ion-title>
+  <ion-title class="title-pdi" *ngIf="pdiUser?.id">{{pdiUser.name}}</ion-title>
   <ion-row *ngIf="pdiUser?.id">
     <ion-col sizeXs="12" sizeLg="8">
       <div>
@@ -34,7 +34,7 @@
               </ion-row>
               <ion-row>
                 <ion-item color="transparent" style="width: 100%;">
-                  <ion-label position="floating">Data do último alinhamento do PDI</ion-label>
+                  <ion-label position="floating" class="label-input">Data do último alinhamento do PDI</ion-label>
                   <ion-input placeholder="Data atualizada"></ion-input>
                 </ion-item>
               </ion-row>
@@ -70,8 +70,11 @@
       <div class="actions-goal">
         <ion-item lines="none" color="transparent">
           <ion-title style="color: var(--text-color);" slot="start">Ações para alcançar seu objetivo</ion-title>
-          <ion-button shape="round" slot="end" (click)="openPdiTasks()" class="btn-outline-primary">
+          <ion-button shape="round" slot="end" (click)="openPdiTasks()" class="btn-outline-primary" *ngIf="!isMobile">
             Adicionar nova tarefa
+          </ion-button>
+          <ion-button shape="round" slot="end" (click)="openPdiTasks()" class="btn-outline-primary" *ngIf="isMobile">
+            <ion-icon name="add"></ion-icon>
           </ion-button>
         </ion-item>
         <ion-row>

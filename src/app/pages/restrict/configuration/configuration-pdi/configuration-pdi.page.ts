@@ -14,6 +14,7 @@ import { UsersService } from 'src/app/services/v1/users/users.service';
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.component';
 import { ModalConfirmComponent } from 'src/app/components/modal-confirm/modal-confirm.component';
+import { UpdatePdiDto } from 'src/app/@core/domain/models/pdi/dto/pdiUpdateDto.model';
 
 @Component({
   selector: 'app-configuration-pdi',
@@ -209,10 +210,21 @@ export class ConfigurationPdiPage implements OnInit {
           }
         }, {
           text: 'Ok',
-          handler: (selected: any) => {
+          handler: async (selected: any) => {
             let findedUser = this.listUsers.find(user => user.value === selected);
-            console.log('Selecionados:', findedUser, this.listUsers, selected);
-            pdi.selectedUser = findedUser; // Atualiza a lista de usuários selecionados para o PDI
+            pdi.selectedUser = findedUser;
+            let req: UpdatePdiDto = {
+              userId: findedUser.value,
+              name: pdi.name
+            }
+            let response = await this.pdiService.update(pdi.id, req);
+
+            await this.toast.show(
+              `PDI ${response?.name} atualizado com sucesso`,
+              'success'
+            );
+
+            this.getAllPdi();
           }
         }
       ]

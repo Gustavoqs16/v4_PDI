@@ -10,7 +10,7 @@ import { PopoverController, NavParams } from '@ionic/angular';
 export class MenuListComponent implements OnInit {
   menuItems: IMenuList[] = [];
   headerMenu: any = {};
-  footerMenu: any = {};
+  footerMenu: any = null;
 
   constructor(private popoverCtrl: PopoverController, private navParams: NavParams) {
     this.menuItems = this.navParams.get('items') || [];

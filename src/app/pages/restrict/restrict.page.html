@@ -5,8 +5,8 @@
         <nav class="nav-sidebar">
           <div class="nav-sidebar-header">
             <ion-icon name="menu" *ngIf="routeActive == 'configuration'"></ion-icon>
-            <img src="../../assets/logos/LOGOTIPO PRETO 1.png" alt="logo preta v4" *ngIf="!isDarkTheme()">
-            <img src="../../assets/logos/logo_branco.png" alt="logo preta v4" *ngIf="isDarkTheme()">
+            <img src="../../../assets/logos/LOGOTIPO PRETO 1.png" alt="logo preta v4" *ngIf="!isDarkTheme()">
+            <img src="../../../assets/logos/logo_branco.png" alt="logo preta v4" *ngIf="isDarkTheme()">
           </div>
           <div class="nav-sidebar-content">
             <ion-title class="title-link" *ngIf="routeActive == 'configuration'">{{ title || 'TESTE'}}</ion-title>
@@ -20,7 +20,7 @@
               </div>
             </div>
 
-            <div class="profile-complete">
+            <div class="profile-complete" *ngIf="!isMobile">
               <ion-text>Complete o seu perfil</ion-text>
               <span id="complete-description">
                 Você ainda nao terminou de preencher seu perfil
@@ -45,11 +45,11 @@
               </ion-buttons>
               <div id="title-and-icon">
                 <ion-title id="title-config">{{ title || 'TESTE'}}</ion-title>
-                <icon-v4 name="eye" class="colorTextColor"></icon-v4>
+                <icon-v4 *ngIf="!isMobile" name="eye" class="colorTextColor"></icon-v4>
               </div>
 
               <div class="content-header">
-                <ion-searchbar class="custom" animated="true" placeholder="O que você precisa?"></ion-searchbar>
+                <ion-searchbar class="custom" animated="true" placeholder="O que você precisa?" *ngIf="!isMobile"></ion-searchbar>
                 <div class="icon-button">
                   <icon-v4 name="messages"></icon-v4>
                 </div>
@@ -57,7 +57,7 @@
                   <icon-v4 name="bell"></icon-v4>
                 </div>
                 <div class="menu-user" (click)="presentPopover($event)">
-                  <div class="info-user">
+                  <div class="info-user" *ngIf="!isMobile">
                     <ion-label>{{ nomeUsuario }}</ion-label>
                     <ion-note>{{ cargoUsuario }}</ion-note>
                   </div>

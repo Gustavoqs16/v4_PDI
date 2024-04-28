@@ -98,16 +98,19 @@ export class RestrictPage implements OnInit {
     private loginService: LoginService
   ) {
     this.detectarTamanhoDaTela();
-  }
-
-
-  ngOnInit(): void {
+    this.isDarkTheme();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         let route = event.url;
         this.title = this.translationTitle(route);
+        console.log(route, this.title);
       }
     });
+  }
+
+
+  ngOnInit(): void {
+
 
     if (this.loginService.$isLogged.getValue()) {
       const { name, roleUser } = this.loginService.$user.getValue();
@@ -201,7 +204,6 @@ export class RestrictPage implements OnInit {
         },
         icon: `${this.isDarkTheme() ? 'sunny' : 'moon'}`,
       },
-      // Mais itens...
     ];
 
     const popover = await this.popoverCtrl.create({

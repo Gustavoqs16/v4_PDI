@@ -1,3 +1,39 @@
-<p>
-  sectors works!
-</p>
+<ion-grid>
+  <ion-row>
+    <ion-text *ngIf="!sectors || sectors.length == 0">
+      Nenhum setor cadastrado
+    </ion-text>
+    <ion-col sizeSm="10" offsetSm="1">
+      <ion-row class="ion-justify-content-end">
+        <ion-button class="btn-secondary border-r-3">
+          <ion-text>
+            Adicionar setor
+          </ion-text>
+          <ion-icon class="icon-create" name="add-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-row>
+    </ion-col>
+
+    <ion-col sizeSm="10" offsetSm="1">
+      <table mat-table [dataSource]="sectors" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Setor </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Ações </th>
+          <td mat-cell *matCellDef="let element" style="text-align: right;">
+            <ion-button size="small" class="btn-actions" (click)="presentPopover($event, element)">
+              <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+            </ion-button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </ion-col>
+  </ion-row>
+</ion-grid>

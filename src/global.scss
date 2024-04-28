@@ -71,6 +71,17 @@ ion-input {
   margin-right: 10px;
 }
 
+.menu-list-default {
+  ion-list, ion-item {
+    --background: var(--bg-primary);
+    background: var(--bg-primary);
+    ion-label, ion-icon {
+      --color: var(--text-color);
+      color: var(--text-color) !important;
+    }
+  }
+}
+
 .menu-list {
   ion-list, ion-item {
     --background: var(--bg-menu);
@@ -204,4 +215,14 @@ ion-modal {
 .color-text {
   --color: var(--text-color);
   color: var(--text-color);
+}
+
+ion-grid {
+  height: 100%;
+}
+
+.btn-actions {
+  --background: var(--bg-primary);
+  --color: var(--text-color);
+  --box-shadow: none;
 }

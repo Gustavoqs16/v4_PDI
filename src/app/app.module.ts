@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpService } from './services/http/http.service';
 import { RestrictModule } from './pages/restrict/restrict.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { RestrictModule } from './pages/restrict/restrict.module';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    HttpService
+    HttpService,
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent],
 })

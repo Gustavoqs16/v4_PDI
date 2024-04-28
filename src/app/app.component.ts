@@ -64,54 +64,54 @@ export class AppComponent {
     configuration: [
       {
         title: 'Preferências de sistema',
-        url: 'configuration/system-preferences',
+        url: 'app/configuration/system-preferences',
         active: false,
       },
       {
         title: 'Upload de arquivos',
-        url: 'configuration/file-upload',
+        url: 'app/configuration/file-upload',
         active: false,
       },
       {
         title: 'Configuração do PDI',
-        url: 'configuration/configuration-pdi',
+        url: 'app/configuration/configuration-pdi',
         active: false,
       },
       {
         title: 'Configuração do PDC',
-        url: 'configuration/configuration-pdc',
+        url: 'app/configuration/configuration-pdc',
         active: false,
       },
       {
         title: 'Setores',
-        url: 'configuration/sectors',
+        url: 'app/configuration/sectors',
         active: false,
       },
     ],
     menu: [
       {
         title: 'Dashboard',
-        url: 'dashboard',
+        url: 'app/dashboard',
         active: false,
       },
       {
         title: 'PDI',
-        url: 'pdi',
+        url: 'app/pdi',
         active: false,
       },
       {
         title: 'PDC',
-        url: 'pdc',
+        url: 'app/pdc',
         active: false,
       },
       {
         title: 'V4 Network',
-        url: 'dashboard',
+        url: 'app/dashboard',
         active: false,
       },
       {
         title: 'Configurações',
-        url: 'configuration/system-preferences',
+        url: 'app/configuration/system-preferences',
         active: false,
       },
     ],

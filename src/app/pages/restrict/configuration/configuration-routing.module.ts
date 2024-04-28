@@ -40,7 +40,13 @@ const routes: Routes = [
           import('./configuration-pdc/configuration-pdc.module').then(
             (m) => m.ConfigurationPdcModule
           ),
-      }
+      },
+      {
+        path: 'sectors',
+        canLoad: [AuthGuard],
+        loadChildren: () =>
+          import('./sectors/sectors.module').then((m) => m.SectorsModule),
+      },
     ],
   },
 ];

@@ -18,6 +18,9 @@ import { PdiTasksModel } from 'src/app/@core/domain/models/pdi-tasks/pdi-tasks.m
 import { ModalController } from '@ionic/angular';
 import { ModalPdiTaskComponent } from 'src/app/components/modal-pdi-task/modal-pdi-task.component';
 import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.component';
+import { RolesModel } from 'src/app/@core/domain/models/roles/roles.model';
+import { PermissionsService } from 'src/app/services/v1/permissions/permissions.service';
+import { RolePermissionsService } from 'src/app/services/v1/role-permissions/role-permissions.service';
 
 @Component({
   selector: 'app-pdi',
@@ -82,6 +85,7 @@ export class PdiPage implements OnInit {
   pdiUser: any | null = null;
   newPdiForm: FormGroup;
   listUsers: Array<any> = [];
+  userId: number;
 
   constructor(
     private readonly loginService: LoginService,
@@ -89,7 +93,8 @@ export class PdiPage implements OnInit {
     private userService: UsersService,
     private readonly toast: ToastService,
     private pdiTasksService: PdiTasksService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private rolePermissionsService: RolePermissionsService
   ) {
     this.detectarTamanhoDaTela();
     this.newPdiForm = new FormGroup({
@@ -100,12 +105,15 @@ export class PdiPage implements OnInit {
 
   ngOnInit() {
     const user = this.loginService.$user.getValue();
-    const { name, roleUser } = user;
+    const { name, roleUser, id} = user;
+
+    this.userId = id;
     this.nomeUsuario = name;
     this.cargoNome = roleUser.name;
     this.nomeLideranca = !!roleUser.managerId ? roleUser.manager.name : null;
 
     this.getInfoPdiUser();
+    this.getPermissionsUser();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -115,6 +123,10 @@ export class PdiPage implements OnInit {
 
   detectarTamanhoDaTela() {
     this.isMobile = window.innerWidth <= 800; // Defina o limite que você considera como mobile
+  }
+
+  async getPermissionsUser() {
+      let response = await this.rolePermissionsService.myPermissions();
   }
 
   favoriteChanged(event: any) {
