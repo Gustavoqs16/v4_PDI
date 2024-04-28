@@ -7,7 +7,7 @@ WORKDIR ./front
 
 COPY package*.json ./
 
-CMD ["npm", "run", "--max-old-space-size=4096"]
+RUN npm install '--max-old-space-size=4096'
 
 COPY . .
 
