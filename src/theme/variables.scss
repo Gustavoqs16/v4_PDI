@@ -66,6 +66,8 @@ $app-theme: mat.define-light-theme((
   --border-card: #E0E0E0;
   --bg-menu:#181818;
   --bg-card-secondary: #2E3033;
+  --success: #0BB07B;
+  --danger: #db0001;
 }
 
 .dark-theme {
@@ -99,6 +101,8 @@ $app-theme: mat.define-light-theme((
   --border-card: #E0E0E0;
   --bg-menu:#333333;
   --bg-card-secondary: #2E3033;
+  --success: #0BB07B;
+  --danger: #db0001;
 }
 
 .dark-theme-pdc {
@@ -132,6 +136,8 @@ $app-theme: mat.define-light-theme((
   --border-card: #E0E0E0;
   --bg-menu:#333333;
   --bg-card-secondary: #2E3033;
+  --success: #0BB07B;
+  --danger: #db0001;
 }
 
 html {

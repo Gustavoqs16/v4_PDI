@@ -14,6 +14,10 @@ import { ModalController, AlertController } from '@ionic/angular';
 import { ItemReorderEventDetail } from '@ionic/angular';
 import { UsersService } from 'src/app/services/v1/users/users.service';
 import { ModalPdcComponent } from 'src/app/components/modal-pdc/modal-pdc.component';
+import { MenuListComponent } from 'src/app/components/menu-list/menu-list.component';
+import { IMenuList } from 'src/app/@core/domain/interfaces/IMenulist.interface';
+import { PdcModel } from 'src/app/@core/domain/models/pdc/pdc.model';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-configuration-pdc',
@@ -28,6 +32,8 @@ export class ConfigurationPdcPage implements OnInit {
   newTaskPdiForm: FormGroup;
   newPdiForm: FormGroup;
 
+  displayedColumns: string[] = ['userImg', 'name', 'userName', 'concluido', 'actions'];
+
   constructor(
     private pdiService: PdiService,
     private userService: UsersService,
@@ -35,7 +41,8 @@ export class ConfigurationPdcPage implements OnInit {
     private readonly toast: ToastService,
     private loadingService: LoadingService,
     private modalController: ModalController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private popoverCtrl: PopoverController
   ) {
     this.newPdiForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -236,5 +243,42 @@ export class ConfigurationPdcPage implements OnInit {
         'danger'
       );
     }
+  }
+
+  async presentPopover(ev: any, item: PdcModel) {
+    const headerMenu = {
+      label: item.name,
+    };
+
+    const menuItems: IMenuList[] = [
+      {
+        label: 'Editar',
+        onClick: () => {
+          this.openPdiTasks(item);
+        },
+        icon: 'pencil',
+      },
+      {
+        label: 'Excluir',
+        onClick: async () => {
+          this.confirmDeletePdi('Confirmar ?', 'Deseja mesmo deletar o PDI ' + item.name + ' ?', item.id);
+        },
+        icon: 'trash',
+      },
+    ];
+
+    const popover = await this.popoverCtrl.create({
+      component: MenuListComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        items: menuItems,
+        headerMenu: headerMenu,
+
+      },
+      cssClass: 'menu-list-default',
+    });
+
+    await popover.present();
   }
 }

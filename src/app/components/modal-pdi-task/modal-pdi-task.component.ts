@@ -74,12 +74,15 @@ export class ModalPdiTaskComponent  implements OnInit {
           pdiId: id
         }
         let response = await this.pdiTasksService.create(payload);
-        await this.toast.show(
-          `Tarefa ${response?.descricao} criado com sucesso`,
-          'success'
-        );
 
-        this.getListTasks(this.pdi?.id);
+        if(response) {
+          await this.toast.show(
+            `Tarefa ${response?.descricao} criado com sucesso`,
+            'success'
+          );
+
+          this.getListTasks(this.pdi?.id);
+        }
       } else {
         await this.toast.show(
           `Necessário preencher a descrição da tarefa`,
@@ -93,9 +96,11 @@ export class ModalPdiTaskComponent  implements OnInit {
     try {
       if (id) {
         let response = await this.pdiTasksService.delete(id);
-        await this.toast.show(`Tarefa deletada com sucesso`, 'success');
+        if(response) {
+          await this.toast.show(`Tarefa deletada com sucesso`, 'success');
 
-        this.getListTasks(this.pdi?.id);
+          this.getListTasks(this.pdi?.id);
+        }
       } else {
         await this.toast.show('PDI não encontrado', 'danger');
       }
@@ -114,12 +119,14 @@ export class ModalPdiTaskComponent  implements OnInit {
   async getListTasks(id: number) {
     try {
       let response: any = await this.pdiTasksService.getOne(id);
-      this.pdi.tasks = response.map((item: any) => {
-        return {
-          ...item,
-          isEdit: false
-        }
-      });;
+      if(response) {
+        this.pdi.tasks = response.map((item: any) => {
+          return {
+            ...item,
+            isEdit: false
+          }
+        });
+      }
     } catch (error) {
       await this.toast.show(
         'Erro ao  as tarefas, entre em contato com o suporte',
@@ -133,10 +140,13 @@ export class ModalPdiTaskComponent  implements OnInit {
       if (this.newPdiForm.valid) {
         const objRequest = this.newPdiForm.value;
         let response = await this.pdiService.update(this.pdi.id, objRequest);
-        await this.toast.show(
-          `PDI ${response?.name} atualizado com sucesso`,
-          'success'
-        );
+
+        if(response) {
+          await this.toast.show(
+            `PDI ${response?.name} atualizado com sucesso`,
+            'success'
+          );
+        }
 
       } else {
         await this.toast.show(
@@ -159,11 +169,14 @@ export class ModalPdiTaskComponent  implements OnInit {
           descricao: task.descricao
         };
         let response = await this.pdiTasksService.update(task.id, objRequest);
-        await this.toast.show(
-          `Tarefa ${response?.descricao} atualizado com sucesso`,
-          'success'
-        );
 
+        if(response) {
+          await this.toast.show(
+            `Tarefa ${response?.descricao} atualizado com sucesso`,
+            'success'
+          );
+
+        }
         task.isEdit = false;
 ;      } else {
         await this.toast.show(
@@ -183,9 +196,11 @@ export class ModalPdiTaskComponent  implements OnInit {
     try {
       let response = await this.userService.getAll();
 
-      this.listUsers = response.map((item: UsersModel) => {
-        return { name: item.name, type: 'radio', label: item.name, value: item.id }
-      });
+      if(response) {
+        this.listUsers = response.map((item: UsersModel) => {
+          return { name: item.name, type: 'radio', label: item.name, value: item.id }
+        });
+      }
 
     } catch (error) {
 

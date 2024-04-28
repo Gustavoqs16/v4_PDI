@@ -15,6 +15,10 @@ import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.component';
 import { ModalConfirmComponent } from 'src/app/components/modal-confirm/modal-confirm.component';
 import { UpdatePdiDto } from 'src/app/@core/domain/models/pdi/dto/pdiUpdateDto.model';
+import { CompanyModel } from 'src/app/@core/domain/models/company/company.model';
+import { PopoverController } from '@ionic/angular';
+import { MenuListComponent } from 'src/app/components/menu-list/menu-list.component';
+import { IMenuList } from 'src/app/@core/domain/interfaces/IMenulist.interface';
 
 @Component({
   selector: 'app-configuration-pdi',
@@ -29,6 +33,8 @@ export class ConfigurationPdiPage implements OnInit {
   newTaskPdiForm: FormGroup;
   newPdiForm: FormGroup;
 
+  displayedColumns: string[] = ['userImg', 'name', 'userName', 'concluido', 'actions'];
+
   constructor(
     private pdiService: PdiService,
     private userService: UsersService,
@@ -36,7 +42,8 @@ export class ConfigurationPdiPage implements OnInit {
     private readonly toast: ToastService,
     private loadingService: LoadingService,
     private modalController: ModalController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private popoverCtrl: PopoverController
   ) {
     this.newPdiForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -109,6 +116,7 @@ export class ConfigurationPdiPage implements OnInit {
       this.listPdi = await Promise.all(tasksPromises);
       this.loadingService.hideLoading();
 
+      console.log(this.listPdi);
     } catch (error) {
       this.loadingService.hideLoading();
 
@@ -248,5 +256,42 @@ export class ConfigurationPdiPage implements OnInit {
         'danger'
       );
     }
+  }
+
+  async presentPopover(ev: any, item: PdiModel) {
+    const headerMenu = {
+      label: item.name,
+    };
+
+    const menuItems: IMenuList[] = [
+      {
+        label: 'Editar',
+        onClick: () => {
+          this.openPdiTasks(item);
+        },
+        icon: 'pencil',
+      },
+      {
+        label: 'Excluir',
+        onClick: async () => {
+          this.confirmDeletePdi('Confirmar ?', 'Deseja mesmo deletar o PDI ' + item.name + ' ?', item.id);
+        },
+        icon: 'trash',
+      },
+    ];
+
+    const popover = await this.popoverCtrl.create({
+      component: MenuListComponent,
+      event: ev,
+      translucent: true,
+      componentProps: {
+        items: menuItems,
+        headerMenu: headerMenu,
+
+      },
+      cssClass: 'menu-list-default',
+    });
+
+    await popover.present();
   }
 }

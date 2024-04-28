@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ConfigurationPdiPage } from './configuration-pdi.page';
 import { UsersService } from 'src/app/services/v1/users/users.service';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { UsersService } from 'src/app/services/v1/users/users.service';
     FormsModule,
     ConfigurationPdiRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ],
   providers: [
     UsersService

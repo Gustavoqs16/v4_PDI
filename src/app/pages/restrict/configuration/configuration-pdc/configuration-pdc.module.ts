@@ -6,6 +6,7 @@ import { ConfigurationPdcRoutingModule } from './configuration-pdc-routing.modul
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfigurationPdcPage } from './configuration-pdc.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ConfigurationPdcRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ]
 })
 export class ConfigurationPdcModule { }

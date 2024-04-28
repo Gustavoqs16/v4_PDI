@@ -35,14 +35,16 @@ export class ModalPdiComponent implements OnInit {
     try {
       if (this.newPdiForm.valid) {
         const objRequest = this.newPdiForm.value;
-        let response = await this.pdiService.create(objRequest);
-        await this.toast.show(
-          `PDI ${response?.name} criado com sucesso`,
-          'success'
-        );
+        let response: any = await this.pdiService.create(objRequest);
+        if(response) {
+          await this.toast.show(
+            `PDI ${response?.name} criado com sucesso`,
+            'success'
+          );
 
-        this.closeModal(true);
-        this.newPdiForm.reset();
+          this.closeModal(true);
+          this.newPdiForm.reset();
+        }
       } else {
         await this.toast.show(
           'Por favor, preencha os campos corretamente.',
@@ -61,9 +63,11 @@ export class ModalPdiComponent implements OnInit {
     try {
       let response = await this.userService.getAll();
 
-      this.listUsers = response.map((item: UsersModel) => {
-        return { name: item.name, type: 'radio', label: item.name, value: item.id }
-      });
+      if(response) {
+        this.listUsers = response.map((item: UsersModel) => {
+          return { name: item.name, type: 'radio', label: item.name, value: item.id }
+        });
+      }
 
     } catch (error) {
 

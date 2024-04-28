@@ -9,26 +9,50 @@
 
   <ion-row *ngIf="listPdi.length > 0">
     <ion-col sizeMd="10" offsetMd="1">
-      <ion-list>
-        <ion-list-header>
-          <ion-title>PDI's</ion-title>
-        </ion-list-header>
-        <ion-card *ngFor="let pdi of listPdi" >
-          <ion-row class="ion-align-items-center">
-            <ion-img class="img-logo-pdi" src="../../../../../assets/images/configuration/user-off.png"
-              alt="Imagem do usuário" (click)="openUserSelect(pdi)"></ion-img>
-            <ion-item lines="none" color="transparent" style="flex: 1;">
-              <ion-col size="9" slot="start" (click)="openPdiTasks(pdi)" style="cursor: pointer;">
-                <ion-label>{{ pdi.name }}</ion-label>
-                <ion-note>{{ pdi.selectedUser?.name || 'Nenhum usuário selecionado' }}</ion-note>
-              </ion-col>
-              <ion-button shape="round" fill="clear" slot="end" (click)="confirmDeletePdi('Confirmar ?', 'Deseja mesmo deletar o PDI ' + pdi.name + ' ?', pdi.id)">
-                <ion-icon slot="icon-only" name="trash-outline" class="icon-trash"></ion-icon>
+        <table mat-table [dataSource]="listPdi" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="userImg">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+              <ion-img class="img-logo-pdi" src="../../../../../assets/images/configuration/user-off.png"
+                alt="Imagem do usuário" (click)="openUserSelect(element)"></ion-img>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> PDI </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef> Responsável </th>
+            <td mat-cell *matCellDef="let element"> {{element.user?.name || 'Nenhum usuário selecionado'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="concluido">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element">
+            <div class="pdi-status" [ngClass]="{'pdi-status-danger': !element.concluido}">
+              <ion-text>
+                {{element.concluido ? 'Concluído' : 'Não Concluído'}}
+              </ion-text>
+            </div>
+          </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Ações </th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">
+              <ion-button size="small" class="btn-actions" (click)="presentPopover($event, element)">
+                <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
               </ion-button>
-            </ion-item>
-          </ion-row>
-        </ion-card>
-      </ion-list>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
     </ion-col>
   </ion-row>
 </ion-grid>
