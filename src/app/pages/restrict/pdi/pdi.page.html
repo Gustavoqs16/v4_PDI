@@ -1,6 +1,6 @@
 <ion-grid>
-  <ion-title class="title-pdi" *ngIf="pdiUser?.id">{{pdiUser.name}}</ion-title>
-  <ion-row *ngIf="pdiUser?.id">
+  <ion-title class="title-pdi" *ngIf="pdiUser?.id  && !isLoading">{{pdiUser.name}}</ion-title>
+  <ion-row *ngIf="pdiUser?.id && !isLoading">
     <ion-col sizeXs="12" sizeLg="8">
       <div>
         <ion-row>
@@ -70,17 +70,17 @@
       <div class="actions-goal">
         <ion-item lines="none" color="transparent">
           <ion-title style="color: var(--text-color);" slot="start">Ações para alcançar seu objetivo</ion-title>
-          <ion-button shape="round" slot="end" (click)="openPdiTasks()" class="btn-outline-primary" *ngIf="!isMobile">
+          <!-- <ion-button shape="round" slot="end" (click)="openPdiTasks()" class="btn-outline-primary" *ngIf="!isMobile">
             Adicionar nova tarefa
           </ion-button>
           <ion-button shape="round" slot="end" (click)="openPdiTasks()" class="btn-outline-primary" *ngIf="isMobile">
             <ion-icon name="add"></ion-icon>
-          </ion-button>
+          </ion-button> -->
         </ion-item>
         <ion-row>
           <ion-col size="12" class="item-check" *ngFor="let item of pdiUser.tasks">
-            <ion-checkbox labelPlacement="end" [(ngModel)]="item.concluido"
-              (ionChange)="putTaskPdi(item)">{{item.descricao}}</ion-checkbox>
+            <ion-checkbox labelPlacement="end" [(ngModel)]="item.concluido" disabled="true"
+              >{{item.descricao}}</ion-checkbox> <!--(ionChange)="putTaskPdi(item)"-->
           </ion-col>
         </ion-row>
       </div>
@@ -142,7 +142,7 @@
     </div>
   </ion-row>
 
-  <ion-row *ngIf="!pdiUser?.name">
+  <ion-row *ngIf="!pdiUser?.name && !isLoading">
     <ion-col sizeLg="10" offsetMd="1">
       <ion-item lines="none" color="transparent">
         <ion-text class="color-text">Nenhum PDI configurado para esse usuário</ion-text>

@@ -21,6 +21,7 @@ import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.compon
 import { RolesModel } from 'src/app/@core/domain/models/roles/roles.model';
 import { PermissionsService } from 'src/app/services/v1/permissions/permissions.service';
 import { RolePermissionsService } from 'src/app/services/v1/role-permissions/role-permissions.service';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'app-pdi',
@@ -86,6 +87,7 @@ export class PdiPage implements OnInit {
   newPdiForm: FormGroup;
   listUsers: Array<any> = [];
   userId: number;
+  isLoading: boolean = false;
 
   constructor(
     private readonly loginService: LoginService,
@@ -94,7 +96,8 @@ export class PdiPage implements OnInit {
     private readonly toast: ToastService,
     private pdiTasksService: PdiTasksService,
     private modalController: ModalController,
-    private rolePermissionsService: RolePermissionsService
+    private rolePermissionsService: RolePermissionsService,
+    private loadingService: LoadingService
   ) {
     this.detectarTamanhoDaTela();
     this.newPdiForm = new FormGroup({
@@ -104,8 +107,13 @@ export class PdiPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getInitialsParams();
+  }
+
+  async getInitialsParams() {
+    this.isLoading = true;
     const user = this.loginService.$user.getValue();
-    const { name, roleUser, id} = user;
+    const { name, roleUser, id } = user;
 
     this.userId = id;
     this.nomeUsuario = name;
@@ -114,6 +122,7 @@ export class PdiPage implements OnInit {
 
     this.getInfoPdiUser();
     this.getPermissionsUser();
+    this.isLoading = false;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -126,7 +135,7 @@ export class PdiPage implements OnInit {
   }
 
   async getPermissionsUser() {
-      let response = await this.rolePermissionsService.myPermissions();
+    let response = await this.rolePermissionsService.myPermissions();
   }
 
   favoriteChanged(event: any) {
@@ -201,12 +210,13 @@ export class PdiPage implements OnInit {
     try {
       if (this.pdiUser) {
         let response: any = await this.pdiTasksService.getOne(this.pdiUser?.id);
-        this.pdiUser.tasks = response.map((item: any) => {
-          return {
-            ...item,
-            isEdit: false
-          }
-        }) || [];
+        this.pdiUser.tasks =
+          response.map((item: any) => {
+            return {
+              ...item,
+              isEdit: false,
+            };
+          }) || [];
       }
     } catch (error) {
       await this.toast.show(
@@ -220,8 +230,8 @@ export class PdiPage implements OnInit {
   async openPdiTasks() {
     let modal = await this.modalController.create({
       component: ModalPdiTaskComponent,
-      componentProps: { pdi: this.pdiUser, isPdi: true},
-      cssClass: ["min-w-75vw"]
+      componentProps: { pdi: this.pdiUser, isPdi: true },
+      cssClass: ['min-w-75vw'],
     });
     await modal.present();
 
@@ -233,13 +243,13 @@ export class PdiPage implements OnInit {
   async openPdi() {
     let modal = await this.modalController.create({
       component: ModalPdiComponent,
-      cssClass:[ "max-h-300" ,"min-w-75vw"]
+      cssClass: ['max-h-300', 'min-w-75vw'],
     });
     await modal.present();
 
-    const {data, role} = await modal.onWillDismiss();
+    const { data, role } = await modal.onWillDismiss();
 
-    if(role == 'pdi') await this.getInfoPdiUser();
+    if (role == 'pdi') await this.getInfoPdiUser();
   }
 
   async putTaskPdi(task: any) {
@@ -247,8 +257,8 @@ export class PdiPage implements OnInit {
       if (task?.descricao) {
         let payload = {
           descricao: task.descricao,
-          concluido: task.concluido
-        }
+          concluido: task.concluido,
+        };
         let response = await this.pdiTasksService.update(task.id, payload);
         await this.toast.show(
           `Tarefa ${response?.descricao} atualizado com sucesso`,
@@ -256,7 +266,7 @@ export class PdiPage implements OnInit {
         );
 
         task.isEdit = false;
-;      } else {
+      } else {
         await this.toast.show(
           'Por favor, preencha os campos corretamente.',
           'danger'

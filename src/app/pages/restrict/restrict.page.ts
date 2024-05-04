@@ -110,8 +110,6 @@ export class RestrictPage implements OnInit {
 
 
   ngOnInit(): void {
-
-
     if (this.loginService.$isLogged.getValue()) {
       const { name, roleUser } = this.loginService.$user.getValue();
 
