@@ -14,12 +14,9 @@ import { PdiModel } from 'src/app/@core/domain/models/pdi/pdi.model';
 import { UsersService } from 'src/app/services/v1/users/users.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
-import { PdiTasksModel } from 'src/app/@core/domain/models/pdi-tasks/pdi-tasks.model';
 import { ModalController } from '@ionic/angular';
 import { ModalPdiTaskComponent } from 'src/app/components/modal-pdi-task/modal-pdi-task.component';
 import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.component';
-import { RolesModel } from 'src/app/@core/domain/models/roles/roles.model';
-import { PermissionsService } from 'src/app/services/v1/permissions/permissions.service';
 import { RolePermissionsService } from 'src/app/services/v1/role-permissions/role-permissions.service';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 
@@ -136,6 +133,7 @@ export class PdiPage implements OnInit {
 
   async getPermissionsUser() {
     let response = await this.rolePermissionsService.myPermissions();
+    console.log('permissions, ',response)
   }
 
   favoriteChanged(event: any) {

@@ -32,6 +32,7 @@ export class LoginService {
     this.checkLogged();
 
     await this.router.navigate(['app', 'dashboard']);
+    document.location.reload();
   }
 
   async logout() {

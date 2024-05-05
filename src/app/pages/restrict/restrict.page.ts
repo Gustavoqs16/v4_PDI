@@ -171,7 +171,6 @@ export class RestrictPage implements OnInit {
       label: 'Sair',
       icon: 'log-out-outline',
       onClick: async () => {
-        console.log('entrou')
         await this.loginService.logout();
         window.localStorage.clear();
         this.router.navigate(['login']);

@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon class="icon-close" name="close" slot="end" (click)="dismiss()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let input of inputs">
+      <ion-label position="stacked">{{ input.name }}</ion-label>
+      <ion-input [type]="input.type" [(ngModel)]="input.value" [name]="input.name" [id]="input.id"
+        [required]="input.required"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-button class="btn-secondary border-r-3" (click)="onSave()" slot="end">
+        Salvar
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

@@ -6,6 +6,9 @@ import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { PopoverController } from '@ionic/angular';
 import { SectorService } from 'src/app/services/v1/sector/sector.service';
+import { ModalController } from '@ionic/angular';
+import { ModalRegistrationComponent } from 'src/app/components/modal-registration/modal-registration.component';
+import { ModalConfirmComponent } from 'src/app/components/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-sectors',
@@ -20,7 +23,8 @@ export class SectorsPage implements OnInit {
     private sectorsService: SectorService,
     private loadingService: LoadingService,
     private readonly toast: ToastService,
-    private popoverCtrl: PopoverController
+    private popoverCtrl: PopoverController,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -50,12 +54,15 @@ export class SectorsPage implements OnInit {
     const menuItems: IMenuList[] = [
       {
         label: 'Editar',
-        onClick: () => {},
+        onClick: () => {
+          this.newSector(true, item.id, item.name);
+        },
         icon: 'pencil',
       },
       {
         label: 'Excluir',
         onClick: async () => {
+          this.confirmDeleteSector('Confirmar ?', 'Deseja mesmo deletar o setor ' + item.name + ' ?', item.id);
         },
         icon: 'trash',
       },
@@ -68,11 +75,91 @@ export class SectorsPage implements OnInit {
       componentProps: {
         items: menuItems,
         headerMenu: headerMenu,
-
       },
       cssClass: 'menu-list-default',
     });
 
     await popover.present();
+  }
+
+  async newSector(isEdit: boolean = false, id?: number, value: string = '') {
+    const modal = await this.modalController.create({
+      component: ModalRegistrationComponent,
+      cssClass: 'max-h-300',
+      componentProps: {
+        title: 'Novo setor',
+        inputs: [{ name: 'Setor', id: 'name', type: 'text', value: value,required: true }],
+      },
+    });
+
+    modal.onDidDismiss().then((dataReturned) => {
+      console.log(dataReturned.data);
+      if (dataReturned !== null) {
+        isEdit && id
+          ? this.handleSave(dataReturned.data, isEdit, id)
+          : this.handleSave(dataReturned.data);
+      }
+    });
+
+    return await modal.present();
+  }
+
+  async handleSave(data: any, isEdit: boolean = false, id?: number) {
+    try {
+      if (!data?.name)
+        return await this.toast.show('Necessário preencher o nome do setor.');
+
+      let response: any =
+        isEdit && id
+          ? await this.sectorsService.update(id, data)
+          : await this.sectorsService.create(data);
+      if (response) {
+        await this.toast.show(
+          `Setor ${response?.name} ${
+            isEdit ? 'criado' : 'atualizado'
+          } com sucesso`,
+          'success'
+        );
+
+        this.getAllSectors();
+      }
+    } catch (error) {}
+  }
+
+  async confirmDeleteSector(title: string = 'Confirmar Ação', message: string = 'Você realmente deseja fazer isso?', id: number) {
+    const modal = await this.modalController.create({
+      component: ModalConfirmComponent,
+      cssClass: 'modal-confirm-w-h',
+      componentProps: {
+        'title': title,
+        'message': message
+      }
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data.confirmed) {
+      await this.deleteSector(id);
+    } else {
+      console.log('Cancelado');
+    }
+  }
+
+  async deleteSector(id: number) {
+    try {
+      if (id) {
+        let response = await this.sectorsService.delete(id);
+        await this.toast.show(`PDI deletado com sucesso`, 'success');
+        this.getAllSectors();
+      } else {
+        await this.toast.show('PDI não encontrado', 'danger');
+      }
+    } catch (error) {
+      await this.toast.show(
+        'Formulário inválido. Por favor, preencha os campos corretamente.',
+        'danger'
+      );
+    }
   }
 }

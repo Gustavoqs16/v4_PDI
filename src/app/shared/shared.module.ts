@@ -10,6 +10,7 @@ import { ModalPdiComponent } from '../components/modal-pdi/modal-pdi.component';
 import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm.component';
 import { CircleProgressComponent } from '../components/circle-progress/circle-progress.component';
 import { ModalPdcComponent } from '../components/modal-pdc/modal-pdc.component';
+import { ModalRegistrationComponent } from '../components/modal-registration/modal-registration.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ModalPdcComponent } from '../components/modal-pdc/modal-pdc.component';
     ModalPdiComponent,
     ModalConfirmComponent,
     CircleProgressComponent,
-    ModalPdcComponent
+    ModalPdcComponent,
+    ModalRegistrationComponent
   ],
   imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule],
   exports: [
@@ -31,7 +33,8 @@ import { ModalPdcComponent } from '../components/modal-pdc/modal-pdc.component';
     ModalPdiComponent,
     ModalConfirmComponent,
     CircleProgressComponent,
-    ModalPdcComponent
+    ModalPdcComponent,
+    ModalRegistrationComponent
   ],
 })
 export class SharedModule {}
