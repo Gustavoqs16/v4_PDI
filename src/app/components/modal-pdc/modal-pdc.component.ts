@@ -40,8 +40,7 @@ export class ModalPdcComponent implements OnInit {
     try {
       if (this.newPdcForm.valid) {
         const objRequest = this.newPdcForm.value;
-        console.log(objRequest, this.image);
-        let response = await this.pdcService.createPdc(objRequest, this.image);
+        let response = await this.pdcService.create(objRequest);
         if(response) {
           await this.toast.show(
             `PDC ${response?.name} criado com sucesso`,
