@@ -11,6 +11,9 @@ import { ModalConfirmComponent } from '../components/modal-confirm/modal-confirm
 import { CircleProgressComponent } from '../components/circle-progress/circle-progress.component';
 import { ModalPdcComponent } from '../components/modal-pdc/modal-pdc.component';
 import { ModalRegistrationComponent } from '../components/modal-registration/modal-registration.component';
+import { ModalPdcOrderComponent } from '../components/modal-pdc-order/modal-pdc-order.component';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { DropzoneComponent } from '../components/dropzone/dropzone.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +25,11 @@ import { ModalRegistrationComponent } from '../components/modal-registration/mod
     ModalConfirmComponent,
     CircleProgressComponent,
     ModalPdcComponent,
-    ModalRegistrationComponent
+    ModalRegistrationComponent,
+    ModalPdcOrderComponent,
+    DropzoneComponent
   ],
-  imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule, NgxFileDropModule],
   exports: [
     IconV4Component,
     MenuListComponent,
@@ -34,7 +39,9 @@ import { ModalRegistrationComponent } from '../components/modal-registration/mod
     ModalConfirmComponent,
     CircleProgressComponent,
     ModalPdcComponent,
-    ModalRegistrationComponent
+    ModalRegistrationComponent,
+    ModalPdcOrderComponent,
+    DropzoneComponent
   ],
 })
 export class SharedModule {}

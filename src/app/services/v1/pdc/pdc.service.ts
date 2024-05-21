@@ -12,10 +12,15 @@ export class PdcService extends BaseService<PdcModel, CreateDtoPdc, null> {
   }
 
   createPdc(data: CreateDtoPdc, image: File) {
+    if (!data) {
+      throw new Error('Dados faltando para a criação do PDC.');
+    }
+
     const formData = new FormData();
     formData.append('data', JSON.stringify(data));
     formData.append('image', image);
 
-    return this.http.post('', formData);
+    console.log(formData);
+    return this.http.post('v1/pdc', formData);
   }
 }

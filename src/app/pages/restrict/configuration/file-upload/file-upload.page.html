@@ -1,5 +1,25 @@
 <ion-grid>
   <ion-row>
-    teste
+    <ion-col sizeSm="6">
+      <ion-item>
+        <ion-title>
+          Upload de arquivos
+        </ion-title>
+        <ion-button class="btn-upload" slot="end" (click)="fileInput.click()">
+          Upload de arquivos
+          <ion-icon name="cloud-upload-outline" slot="end"></ion-icon>
+        </ion-button>
+        <input type="file" #fileInput (change)="onFileSelected($event)" hidden>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col sizeSm="6">
+      <ion-list>
+        <ion-item *ngFor="let file of files">
+          {{ file.name }}
+        </ion-item>
+      </ion-list>
+    </ion-col>
   </ion-row>
 </ion-grid>

@@ -3,7 +3,7 @@ import { CompanyModel } from "../company/company.model";
 import { SectorModel } from "../sector/sector.model";
 import { UsersModel } from "../users/users.model";
 
-export class PdcModel extends BaseModel {
+export class PdcOrderModel extends BaseModel {
 
     name: string;
     image: string;

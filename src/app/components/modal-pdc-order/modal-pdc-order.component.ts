@@ -7,13 +7,16 @@ import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service
 import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
 import { UsersService } from 'src/app/services/v1/users/users.service';
 import { ModalConfirmComponent } from '../modal-confirm/modal-confirm.component';
+import { PdcService } from 'src/app/services/v1/pdc/pdc.service';
+import { PdcOrdersService } from 'src/app/services/v1/pdc-orders/pdc-orders.service';
+
 
 @Component({
-  selector: 'app-modal-pdi-task',
-  templateUrl: './modal-pdi-task.component.html',
-  styleUrls: ['./modal-pdi-task.component.scss'],
+  selector: 'app-modal-pdc-order',
+  templateUrl: './modal-pdc-order.component.html',
+  styleUrls: ['./modal-pdc-order.component.scss'],
 })
-export class ModalPdiTaskComponent implements OnInit {
+export class ModalPdcOrderComponent implements OnInit {
 
   @Input() pdi: any;
   @Input() isPdi: boolean = false;
@@ -25,9 +28,9 @@ export class ModalPdiTaskComponent implements OnInit {
 
     constructor(
       public modalController: ModalController,
-      private pdiTasksService: PdiTasksService,
+      private pdcOrderService: PdcOrdersService,
       private readonly toast: ToastService,
-      private pdiService: PdiService,
+      private pdcService: PdcService,
       private userService: UsersService,
     ) {
     this.newTaskPdiForm = new FormGroup({
@@ -73,16 +76,16 @@ export class ModalPdiTaskComponent implements OnInit {
           ...objRequest,
           pdiId: id
         }
-        let response = await this.pdiTasksService.create(payload);
+        let response = await this.pdcOrderService.create(payload);
 
-        if(response) {
-          await this.toast.show(
-            `Tarefa ${response?.descricao} criado com sucesso`,
-            'success'
-          );
+        // if(response) {
+        //   await this.toast.show(
+        //     `Tarefa ${response?.descricao} criado com sucesso`,
+        //     'success'
+        //   );
 
-          this.getListTasks(this.pdi?.id);
-        }
+        //   this.getListTasks(this.pdi?.id);
+        // }
       } else {
         await this.toast.show(
           `Necessário preencher a descrição da tarefa`,
@@ -95,7 +98,7 @@ export class ModalPdiTaskComponent implements OnInit {
   async deleteTaskPdi(id: number) {
     try {
       if (id) {
-        let response = await this.pdiTasksService.delete(id);
+        let response = await this.pdcOrderService.delete(id);
         if(response) {
           await this.toast.show(`Tarefa deletada com sucesso`, 'success');
 
@@ -118,7 +121,7 @@ export class ModalPdiTaskComponent implements OnInit {
 
   async getListTasks(id: number) {
     try {
-      let response: any = await this.pdiTasksService.getOne(id);
+      let response: any = await this.pdcOrderService.getOne(id);
       if(response) {
         this.pdi.tasks = response.map((item: any) => {
           return {
@@ -139,14 +142,14 @@ export class ModalPdiTaskComponent implements OnInit {
     try {
       if (this.newPdiForm.valid) {
         const objRequest = this.newPdiForm.value;
-        let response = await this.pdiService.update(this.pdi.id, objRequest);
+        // let response = await this.pdcOderService.update(this.pdi.id, objRequest);
 
-        if(response) {
-          await this.toast.show(
-            `PDI ${response?.name} atualizado com sucesso`,
-            'success'
-          );
-        }
+        // if(response) {
+        //   await this.toast.show(
+        //     `PDI ${response?.name} atualizado com sucesso`,
+        //     'success'
+        //   );
+        // }
 
       } else {
         await this.toast.show(
@@ -168,15 +171,15 @@ export class ModalPdiTaskComponent implements OnInit {
         const objRequest = {
           descricao: task.descricao
         };
-        let response = await this.pdiTasksService.update(task.id, objRequest);
+        // let response = await this.pdcOrderService.update(task.id, objRequest);
 
-        if(response) {
-          await this.toast.show(
-            `Tarefa ${response?.descricao} atualizado com sucesso`,
-            'success'
-          );
+        // if(response) {
+        //   await this.toast.show(
+        //     `Tarefa ${response?.descricao} atualizado com sucesso`,
+        //     'success'
+        //   );
 
-        }
+        // }
         task.isEdit = false;
 ;      } else {
         await this.toast.show(

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
 import { ModalController } from '@ionic/angular';
 import { UsersService } from 'src/app/services/v1/users/users.service';
+import { PdcService } from 'src/app/services/v1/pdc/pdc.service';
+import { SectorService } from 'src/app/services/v1/sector/sector.service';
+import { SectorModel } from 'src/app/@core/domain/models/sector/sector.model';
 
 @Component({
   selector: 'app-modal-pdc',
@@ -12,38 +14,42 @@ import { UsersService } from 'src/app/services/v1/users/users.service';
   styleUrls: ['./modal-pdc.component.scss'],
 })
 export class ModalPdcComponent implements OnInit {
-  newPdiForm: FormGroup;
+  newPdcForm: FormGroup;
   listUsers: Array<any> = [];
+  listSectors: Array<any> = [];
+  image: File;
 
   constructor(
-    private pdiService: PdiService,
+    private pdcService: PdcService,
     private userService: UsersService,
+    private sectorService: SectorService,
     private readonly toast: ToastService,
     public modalController: ModalController
   ) {
-    this.newPdiForm = new FormGroup({
+    this.newPdcForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      userId: new FormControl(0)
+      sectorId: new FormControl(0),
     });
   }
 
   ngOnInit() {
-    this.getAllUsers();
+    this.getAllSectors();
   }
 
-  async createdPdi() {
+  async createdPdc() {
     try {
-      if (this.newPdiForm.valid) {
-        const objRequest = this.newPdiForm.value;
-        let response = await this.pdiService.create(objRequest);
+      if (this.newPdcForm.valid) {
+        const objRequest = this.newPdcForm.value;
+        console.log(objRequest, this.image);
+        let response = await this.pdcService.createPdc(objRequest, this.image);
         if(response) {
           await this.toast.show(
-            `PDI ${response?.name} criado com sucesso`,
+            `PDC ${response?.name} criado com sucesso`,
             'success'
           );
 
           this.closeModal(true);
-          this.newPdiForm.reset();
+          this.newPdcForm.reset();
         }
       } else {
         await this.toast.show(
@@ -78,7 +84,28 @@ export class ModalPdcComponent implements OnInit {
     }
   }
 
+  async getAllSectors() {
+    try {
+      let response = await this.sectorService.getAll();
+
+      if(response) {
+        this.listSectors = response.map((item: SectorModel) => {
+          return { name: item.name, type: 'radio', label: item.name, value: item.id }
+        });
+      }
+    } catch (error) {
+      await this.toast.show(
+        "Erro ao listar os usúarios, entre em contato com o suporte",
+        'danger'
+      );
+    }
+  }
+
   async closeModal(isCallback: boolean = false) {
-    await this.modalController.dismiss(isCallback, 'pdi');
+    await this.modalController.dismiss(isCallback, 'pdc');
+  }
+
+  handleFile(file: File) {
+    this.image = file;
   }
 }

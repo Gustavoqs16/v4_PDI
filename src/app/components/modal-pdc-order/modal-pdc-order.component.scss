@@ -1,0 +1,51 @@
+.icon-success{
+  font-size: 24px;
+  color: rgb(0, 244, 0);
+}
+
+.text-danger{
+  font-size: 12px;
+  color: #585858;
+  font-weight: 500;
+}
+
+.status-delete-task {
+  display: flex;
+  align-items: center;
+}
+
+ion-content, ion-toolbar, ion-list {
+  background: var(--bg-modal);
+  --background: var(--bg-modal);
+}
+
+ion-item {
+  background: transparent;
+  --background: transparent;
+}
+
+ion-item, ion-input {
+  --color: var(--text-color);
+  color: var(--text-color);
+}
+
+.save-icon {
+  color: var(--create-bg);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+ion-title {
+  --color: var(--text-color);
+  color: var(--text-color);
+}
+
+.card-primary {
+  --background: var(--bg-card);
+  background: var(--bg-card);
+}
+
+
+.border-secondary {
+  border: 1px solid var(--secondary);
+}

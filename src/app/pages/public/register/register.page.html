@@ -1,79 +1,86 @@
 <ion-content [fullscreen]="true">
-  <ion-grid >
-    <ion-row>
-      <ion-col sizeMd="3" sizeSm="4" style="max-height: 100vh;" *ngIf="!isMobile">
-        <ion-img class="bg-register" src="../../../../assets/images/register/bg-register.png" alt="imagem de fundo da tela de registro"></ion-img>
-      </ion-col>
-      <ion-col sizeMd="9" sizeSm="12" class="py-20-important" style="max-height: 100vh; overflow-y: auto;">
-        <ion-grid>
-          <ion-row>
-            <ion-col size="11" offset="1">
-              <ion-img id="logo_vermelho" src="../../../../assets/logos/logo_sem_texto_red.png" alt="logo vermelho sem texto"></ion-img>
-            </ion-col>
-            <ion-col size="11" offset="1">
-              <ion-item lines="none" color="transparent">
-                <ion-title>Como deseja chamar seu ambiente de trabalho?</ion-title>
-              </ion-item>
-              <ion-note>Adicione o nome da sua equipe, departamento ou empresa.</ion-note>
-            </ion-col>
-            <ion-col size="11" offset="1">
-              <ion-item class="item-input-70">
-                <ion-input label="Digite o nome do ambiente" labelPlacement="floating"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="11" offset="1">
-                <ion-item-divider class="divider-register"></ion-item-divider>
-            </ion-col>
-            <ion-col size="11" offset="1">
-              <ion-item lines="none" color="transparent">
-                <ion-title>Crie seu perfil</ion-title>
-              </ion-item>
-            </ion-col>
+  <form [formGroup]="newUserForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeMd="3" sizeSm="4" style="max-height: 100vh;" *ngIf="!isMobile">
+          <ion-img class="bg-register" src="../../../../assets/images/register/bg-register.png" alt="imagem de fundo da tela de registro"></ion-img>
+        </ion-col>
+        <ion-col sizeMd="9" sizeSm="12" class="py-20-important" style="max-height: 100vh; overflow-y: auto;">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="11" offset="1">
+                <ion-img id="logo_vermelho" src="../../../../assets/logos/logo_sem_texto_red.png" alt="logo vermelho sem texto"></ion-img>
+              </ion-col>
+              <ion-col size="11" offset="1">
+                <ion-item lines="none" color="transparent">
+                  <ion-title>Como deseja chamar seu ambiente de trabalho?</ion-title>
+                </ion-item>
+                <ion-note>Adicione o nome da sua equipe, departamento ou empresa.</ion-note>
+              </ion-col>
+              <ion-col size="11" offset="1">
+                <ion-item class="item-input-70">
+                  <ion-input label="Digite o nome do ambiente" labelPlacement="floating"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="11" offset="1">
+                  <ion-item-divider class="divider-register"></ion-item-divider>
+              </ion-col>
+              <ion-col size="11" offset="1">
+                <ion-item lines="none" color="transparent">
+                  <ion-title>Crie seu perfil</ion-title>
+                </ion-item>
+              </ion-col>
 
-            <ion-col size="11" offset="1">
-              <ion-item class="item-input-70">
-                <ion-input label="Seu nome" labelPlacement="floating"></ion-input>
-              </ion-item>
-              <ion-note>Digite como quer ser chamado por sua equipe</ion-note>
-            </ion-col>
+              <ion-col size="11" offset="1">
+                <ion-item class="item-input-70">
+                  <ion-input label="Seu nome" labelPlacement="floating" formControlName="name"></ion-input>
+                </ion-item>
+                <ion-note>Digite como quer ser chamado por sua equipe</ion-note>
+              </ion-col>
 
-            <ion-col size="11" offset="1">
-              <ion-item class="item-input-70">
-                <ion-input label="Seu e-mail" labelPlacement="floating"></ion-input>
-              </ion-item>
-              <ion-note>Insira seu e-mail para efetuar login</ion-note>
-            </ion-col>
+              <ion-col size="11" offset="1">
+                <ion-item class="item-input-70">
+                  <ion-input label="Seu e-mail" labelPlacement="floating" formControlName="email"></ion-input>
+                </ion-item>
+                <ion-note>Insira seu e-mail para efetuar login</ion-note>
+              </ion-col>
 
-            <ion-col size="11" offset="1">
-              <ion-item class="item-input-70">
-                <ion-input label="Seu celular" labelPlacement="floating"></ion-input>
-              </ion-item>
-              <ion-note>Insira seu celular</ion-note>
-            </ion-col>
+              <ion-col size="11" offset="1">
+                <ion-item class="item-input-70">
+                  <ion-input label="Seu celular" labelPlacement="floating" formControlName="cellPhone"></ion-input>
+                </ion-item>
+                <ion-note>Insira seu celular</ion-note>
+              </ion-col>
 
-            <ion-col size="11" offset="1">
-              <ion-item class="item-input-70">
-                <ion-input label="Sua senha" labelPlacement="floating"></ion-input>
-              </ion-item>
-              <ion-note>Cadastre sua senha com no mínimo 08 dígitos</ion-note>
-            </ion-col>
+              <ion-col size="11" offset="1">
+                <ion-item class="item-input-70">
+                  <ion-input [type]="typePassword" label="Sua senha" labelPlacement="floating" formControlName="password">
+                  </ion-input>
+                  <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="togglePassword()" style="margin-top: 20px;">
+                    <ion-icon slot="icon-only" name="eye" aria-hidden="true" *ngIf="typePassword == 'password'"></ion-icon>
+                    <ion-icon slot="icon-only" name="eye-off" aria-hidden="true" *ngIf="typePassword != 'password'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+                <ion-note>Cadastre sua senha com no mínimo 08 dígitos</ion-note>
+              </ion-col>
 
-            <ion-col size="11" offset="1">
-              <div class="policy-and-terms">
-                <ion-checkbox labelPlacement="end">Li e concordo com a <a>Política de Privacidade</a></ion-checkbox>
-                <ion-checkbox labelPlacement="end">Li e concordo com os <a>Termos de serviço</a></ion-checkbox>
-              </div>
-            </ion-col>
+              <ion-col size="11" offset="1">
+                <div class="policy-and-terms">
+                  <ion-checkbox labelPlacement="end" formControlName="privacyPolicy">Li e concordo com a <a>Política de Privacidade</a></ion-checkbox>
+                  <ion-checkbox labelPlacement="end" formControlName="termsService">Li e concordo com os <a>Termos de serviço</a></ion-checkbox>
+                </div>
+              </ion-col>
 
-            <ion-col size="11" offset="1">
-              <ion-button class="btn-send-register">
-                Continuar
-              </ion-button>
-            </ion-col>
-          </ion-row>
+              <ion-col size="11" offset="1">
+                <ion-button class="btn-send-register" [disabled]="!getValidationForm()" (click)="registerUser()">
+                  Continuar
+                </ion-button>
+              </ion-col>
+            </ion-row>
 
-        </ion-grid>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

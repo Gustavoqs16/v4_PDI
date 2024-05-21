@@ -5,11 +5,9 @@ import { CreatePdiDto } from 'src/app/@core/domain/models/pdi/dto/pdiCreateDto.m
 import { UsersModel } from 'src/app/@core/domain/models/users/users.model';
 import { ModalConfirmComponent } from 'src/app/components/modal-confirm/modal-confirm.component';
 import { ModalPdiTaskComponent } from 'src/app/components/modal-pdi-task/modal-pdi-task.component';
-import { ModalPdiComponent } from 'src/app/components/modal-pdi/modal-pdi.component';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { PdiTasksService } from 'src/app/services/v1/pdi-tasks/pdi-tasks.service';
-import { PdiService } from 'src/app/services/v1/pdi/pdi.service';
 import { ModalController, AlertController } from '@ionic/angular';
 import { ItemReorderEventDetail } from '@ionic/angular';
 import { UsersService } from 'src/app/services/v1/users/users.service';
@@ -18,6 +16,8 @@ import { MenuListComponent } from 'src/app/components/menu-list/menu-list.compon
 import { IMenuList } from 'src/app/@core/domain/interfaces/IMenulist.interface';
 import { PdcModel } from 'src/app/@core/domain/models/pdc/pdc.model';
 import { PopoverController } from '@ionic/angular';
+import { PdcService } from 'src/app/services/v1/pdc/pdc.service';
+import { formatarData } from 'src/app/@core/formaters';
 
 @Component({
   selector: 'app-configuration-pdc',
@@ -25,17 +25,17 @@ import { PopoverController } from '@ionic/angular';
   styleUrls: ['./configuration-pdc.page.scss'],
 })
 export class ConfigurationPdcPage implements OnInit {
-  listPdi: Array<any> = [];
+  listPdc: Array<any> = [];
   listUsers: Array<any> = [];
   newPdi: CreatePdiDto = { name: '' };
   newTaskPdi: CreatePdiTasksDto = { descricao: '', pdiId: 0 };
   newTaskPdiForm: FormGroup;
   newPdiForm: FormGroup;
 
-  displayedColumns: string[] = ['userImg', 'name', 'userName', 'concluido', 'actions'];
+  displayedColumns: string[] = ['name', 'update_at', 'actions'];
 
   constructor(
-    private pdiService: PdiService,
+    private pdcService: PdcService,
     private userService: UsersService,
     private pdiTasksService: PdiTasksService,
     private readonly toast: ToastService,
@@ -52,21 +52,21 @@ export class ConfigurationPdcPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllPdi();
+    this.getAllPdc();
     this.getAllUsers();
   }
 
-  async createdPdi() {
+  async createdPdc() {
     try {
       if (this.newPdiForm.valid) {
         const objRequest = this.newPdiForm.value;
-        let response = await this.pdiService.create(objRequest);
+        let response = await this.pdcService.create(objRequest);
         await this.toast.show(
-          `PDI ${response?.name} criado com sucesso`,
+          `PDC ${response?.name} criado com sucesso`,
           'success'
         );
 
-        this.getAllPdi();
+        this.getAllPdc();
         this.newPdiForm.reset();
       } else {
         await this.toast.show(
@@ -82,14 +82,14 @@ export class ConfigurationPdcPage implements OnInit {
     }
   }
 
-  async deletePdi(id: number) {
+  async deletePdc(id: number) {
     try {
       if (id) {
-        let response = await this.pdiService.delete(id);
-        await this.toast.show(`PDI deletado com sucesso`, 'success');
-        this.getAllPdi();
+        let response = await this.pdcService.delete(id);
+        await this.toast.show(`PDC deletado com sucesso`, 'success');
+        this.getAllPdc();
       } else {
-        await this.toast.show('PDI não encontrado', 'danger');
+        await this.toast.show('PDC não encontrado', 'danger');
       }
     } catch (error) {
       await this.toast.show(
@@ -99,27 +99,21 @@ export class ConfigurationPdcPage implements OnInit {
     }
   }
 
-  async getAllPdi() {
+  async getAllPdc() {
     try {
       this.loadingService.showLoading();
-      let response = await this.pdiService.getAll();
+      let response = await this.pdcService.getAll();
 
-      const tasksPromises = response.map(async (item: any) => {
-        const tasks = await this.getListTasks(item.id) || [];
-        return {
-          ...item,
-          tasks,
-        };
-      });
+      console.log('pdc', response);
 
-      this.listPdi = await Promise.all(tasksPromises);
+      this.listPdc = response;
       this.loadingService.hideLoading();
 
     } catch (error) {
       this.loadingService.hideLoading();
 
       await this.toast.show(
-        "Erro ao listar os PDI's, entre em contato com o suporte",
+        "Erro ao listar os PDC's, entre em contato com o suporte",
         'danger'
       );
     }
@@ -157,7 +151,7 @@ export class ConfigurationPdcPage implements OnInit {
 
     const { data } = await modal.onWillDismiss();
     if (data.confirmed) {
-      await this.deletePdi(id);
+      await this.deletePdc(id);
     } else {
       console.log('Cancelado');
     }
@@ -175,7 +169,7 @@ export class ConfigurationPdcPage implements OnInit {
     ev.detail.complete();
   }
 
-  async openPdiTasks(pdi: any) {
+  async openPdcOrders(pdi: any) {
     let modal = await this.modalController.create({
       component: ModalPdiTaskComponent,
       cssClass: 'min-w-75vw',
@@ -185,10 +179,10 @@ export class ConfigurationPdcPage implements OnInit {
 
     const {data, role} = await modal.onWillDismiss();
 
-    if(role == 'pdi-task') await this.getAllPdi();
+    if(role == 'pdi-task') await this.getAllPdc();
   }
 
-  async openPdi() {
+  async openPdc() {
     let modal = await this.modalController.create({
       component: ModalPdcComponent,
       cssClass: "max-h-300"
@@ -197,10 +191,10 @@ export class ConfigurationPdcPage implements OnInit {
 
     const {data, role} = await modal.onWillDismiss();
 
-    if(role == 'pdi') await this.getAllPdi();
+    if(role == 'pdc') await this.getAllPdc();
   }
 
-  async openUserSelect(pdi: any) {
+  async openUserSelect(pdc: any) {
     const alert = await this.alertController.create({
       header: 'Selecione os usúario responsável',
       inputs: [
@@ -219,7 +213,7 @@ export class ConfigurationPdcPage implements OnInit {
           handler: (selected: any) => {
             let findedUser = this.listUsers.find(user => user.value === selected);
             console.log('Selecionados:', findedUser, this.listUsers, selected);
-            pdi.selectedUser = findedUser; // Atualiza a lista de usuários selecionados para o PDI
+            pdc.selectedUser = findedUser; // Atualiza a lista de usuários selecionados para o PDI
           }
         }
       ]
@@ -254,7 +248,7 @@ export class ConfigurationPdcPage implements OnInit {
       {
         label: 'Editar',
         onClick: () => {
-          this.openPdiTasks(item);
+          this.openPdcOrders(item);
         },
         icon: 'pencil',
       },

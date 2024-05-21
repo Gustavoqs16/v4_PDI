@@ -3,3 +3,42 @@ ion-grid {
   height: calc(100% - 100px);
   overflow-y: auto;
 }
+
+ion-title, ion-item{
+  padding: 0;
+  --padding: 0;
+  margin: 0;
+}
+
+ion-item {
+  --inner-padding-end: 0;
+}
+
+ion-item::part(native) {
+  padding: 0;
+  --padding: 0;
+  margin: 0;
+}
+
+.btn-upload {
+  --background: var(--button-upload-color);
+  --border: 1px solid var(--border-upload-color);
+  background: var(--button-upload-color);
+  --border-width: 1px;
+  --border-color: var(--border-upload-color);
+  --border-style: solid;
+
+  height: 40px;
+  border-radius: 3px;
+
+  font-family: "Poppins";
+  font-size: 13.28px;
+  font-weight: 500 !important;
+  --font-weight: 500 !important;
+  letter-spacing: -0.01em;
+  box-shadow: none;
+  --box-shadow: none;
+
+  --color: #008359;
+
+}

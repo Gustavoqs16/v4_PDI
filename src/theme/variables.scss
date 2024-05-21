@@ -68,6 +68,8 @@ $app-theme: mat.define-light-theme((
   --bg-card-secondary: #2E3033;
   --success: #0BB07B;
   --danger: #db0001;
+  --button-upload-color: #0BB07B40;
+  --border-upload-color: #00744F;
 }
 
 .dark-theme {
@@ -103,6 +105,8 @@ $app-theme: mat.define-light-theme((
   --bg-card-secondary: #2E3033;
   --success: #0BB07B;
   --danger: #db0001;
+  --button-upload-color: #0BB07B40;
+  --border-upload-color: #00744F;
 }
 
 .dark-theme-pdc {
@@ -138,6 +142,8 @@ $app-theme: mat.define-light-theme((
   --bg-card-secondary: #2E3033;
   --success: #0BB07B;
   --danger: #db0001;
+  --button-upload-color: #0BB07B40;
+  --border-upload-color: #00744F;
 }
 
 html {

@@ -8,10 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpService } from './services/http/http.service';
 import { RestrictModule } from './pages/restrict/restrict.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import localePtBr from '@angular/common/locales/pt';
+
+registerLocaleData(localePtBr, 'pt-BR');
 
 @NgModule({
   declarations: [AppComponent],

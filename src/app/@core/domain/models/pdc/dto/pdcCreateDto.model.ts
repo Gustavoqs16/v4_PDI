@@ -1,7 +1,7 @@
 export class CreateDtoPdc {
 
     name: string;
-    order: string;
+    order: number;
     sectorId: string;
     companyId?: number;
 

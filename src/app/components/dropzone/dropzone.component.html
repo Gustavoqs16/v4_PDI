@@ -1,0 +1,27 @@
+<div *ngIf="imagePreview; else dropzoneTemplate">
+  <img [src]="imagePreview" alt="Preview" style="width: 100%; max-height: 400px;">
+  <div class="action-icons">
+    <ion-icon id="icon-open" name="open-outline" (click)="openImage()"></ion-icon>
+    <ion-icon id="icon-delete" name="trash-outline" (click)="deleteImage()"></ion-icon>
+  </div>
+</div>
+
+<input type="file" #fileInput style="display: none" (change)="fileInputChange($event)" multiple />
+
+<ng-template #dropzoneTemplate>
+  <ngx-file-drop [dropZoneLabel]="title" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)" (click)="fileInput.click()">
+    <ng-template ngx-file-drop-content-tmp let-files="files">
+      <div class="upload-icon">
+        <ion-icon name="cloud-download-outline" size="large"></ion-icon>
+      </div>
+      <div class="upload-instructions">
+        <!-- <p>{{title}}</p> -->
+        <ul>
+          <li *ngFor="let file of files">
+            {{ file.relativePath }}
+          </li>
+        </ul>
+      </div>
+    </ng-template>
+  </ngx-file-drop>
+</ng-template>

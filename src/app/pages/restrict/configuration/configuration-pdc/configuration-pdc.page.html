@@ -2,34 +2,31 @@
   <ion-row>
     <ion-col sizeMd="10" offsetMd="1">
       <ion-item lines="none">
-        <ion-button slot="end" class="btn-primary border-r-3" (click)="openPdi()">Criar PDI</ion-button>
+        <ion-button slot="end" class="btn-primary border-r-3" (click)="openPdc()">Criar PDC</ion-button>
       </ion-item>
     </ion-col>
   </ion-row>
 
-  <ion-row *ngIf="listPdi.length > 0">
+  <ion-row *ngIf="listPdc.length > 0">
     <ion-col sizeMd="10" offsetMd="1">
-        <table mat-table [dataSource]="listPdi" class="mat-elevation-z8">
-
-          <ng-container matColumnDef="userImg">
-            <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let element">
-              <ion-img class="img-logo-pdi" src="../../../../../assets/images/configuration/user-off.png"
-                alt="Imagem do usuário" (click)="openUserSelect(element)"></ion-img>
-            </td>
-          </ng-container>
+        <table mat-table [dataSource]="listPdc" class="mat-elevation-z8">
 
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> PDI </th>
+            <th mat-header-cell *matHeaderCellDef> PDC </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="userName">
-            <th mat-header-cell *matHeaderCellDef> Responsável </th>
-            <td mat-cell *matCellDef="let element"> {{element.selectedUser?.name || 'Nenhum usuário selecionado'}} </td>
+          <ng-container matColumnDef="update_at">
+            <th mat-header-cell *matHeaderCellDef> Última atualização </th>
+            <td mat-cell *matCellDef="let element"> {{element.update_at | date: 'dd/MM/yyyy'}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="concluido">
+          <!-- <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef> Responsável </th>
+            <td mat-cell *matCellDef="let element"> {{element.update_at || 'Nenhum usuário selecionado'}} </td>
+          </ng-container> -->
+
+          <!-- <ng-container matColumnDef="concluido">
             <th mat-header-cell *matHeaderCellDef> Status </th>
             <td mat-cell *matCellDef="let element">
             <div class="pdi-status" [ngClass]="{'pdi-status-danger': !element.concluido}">
@@ -38,7 +35,7 @@
               </ion-text>
             </div>
           </td>
-          </ng-container>
+          </ng-container> -->
 
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef style="text-align: right;"> Ações </th>

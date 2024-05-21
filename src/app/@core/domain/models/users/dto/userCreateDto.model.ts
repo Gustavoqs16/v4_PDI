@@ -6,4 +6,5 @@ export class CreateUserDto {
     password: string;
     roleId: number;
     sexo: UserGenero;
+    data_admissao: string;
 }

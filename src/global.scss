@@ -228,3 +228,9 @@ ion-grid {
 }
 
 
+.ngx-file-drop__drop-zone {
+  border-radius: 5px !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  cursor: pointer;
+}

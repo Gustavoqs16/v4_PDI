@@ -1,0 +1,31 @@
+.upload-icon {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.upload-instructions p {
+  text-align: center;
+  margin-top: 0;
+}
+
+.upload-instructions ul {
+  margin-top: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.action-icons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  ion-icon {
+    font-size: 16px;
+    cursor: pointer;
+  }
+  #icon-open {
+    color: var(--secondary-color);
+  }
+  #icon-delete {
+    color: #db0001;
+  }
+}
