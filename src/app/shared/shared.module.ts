@@ -14,6 +14,8 @@ import { ModalRegistrationComponent } from '../components/modal-registration/mod
 import { ModalPdcOrderComponent } from '../components/modal-pdc-order/modal-pdc-order.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { DropzoneComponent } from '../components/dropzone/dropzone.component';
+import { FileSizePipe } from '../@core/domain/pipe/file-size.pipe';
+import { DateFormatPipe } from '../@core/domain/pipe/date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { DropzoneComponent } from '../components/dropzone/dropzone.component';
     ModalPdcComponent,
     ModalRegistrationComponent,
     ModalPdcOrderComponent,
-    DropzoneComponent
+    DropzoneComponent,
+    FileSizePipe,
+    DateFormatPipe
   ],
   imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule, NgxFileDropModule],
   exports: [
@@ -41,7 +45,9 @@ import { DropzoneComponent } from '../components/dropzone/dropzone.component';
     ModalPdcComponent,
     ModalRegistrationComponent,
     ModalPdcOrderComponent,
-    DropzoneComponent
+    DropzoneComponent,
+    FileSizePipe,
+    DateFormatPipe
   ],
 })
 export class SharedModule {}

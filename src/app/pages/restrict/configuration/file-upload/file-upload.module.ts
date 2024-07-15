@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { FileUploadRoutingModule } from './file-upload-routing.module';
 import { FileUploadPage } from './file-upload.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     FileUploadRoutingModule,
-    SharedModule
+    SharedModule,
+    MatTableModule
   ]
 })
 export class FileUploadModule { }

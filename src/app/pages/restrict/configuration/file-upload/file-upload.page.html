@@ -14,12 +14,32 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col sizeSm="6">
-      <ion-list>
-        <ion-item *ngFor="let file of files">
-          {{ file.name }}
-        </ion-item>
-      </ion-list>
+    <ion-col sizeSm="12">
+      <div *ngFor="let file of files" class="card-list">
+        <ion-row>
+          <ion-col sizeSm="2">
+            <ion-img alt="imagem de algum arquivo" [src]="file.base64"></ion-img>
+          </ion-col>
+          <ion-col sizeSm="2">
+            {{ file.name }}
+          </ion-col>
+          <ion-col sizeSm="2">
+            {{ file.size | fileSize}}
+          </ion-col>
+          <ion-col sizeSm="2">
+            {{ file.lastModifiedDate | date: 'dd/MM/yyyy':'pt-BR'}}
+          </ion-col>
+          <ion-col sizeSm="2">
+            {{ file.name }}
+          </ion-col>
+          <ion-col sizeSm="1">
+            {{ file.name }}
+          </ion-col>
+          <ion-col sizeSm="1">
+            {{ file.name }}
+          </ion-col>
+        </ion-row>
+      </div>
     </ion-col>
   </ion-row>
 </ion-grid>
